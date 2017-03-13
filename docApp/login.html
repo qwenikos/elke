@@ -27,8 +27,14 @@
 </head>
 <body>
     <div class="page" ng-app="routing_module">
-        <div ng-controller="menucontroller2">
-        </div>			
+        <div ng-controller="logincontroller">
+
+		<label>Login Name<input type="text" ng-model="loginName" placeholder="name"> <br>
+		<label>Login Pass<input type="password" ng-model="loginPass" placeholder="name"> <br>
+		<input type="button" ng-click="login(name)" value="Submit the value"/><br>
+		 the value from the input-->{{login_name}}<br>
+		 the session variable -->{{ out.variable }}<br>
+		</div>			
     </div>
 </body>
 </html>

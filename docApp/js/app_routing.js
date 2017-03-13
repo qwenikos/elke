@@ -1,4 +1,28 @@
 var app = angular.module('routing_module', ['ngRoute']);
+////////////// Login Controller to be completed//////////////////
+ 
+app.controller('logincontroller', function($scope,$http){
+		
+	$scope.login = function() {
+		//$scope.login_name = $scope.loginName;
+		//$scope.loginpass=$scope.loginPass;
+		console.log("click");
+		site='services/login.php';
+		param='?username='+$scope.loginName+'&userpass='+$scope.loginPass;
+		fullurl=site+param;
+		console.log(fullurl);
+		$http.get(fullurl).then(
+			function(response) {       
+				$scope.out= response.data;
+			}
+		);
+		console.log($scope.out);
+	};
+
+});
+
+ 
+
 
 //////////////////////menu show hide ///////////////////////////////////////
 app.controller('menucontroller2', function($scope){
