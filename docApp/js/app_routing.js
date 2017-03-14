@@ -1,7 +1,7 @@
 var app = angular.module('routing_module', ['ngRoute']);
 ////////////// Login Controller to be completed//////////////////
  
-app.controller('logincontroller', function($scope,$http){
+app.controller('logincontroller', function($scope,$http,$window){
 		
 	$scope.login = function() {
 		//$scope.login_name = $scope.loginName;
@@ -12,20 +12,27 @@ app.controller('logincontroller', function($scope,$http){
 		fullurl=site+param;
 		console.log(fullurl);
 		$http.get(fullurl).then(
-			function(response) {       
-				$scope.out= response.data;
+			function(response) {
+				if (response.data===""){
+					//not logged in 
+					console.log("problem");
+					alert('Login incorrect');
+				}
+				else{
+					//logged in
+					console.log("loggedin");
+					$scope.out= response.data;
+					$window.location.href = 'index1.html';
+				}
 			}
 		);
 		console.log($scope.out);
+
 	};
 
 });
-
- 
-
-
 //////////////////////menu show hide ///////////////////////////////////////
-app.controller('menucontroller2', function($scope){
+app.controller('menucontroller2', function($scope,$window){
 	$scope.msg = 'You are now at docs us page';
 	$scope.sub_menu_arxiki_show = function() {
 		/*alert('sub_menu_arxiki_show');*/
@@ -55,6 +62,12 @@ app.controller('menucontroller2', function($scope){
 		$scope.sub_menu_entoli=false;
 		$scope.sub_menu_epikoinonia=true;
 	};
+	$scope.sub_menu_login = function() {
+		$window.location.href = 'login.html';
+		console.log("connect");
+		
+	};
+	
 });
 
 /////////////////// routes configuration////////////////////////////////////////////////
