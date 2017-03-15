@@ -1,53 +1,51 @@
-var app = angular.module('routing_module', ['ngRoute']);
+'use strict';
 
-////////////// whole Application Controller   //////////////////
-app.controller('ApplicationController', function($scope,$rootScope){
+// declare modules
+
+angular.module('Authentication', []);
+
+angular.module('BasicHttpAuthExample', ['Authentication','ngRoute','ngCookies'])
+
+.controller('ApplicationController', function($scope,$rootScope){
 	$scope.userLoggedId =$rootScope.userid;
 	console.log($rootScope.userid);
-});
+})
 
-////////////// Login Controller to be completed//////////////////
+ ///////// route config //////////////////////////////
+.config(['$routeProvider', function ($routeProvider) {
+    $routeProvider
+        .when('/login', {
+            controller: 'LoginController',
+            templateUrl: 'pages/login.html',
+            hideMenus: true
+        })
  
-app.controller('LoginController', function($scope,$http,$window,$location,$rootScope){
-	//$scope.credentials = {
-    //username: 'nikos',
-    //password: 'nikospass'
-	//};
-	//console.log($scope.credentials.username);
-	$scope.login = function(credentials) {
-		console.log($scope.credentials.username);
-		//$scope.login_name = $scope.loginName;
-		//$scope.loginpass=$scope.loginPass;
-		console.log("click");
-		site='services/login.php';
-		param='?username='+$scope.credentials.username+'&userpass='+$scope.credentials.password;
-		fullurl=site+param;
-		console.log(fullurl);
-		$http.get(fullurl).then(
-			function(response) {
-				if (response.data===""){
-					//not logged in 
-					console.log("problem");
-					alert('Login incorrect');
-				}
-				else{
-					//logged in
-					console.log("loggedin");
-					$scope.out= response.data;
-					$rootScope.userid ="11";
-					$window.location.href = 'index1.html';
-					//$location.url = 'index1.html';
-					
-				}
-			}
-		);
-		console.log($scope.out);
+        .when('/', {
+            controller: 'ApplicationController',
+            //templateUrl: 'pages/home.html'
+            templateUrl: 'index1.html'
+        })
+ 
+        .otherwise({ redirectTo: '/login' });
+}])
+ ///////////////////// run /////////////////////////////
+.run(['$rootScope', '$location', '$cookieStore', '$http',
+    function ($rootScope, $location, $cookieStore, $http) {
+        // keep user logged in after page refresh
+        $rootScope.globals = $cookieStore.get('globals') || {};
+        if ($rootScope.globals.currentUser) {
+            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
+        }
+        $rootScope.$on('$locationChangeStart', function (event, next, current) {
+            // redirect to login page if not logged in
+            if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
+                $location.path('/login');
+            }
+        });
+    }])
 
-	};
-
-});
-//////////////////////menu show hide ///////////////////////////////////////
-app.controller('menucontroller2', function($scope,$window){
+///////////// menu controler 2 ///////////////////////
+.controller('menucontroller2', function($scope,$window){
 	$scope.msg = 'You are now at docs us page';
 	$scope.sub_menu_arxiki_show = function() {
 		/*alert('sub_menu_arxiki_show');*/
@@ -83,69 +81,31 @@ app.controller('menucontroller2', function($scope,$window){
 		
 	};
 	
-});
-
-/////////////////// routes configuration////////////////////////////////////////////////
-app.config(function($routeProvider){
- 
-	$routeProvider
- 
-		.when('/', {
-			templateUrl : 'pages/home.html',
-			controller: 'mainCtrl' 
-		})
-		.when('/entoli', {
-			templateUrl: 'pages/entoli.html',
-			controller: 'contactCtrl'
-		})
- 
-		.when('/docs',{
-			templateUrl: 'pages/docs.html',
-			controller: 'docsCtrl'
-		})
- 
-		.when('/contact', {
-			templateUrl: 'pages/contact.html',
-			controller: 'contactCtrl'
-		})
-		.when('/submited_docs', {
-			templateUrl: 'pages/submited.html',
-			controller: 'submitedCtrl'
-		});		
-});
-
+})
 
 ////////////// Create Controller with name aboutCtrl//////////////////
  
-app.controller('docsCtrl', function($scope){
+.controller('docsCtrl', function($scope){
 	$scope.msg = 'You are now at docs us page';
-});
+})
  
 ///////// Create Controller with name contactCtrl///////////////////
  
-app.controller('contactCtrl', function($scope){
+.controller('contactCtrl', function($scope){
 	$scope.msg = 'Cotact us';
-});
-
-app.controller('mainCtrl', function($scope){
+})
+///////////////////////////////////
+.controller('mainCtrl', function($scope){
  
 	$scope.msg = 'Wellcome to AngularJS Application Main Page';
-});
+})
 ///////// Create Controller with name submitedCtrl///////////////////
-app.controller('submitedCtrl', function($scope,$http){
+.controller('submitedCtrl', function($scope,$http){
 	$scope.msg = 'You are now at submited us page';
-	$scope.doc_entoli_num=1;
-	//////test list/////
-	//$scope.docEntoles=[
-	//{scidir: "1",research: "2",beneficial:'nikos'},
-	//{scidir: "2",research: "3",beneficial:'nikos1'},
-	//];
-	/////test list end///
-	
+	$scope.doc_entoli_num=1;	
 	site='services/get_doc_entoli_all.php';
 	param='';
 	//param='?surname='+surname;
-	
 	fullurl=site+param;
 	console.log(fullurl);
 	$http.get(fullurl).then( //success
@@ -156,11 +116,10 @@ app.controller('submitedCtrl', function($scope,$http){
 			$scope.error="error in proccessing";
 		}
 	);
-});
-
+})
 
 ////////////////////form controller///////////////////////////////////
-app.controller('form_control',function($scope) {
+.controller('form_control',function($scope) {
     //initialization
     $scope.commonfields_form=true;
     $scope.amoivi_form=false;
@@ -254,10 +213,9 @@ app.controller('form_control',function($scope) {
             
         }         
     };    
-});
+})
 /////////////////////form controller end/////////////////////
-
-app.controller("menucontroller1", function($scope) {
+.controller("menucontroller1", function($scope) {
   $scope.menus = [
 	{
 	  title: "Menu1", 
@@ -299,3 +257,4 @@ app.controller("menucontroller1", function($scope) {
 	}
 	];
   });
+///////////////////////END END END ///////////////////////////////

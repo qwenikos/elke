@@ -26,16 +26,14 @@
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />	
 </head>
 <body>
-    <div class="page" ng-app="routing_module">
-        <div ng-controller="logincontroller">
-
-		<label>Login Name<input type="text" ng-model="loginName" placeholder="name"> <br>
-		<label>Login Pass<input type="password" ng-model="loginPass" placeholder="name"> <br>
-		<input type="button" ng-click="login(name)" value="Submit the value"/><br>
-		 the value from the input-->{{login_name}}<br>
-		 the session variable -->{{ out.variable }}<br>
-		 the userid is  -->{{ out.userid }}<br>
-		</div>			
+    <div  ng-app="routing_module" ng-controller="ApplicationController">
+		<form name="loginForm" ng-controller="LoginController" ng-submit="login(credentials)" novalidate>
+			<label>Login Name<input type="text" ng-model="credentials.username" id="username"> <br>
+			<label>Login Pass<input type="password" ng-model="credentials.password" id="password"> <br>
+			<input type="submit"  value="Submit the value"/><br>
+			 userLoggedId-->{{userLoggedId}}<br>
+		</form>
+		
     </div>
 	
 </body>

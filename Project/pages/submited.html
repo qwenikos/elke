@@ -1,0 +1,57 @@
+<div class="row">
+   <!--<div class="col-md-12" ng-show="customers.length > 0">  -->
+   <div class="col-md-12" ng-show="doc_entoli_num > 0">
+      <!--<nav class= "navbar navbar-default" role= "navigation" >
+         <div class= "navbar-header" >
+            <a class="btn btn-lg btn-success" href="#/edit-customer/0"><i class="glyphicon glyphicon-plus"></i>&nbsp;Add new Customer</a>
+         </div>
+      
+      </nav>-->
+      {{msg}}
+      <table class="table table-bordered table-hover">
+         <thead>
+            <th>ΕπιστημονικόςΥπευθυνος</th>
+            <th>Κωδικός Έρευνας</th>
+            <th>Δικαιουχος</th>
+            <th>ΑΦΜ δικαιουχου</th>
+            <th>Αμοιβή του</th>
+            <th>Διαστημα Αρχή</th>
+            <th>Διαστημα Τέλος</th>
+            <th>Ποσό Αμοιβής</th>
+            <th>Προκαταβολή</th>
+            <th>Ποσό Προκαταβολής</th>
+            <th>Έξοδα.Ερευνών</th>
+            <th>Ποσό Εξόδων</th>
+            <th>Εκτίμηση Αγοράς</th>
+            <th>Με Διαγωνισμό</th>
+            <th>&nbsp</th>
+         </thead>
+         <tbody>
+            <tr ng-repeat="data in docEntoles">
+               <td>{{data.scidir_id}}</td>
+               <td>{{data.research_code}}</td>
+               <td>{{data.benef_name}} {{data.benef_surname}}</td>
+               <td>{{data.benef_afm}}</td>
+               <td>{{data.paymentof}}</td>
+               <td>{{data.payment_start_period}}</td>
+               <td>{{data.payment_end_period}}</td>
+               <td>{{data.payment_amount}}</td>
+               <td>{{data.advance_payment_desc}}</td>
+               <td>{{data.advance_payment_amount}}</td>
+               <td>{{data.research_expences_desc}}</td>
+               <td>{{data.research_expences_amount}}</td>
+               <td>{{data.market_eval}}</td>
+               <td>{{data.legal_process}}</td>
+               <td><a href="#/edit-doc_entoli/{{data.doc_entoli_id}}" class="btn">&nbsp;<i class="glyphicon glyphicon-edit"></i>&nbsp;Διόρθωση</a></td>
+            </tr>
+         </tbody>
+      </table>
+
+      
+   </div>
+   <div class="col-md-12" ng-show="doc_entoli_num == 0">
+      <div class="col-md-12">
+         <h4>No customers found!</h4>
+      </div>
+   </div>
+</div>

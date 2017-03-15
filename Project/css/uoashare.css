@@ -1,0 +1,114 @@
+@charset "utf-8";
+/* CSS Document for share UOA*/
+
+body {
+	font-family: "Tahoma", sans-serif;
+	font-size: 12px;
+	color:#666666;
+	line-height: 20px;
+	background-color:#f8f8f8;
+}
+
+input {
+    border: 2px solid #abd7df;
+    background: transparent;
+    color: #111111;
+    font-family: tahoma, sans-serif;
+    font-size: 11px; 
+}
+
+img {
+    border: 0;
+}
+
+/* links */
+a { color: #76ad01;  text-decoration:none; cursor:pointer; }
+a:hover { color: #9EC068; text-decoration:underline; cursor: pointer; }	
+
+#header { height: 75px;
+font-size:14px;
+font-weight:bold;
+padding-right: 50px;
+
+	margin: 20px auto; 
+	width: 960px;}
+
+.shareuoaiframe {
+    border: 2px solid #abd7df;
+    width: 735px;
+    height: 525px;
+    overflow: scroll;
+}
+
+#content { 
+	margin: 10px auto; 
+	width: 960px;
+	border: solid 1px #CCCCCC;
+	background-color:#FFFFFF;
+	float:none;
+    overflow: auto;
+    clear: both;
+}
+
+#contentiframe { 
+	margin: 10px auto; 
+	border: solid 1px #CCCCCC;
+	background-color:#FFFFFF;
+	float:none;
+    overflow: auto;
+}
+#main {
+}
+
+.info {
+    background-color:#FFFFCC;
+    border-bottom:solid 1px #ebebeb;
+    width: 605px;
+    padding: 10px;
+    margin: 10px;
+    float: right;
+}
+
+.upload {
+    border-bottom:solid 1px #ebebeb;
+    width: 604px;
+    padding: 10px;
+    margin: 10px;
+    float: right;
+    background-color:#f8f8f8;
+    display: inline;
+}
+.upload a { color: #ffffff; background-color:#a2c430; padding: 3px; text-decoration:none; }
+.upload a:hover { color: #76ad01; text-decoration:none; }	
+
+/* left side */
+#left {
+	float: left;
+	width: 295px;
+	margin: 10px;
+}
+	.boxtop { height: 19px; background: #fff url(../images/boxtop.gif) no-repeat; color: #000; }
+	.box { background: #fff url(../images/box.gif) no-repeat bottom left; color: #5b5b5b; padding: 0 10px 15px 10px; margin: 0 0 10px 0; }
+	.box p { padding: 0; margin: 0;}
+	.image { float: left; margin: 0 9px 3px 0; }
+	
+.faq {
+	color:#afafaf; 
+}
+.faq a:hover {
+    cursor: pointer;
+}
+.warn {
+color:#FF6600;
+
+}
+
+	
+#folderlisting {
+    padding-left: 338px;
+    display: block;
+
+}
+
+/* footer  */
+.footer { clear: both; text-align: center; line-height: 12px; padding: 10px 0 10px 0; border-top: 1px solid #ccc; font-size:11px; background-color:#FFFFCC;}
