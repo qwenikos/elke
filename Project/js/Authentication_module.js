@@ -1,6 +1,56 @@
 'use strict';
+
+angular.module('Authentication',[])
  
-angular.module('base64_utils',[])
+.factory('AuthenticationService',
+    ['Base64', '$http', '$cookieStore', '$rootScope', '$timeout',
+    function (Base64, $http, $cookieStore, $rootScope, $timeout) {
+        var service = {};
+
+        service.Login = function (username, password, callback) {
+
+            /* Dummy authentication for testing, uses $timeout to simulate api call
+             ----------------------------------------------*/
+            $timeout(function(){
+                var response = { success: username === 'nikos' && password === 'nikos' };
+                if(!response.success) {
+                    response.message = 'Username or password is incorrect';
+                }
+                callback(response);
+            }, 1000);
+
+
+            /* Use this for real authentication
+             ----------------------------------------------*/
+            //$http.post('/api/authenticate', { username: username, password: password })
+            //    .success(function (response) {
+            //        callback(response);
+            //    });
+
+        };
+ 
+        service.SetCredentials = function (username, password) {
+            var authdata = Base64.encode(username + ':' + password);
+ 
+            $rootScope.globals = {
+                currentUser: {
+                    username: username,
+                    authdata: authdata
+                }
+            };
+ 
+            $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
+            $cookieStore.put('globals', $rootScope.globals);
+        };
+ 
+        service.ClearCredentials = function () {
+            $rootScope.globals = {};
+            $cookieStore.remove('globals');
+            $http.defaults.headers.common.Authorization = 'Basic ';
+        };
+ 
+        return service;
+    }])
 
 .factory('Base64', function () {
     /* jshint ignore:start */
@@ -86,4 +136,25 @@ angular.module('base64_utils',[])
     };
  
     /* jshint ignore:end */
-});
+})
+
+.controller('LoginController',
+    ['$scope', '$rootScope', '$location', 'AuthenticationService',
+    function ($scope, $rootScope, $location, AuthenticationService) {
+        // reset login status
+        AuthenticationService.ClearCredentials();
+ 
+        $scope.login = function () {
+            $scope.dataLoading = true;
+            AuthenticationService.Login($scope.username, $scope.password, function(response) {
+                if(response.success) {
+                    AuthenticationService.SetCredentials($scope.username, $scope.password);
+                    $location.path('/');
+                } else {
+                    $scope.error = response.message;
+                    $scope.dataLoading = false;
+                }
+            });
+        };
+    }]);
+ 
