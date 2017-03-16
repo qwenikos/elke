@@ -29,6 +29,11 @@
 	display: table-row-group;
 }
 
+div.clear_div{
+	all: initial;
+	border: 1px solid #111111;
+}
+
 div.inputForm{
 	max-width: 400px;
 	margin: auto;
