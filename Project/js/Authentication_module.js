@@ -2,55 +2,51 @@
 
 angular.module('Authentication',[])
  
-.factory('AuthenticationService',
-    ['Base64', '$http', '$cookieStore', '$rootScope', '$timeout',
-    function (Base64, $http, $cookieStore, $rootScope, $timeout) {
-        var service = {};
+.factory('AuthenticationService',['Base64', '$http', '$cookieStore', '$rootScope', '$timeout',function (Base64, $http, $cookieStore, $rootScope, $timeout) {
+    var service = {};
+    service.Login = function (username, password, callback) {
 
-        service.Login = function (username, password, callback) {
+        /* Dummy authentication for testing, uses $timeout to simulate api call
+         ----------------------------------------------*/
+        $timeout(function(){
+            var response = { success: username === 'nikos' && password === 'nikos' };
+            if(!response.success) {
+                response.message = 'Username or password is incorrect';
+            }
+            callback(response);
+        }, 1000);
 
-            /* Dummy authentication for testing, uses $timeout to simulate api call
-             ----------------------------------------------*/
-            $timeout(function(){
-                var response = { success: username === '1' && password === '1' };
-                if(!response.success) {
-                    response.message = 'Username or password is incorrect';
-                }
-                callback(response);
-            }, 1000);
+        /* Use this for real authentication
+         ----------------------------------------------*/
+        //$http.post('/api/authenticate', { username: username, password: password })
+        //    .success(function (response) {
+        //        callback(response);
+        //    });
 
+    };
 
-            /* Use this for real authentication
-             ----------------------------------------------*/
-            //$http.post('/api/authenticate', { username: username, password: password })
-            //    .success(function (response) {
-            //        callback(response);
-            //    });
+    service.SetCredentials = function (username, password) {
+        var authdata = Base64.encode(username + ':' + password);
 
+        $rootScope.globals = {
+            currentUser: {
+                username: username,
+                authdata: authdata
+            }
         };
- 
-        service.SetCredentials = function (username, password) {
-            var authdata = Base64.encode(username + ':' + password);
- 
-            $rootScope.globals = {
-                currentUser: {
-                    username: username,
-                    authdata: authdata
-                }
-            };
- 
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
-            $cookieStore.put('globals', $rootScope.globals);
-        };
- 
-        service.ClearCredentials = function () {
-            $rootScope.globals = {};
-            $cookieStore.remove('globals');
-            $http.defaults.headers.common.Authorization = 'Basic ';
-        };
- 
-        return service;
-    }])
+
+        $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
+        $cookieStore.put('globals', $rootScope.globals);
+    };
+
+    service.ClearCredentials = function () {
+        $rootScope.globals = {};
+        $cookieStore.remove('globals');
+        $http.defaults.headers.common.Authorization = 'Basic ';
+    };
+
+    return service;
+}])
 
 .factory('Base64', function () {
     /* jshint ignore:start */
@@ -142,6 +138,7 @@ angular.module('Authentication',[])
     ['$scope', '$rootScope', '$location', 'AuthenticationService',
     function ($scope, $rootScope, $location, AuthenticationService) {
         // reset login status
+        //debugger;
         AuthenticationService.ClearCredentials();
  
         $scope.login = function () {
@@ -149,10 +146,9 @@ angular.module('Authentication',[])
             AuthenticationService.Login($scope.username, $scope.password, function(response) {
                 if(response.success) {
                     AuthenticationService.SetCredentials($scope.username, $scope.password);
-                    $location.path('/');
-                    
-                    
-                } else {
+                    $location.path('/');     
+                }
+                else {
                     $scope.error = response.message;
                     $scope.dataLoading = false;
                 }

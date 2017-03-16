@@ -60,8 +60,8 @@
 							<li><a href="#/docs" ng-click="sub_menu_entypa_show()" >Εντυπά</a></li>
 							<li><a href="#/" ng-click="sub_menu_entoli_show()" >εντολη επ. υπευθυνου</a></li>
 							<li><a href="#/contact" ng-click="sub_menu_epikoinonia_show()" >Επικοινωνία</a></li>
-							<li><a href="#/login" ng-click="sub_menu_login()" >Αποσύνδεση</a></li>
-							<li>userLoggedId-->{{userLoggedId}}<br></li>
+							<li><a href="#/login" " >Αποσύνδεση</a></li>
+							<li>userLoggedId-->{{userLoggedMsg}}<br></li>
 						</ul>
 					</div>
 				
@@ -92,16 +92,8 @@
 			</div>
     </div>
 		
-    <!--   ng-view region -->
-		<!--<div class="page" >
-		<div class="body">-->
-			<div class="container">
-				
-					<div ng-view></div>
-				
-			<!--</div>
-		</div>-->
-		</div>
+		<div ng-view></div>
+
 		<!--   footer region -->
     <div class="container">
       <div class="credits text-center">
