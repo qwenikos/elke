@@ -40,10 +40,10 @@ div.inputForm{
 div.outputDoc{
 	max-width: 585px;
 	/*margin: auto;*/
-	margin-left: 10px;
+	/*margin-left: 10px;*/
 	margin-right: 10px;
 	border: 3px solid #aaaaaa;
-	margin-left: 450;
+	margin-left: 450px;
 }
 div.inneroutputDoc{
 	max-width: 565px;

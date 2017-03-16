@@ -1,30 +1,29 @@
 <div ng-controller="form_control">
 <!-- form input  starting-->
 	<div  class="inputForm" >
-		
 		<div ng-show='commonfields_form'>
 			<table border=1 class='inputformtable'>
-			<tr><td>Όνομα</td>
-				<td><input type="text" ng-model="entoli.epistimonikos_name" placeholder="Όνομα"></td>
-			</tr>
-			<tr><td>Κ.Α έρευνας</td>
-				<td><input type="text" ng-model="entoli.kodikos_ereynas" placeholder="Κ.Α έρευνας"></td>
-			</tr>
-			<tr><td>ΑΦΜ Δικαιούχου</td>
-				<td><input type="text" ng-model="entoli.dikaioyxos_afm" placeholder="ΑΦΜ Δικαιούχου "></td>
-			</tr>
-			<tr><td>Όνομα Δικαιούχου</td>
-				<td><input type="text" ng-model="entoli.dikaioyxos_name" placeholder="Όνομα Δικαιούχου"></td>
-			</tr>
-			<!---->		
-			<tr><td>Τύπος Εντολής</td>
-				<td>
-				<select ng-model="entoli.typos" ng-options="dtype.name for (did,dtype) in doctypes" ng-required  ng-change="showdivfortype(entoli.typos.did)" >
-				
-				</select>
-				<!-- {{entoli.typos}} -->
-				</td>
-			</tr>
+				<tr><td>Όνομα</td>
+					<td><input type="text" ng-model="entoli.epistimonikos_name" placeholder="Όνομα"></td>
+				</tr>
+				<tr><td>Κ.Α έρευνας</td>
+					<td><input type="text" ng-model="entoli.kodikos_ereynas" placeholder="Κ.Α έρευνας"></td>
+				</tr>
+				<tr><td>ΑΦΜ Δικαιούχου</td>
+					<td><input type="text" ng-model="entoli.dikaioyxos_afm" placeholder="ΑΦΜ Δικαιούχου "></td>
+				</tr>
+				<tr><td>Όνομα Δικαιούχου</td>
+					<td><input type="text" ng-model="entoli.dikaioyxos_name" placeholder="Όνομα Δικαιούχου"></td>
+				</tr>
+				<!---->		
+				<tr><td>Τύπος Εντολής</td>
+					<td>
+					<select ng-model="entoli.typos" ng-options="dtype.name for (did,dtype) in doctypes" ng-required  ng-change="showdivfortype(entoli.typos.did)" >
+					
+					</select>
+					<!-- {{entoli.typos}} -->
+					</td>
+				</tr>
 			</table>
 		</div>
 		<div ng-show="amoivi_form">

@@ -3,10 +3,31 @@
 // declare modules
 angular.module('Authentication', []);
 
-angular.module('ElkeDocApp', ['Authentication','ngRoute','ngCookies'])
+var app=angular.module('ElkeDocApp', ['Authentication','ngRoute','ngCookies'])
 
-.controller('navigationController',function ($scope, $location, $rootScope, AuthenticationService) {
-    debugger;
+///////// Create Controller with name submitedCtrl///////////////////
+app.controller('submitedCtrl', function($scope,$http){
+    //debugger;
+	$scope.msg = 'You are now at submited us page';
+	$scope.doc_entoli_num=1;
+    var mylink='services/get_doc_entoli_all.php';
+	var myparams='';
+	//param='?surname='+surname;
+	var fullurl=mylink+myparams;
+	console.log(fullurl);
+	$http.get(fullurl).then( //success
+		function (response) {
+			$scope.docEntoles = response.data;
+		},
+		function (response) { //fail
+			$scope.error="error in proccessing";
+		}
+	);
+});
+
+
+app.controller('navigationController',function ($scope, $location, $rootScope, AuthenticationService) {
+    //debugger;
     //$scope.isConnected = function() {
     //    return !($rootScope.globals.currentUser);
     //};
@@ -16,17 +37,17 @@ angular.module('ElkeDocApp', ['Authentication','ngRoute','ngCookies'])
     }, true);
 	
 	//$scope.isConnected=false;
-    console.log($scope.isConnected);
-})
+    //console.log($scope.isConnected);
+});
 
 
-.controller('ApplicationController', function($scope,$rootScope){
+app.controller('ApplicationController', function($scope,$rootScope){
 	$scope.userLoggedId =$rootScope.userid;
 	console.log($rootScope.userid);
-})
+});
 
  ///////// route config //////////////////////////////
-.config(['$routeProvider', function ($routeProvider) {
+app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
         .when('/login', {
             controller: 'LoginController',
@@ -60,10 +81,10 @@ angular.module('ElkeDocApp', ['Authentication','ngRoute','ngCookies'])
 		})
 		
         .otherwise({ redirectTo: '/login' });
-}])
+}]);
 	
  ///////////////////// run /////////////////////////////
-.run(['$rootScope', '$location', '$cookieStore', '$http',
+app.run(['$rootScope', '$location', '$cookieStore', '$http',
     function ($rootScope, $location, $cookieStore, $http) {
         // keep user logged in after page refresh
         $rootScope.globals = $cookieStore.get('globals') || {};
@@ -76,12 +97,12 @@ angular.module('ElkeDocApp', ['Authentication','ngRoute','ngCookies'])
                 $location.path('/login');
             }
         });
-    }])
+    }]);
 
 ////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////
-.controller('menucontroller2', function($scope,$window){
+app.controller('menucontroller2', function($scope,$window){
 	$scope.msg = 'You are now at docs us page';
 	$scope.sub_menu_arxiki_show = function() {
 		/*alert('sub_menu_arxiki_show');*/
@@ -112,50 +133,34 @@ angular.module('ElkeDocApp', ['Authentication','ngRoute','ngCookies'])
 		$scope.sub_menu_epikoinonia=true;
 	};
 	$scope.sub_menu_login = function() {
-		$window.location.href = 'login.html';
+		$window.location.href = 'pages/login.html';
 		console.log("connect");
 		
 	};
 	
-})
+});
 
 ////////////// Create Controller with name aboutCtrl//////////////////
  
-.controller('docsCtrl', function($scope){
+app.controller('docsCtrl', function($scope){
 	$scope.msg = 'You are now at docs us page';
-})
+});
  
 ///////// Create Controller with name contactCtrl///////////////////
  
-.controller('contactCtrl', function($scope){
+app.controller('contactCtrl', function($scope){
 	$scope.msg = 'Cotact us';
-})
+});
 ///////////////////////////////////
-.controller('mainCtrl', function($scope){
+app.controller('mainCtrl', function($scope){
  
 	$scope.msg = 'Wellcome to AngularJS Application Main Page';
-})
-///////// Create Controller with name submitedCtrl///////////////////
-.controller('submitedCtrl', function($scope,$http){
-	$scope.msg = 'You are now at submited us page';
-	$scope.doc_entoli_num=1;	
-	site='services/get_doc_entoli_all.php';
-	param='';
-	//param='?surname='+surname;
-	fullurl=site+param;
-	console.log(fullurl);
-	$http.get(fullurl).then( //success
-		function (response) {
-			$scope.docEntoles = response.data;
-		},
-		function (response) { //fail
-			$scope.error="error in proccessing";
-		}
-	);
-})
+});
+
+
 
 ////////////////////form controller///////////////////////////////////
-.controller('form_control',function($scope) {
+app.controller('form_control',function($scope) {
     //initialization
     $scope.commonfields_form=true;
     $scope.amoivi_form=false;
@@ -177,23 +182,24 @@ angular.module('ElkeDocApp', ['Authentication','ngRoute','ngCookies'])
         {did:2, name:'Προκαταβολή'},
         {did:3, name:'Έξοδα Ερευνών'}
     ];
+    
     console.log($scope.users);
     //print adiv function
     $scope.printDiv = function(divName) {
-      var printContents = document.getElementById(divName).innerHTML;
-      var popupWin = window.open('', '_blank', 'width=595,height=842');
-      popupWin.document.open();
-
-		html_pre='<html><head>';
-	  	html_pre+='<link rel="stylesheet" type="text/css" href="css/uoashare.css">';
-		html_pre+='<link rel="stylesheet" type="text/css" href="css/nikos_tables.css">';
-		html_pre+='<link rel="stylesheet" type="text/css" href="css/nikos_base.css">';
-		html_pre+='<link rel="stylesheet" type="text/css" href="css/nikos_nav.css">';
-		html_pre+='<script src="./js/angularjs/1.5.7/angular.min.js"></script>';
-		html_pre+='<script src="./js/app_routing.js"></script>';
-		html_pre+='</head>';
-      popupWin.document.write(html_pre+ '<body onload="window.print()">' + printContents + '</body></html>');
-      popupWin.document.close();
+        var printContents = document.getElementById(divName).innerHTML;
+        var popupWin = window.open('', '_blank', 'width=595,height=842');
+        popupWin.document.open();
+        var html_pre;
+        html_pre='<html><head>';
+        html_pre+='<link rel="stylesheet" type="text/css" href="css/uoashare.css">';
+        html_pre+='<link rel="stylesheet" type="text/css" href="css/nikos_tables.css">';
+        html_pre+='<link rel="stylesheet" type="text/css" href="css/nikos_base.css">';
+        html_pre+='<link rel="stylesheet" type="text/css" href="css/nikos_nav.css">';
+        html_pre+='<script src="./js/angularjs/1.5.7/angular.min.js"></script>';
+        html_pre+='<script src="./js/app_routing.js"></script>';
+        html_pre+='</head>';
+        popupWin.document.write(html_pre+ '<body onload="window.print()">' + printContents + '</body></html>');
+        popupWin.document.close();
     };
     $scope.changeme = function() {
     alert('here');
@@ -249,9 +255,9 @@ angular.module('ElkeDocApp', ['Authentication','ngRoute','ngCookies'])
             
         }         
     };    
-})
+});
 /////////////////////form controller end/////////////////////
-.controller("menucontroller1", function($scope) {
+app.controller("menucontroller1", function($scope) {
   $scope.menus = [
 	{
 	  title: "Menu1", 

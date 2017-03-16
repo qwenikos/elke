@@ -141,7 +141,7 @@ app.controller('submitedCtrl', function($scope,$http){
 	//{scidir: "2",research: "3",beneficial:'nikos1'},
 	//];
 	/////test list end///
-	
+	debugger;
 	site='services/get_doc_entoli_all.php';
 	param='';
 	//param='?surname='+surname;

@@ -12,7 +12,7 @@ angular.module('Authentication',[])
             /* Dummy authentication for testing, uses $timeout to simulate api call
              ----------------------------------------------*/
             $timeout(function(){
-                var response = { success: username === 'nikos' && password === 'nikos' };
+                var response = { success: username === '1' && password === '1' };
                 if(!response.success) {
                     response.message = 'Username or password is incorrect';
                 }
