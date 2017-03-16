@@ -28,7 +28,6 @@
     <script src="js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
 
     <!--<script src="js/routing_module.js"></script>-->
-    <script src="js/ElkeDocAppEntoli_module.js"></script>
     <script src="js/ElkeDocApp_module.js"></script>
     <script src="js/Authentication_module.js"></script>
 
@@ -37,23 +36,60 @@
   </head>
   
   <body>
-    
-    <div class="jumbotron">
-      <div class="container">
-        <div class="col-xs-offset-2 col-xs-8">
-          <div ng-view></div>
-        </div>
-      </div>
+
+    <div id="Header1" ng-controller="navigationController" ng-hide="isConnected">
+    <div ng-controller="menucontroller2">
+				<div>
+			<div class="nav">
+				<ul id="menu">
+					<li><a href="#/" ng-click="sub_menu_arxiki_show()" >Αρχική</a></li>
+					<li><a href="#docs" ng-click="sub_menu_entypa_show()" >Εντυπά</a></li>
+					<li><a href="#/" ng-click="sub_menu_entoli_show()" >εντολη επ. υπευθυνου</a></li>
+					<li><a href="#contact" ng-click="sub_menu_epikoinonia_show()" >Επικοινωνία</a></li>
+					<li><a href="#login" ng-click="sub_menu_login()" >Σύνδεση</a></li>
+					<li>userLoggedId-->{{userLoggedId}}<br></li>
+				</ul>
+			</div>
+		
+			<div class="sub-nav" ng-show="sub_menu_arxiki">
+				<!-- -->
+			</div>
+			
+			<div class="sub-nav" ng-show="sub_menu_entypa">
+				<ul id="sub-menu">
+					<li><a href="#/">Αλλο έντυπο μενου 1</a></li>
+					<li><a href="#/">Αλλο έντυπο μενου 2</a></li>
+					<li><a href="#/">Αλλο έντυπο μενου 3</a></li>
+				</ul>
+			</div>
+			
+			<div class="sub-nav" ng-show="sub_menu_entoli">
+				<ul id="sub-menu">
+					<li><a href="#submited_docs">Yποβληθήσες Εντολές</a></li>
+					<li><a href="#entoli">Νέα Εντολή</a></li>
+					<li><a href="#diaxeirisi">Διαχείριση</a></li>
+				</ul>
+			</div>
+			
+			<div class="sub-nav" ng-show="sub_menu_epikoinonia">
+				<!-- -->
+			</div>
+		</div>
+	</div>
     </div>
 
-    <div class="credits text-center">
-      <p>
-        <a href="">Credits</a>
-      </p>
-      <p>
-        <a href="http://">Nikos Perdikopanis</a>
-      </p>
+    
+    
+    <div class="container">
+      <div ng-view></div>
     </div>
+    <div class="container">
+      <div class="credits text-center">
+      Credits: Nikos Perdikopanis
+      </p>
+      </div> 
+    </div>
+    
     
   </body>
 </html>

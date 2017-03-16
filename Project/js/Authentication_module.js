@@ -150,6 +150,8 @@ angular.module('Authentication',[])
                 if(response.success) {
                     AuthenticationService.SetCredentials($scope.username, $scope.password);
                     $location.path('/');
+                    
+                    
                 } else {
                     $scope.error = response.message;
                     $scope.dataLoading = false;
