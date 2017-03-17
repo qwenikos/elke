@@ -47,10 +47,23 @@
 					</tr>
 				</table>	
 			</div>
-
-		<div ng-view>	
+	
+		
+		<!-- main part of the page -->
+		<div class="container" >
+			<form name="myForm" ng-controller="testCtrl">
+				<label for="singleSelect"> Select Scientif Director</label><br>
+				<select  ng-model="sciDirSelected" ng-change="update();">
+					<option ng-repeat="sciDir in sciDirListData.sciDirList" value="{{sciDir.id}}">{{sciDir.name}}</option>
+				</select>
+				<div  ng-show="{{researchdiv}}">
+				<label for="singleSelect"> Select Refresh</label><br>
+				<select  ng-model="ResearchSelected" ng-change="update();">
+					<option ng-repeat="sciDir in sciDirListData.sciDirList" value="{{sciDir.id}}">{{sciDir.name}}</option>
+				</select>
+				</div>
+			</form>
 		</div>
-
 		<!--   footer region -->
     <div class="container">
       <div class="credits text-center">
