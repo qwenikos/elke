@@ -104,7 +104,12 @@ app.run(['$rootScope', '$location', '$cookieStore', '$http',
 ////////////////////////////////////////////////////////
 app.controller('menucontroller2', function($rootScope,$scope,$window){
 	$scope.msg = 'You are now at docs us page';
-    $scope.userLoggedMsg= $rootScope.globals.currentUser.username;
+    if ($rootScope.globals.currentUser === undefined){
+        $scope.userLoggedMsg="Παρακαλώ Συνδεθείτε";
+    }else{
+        $scope.userLoggedMsg="logg";
+        $scope.userLoggedMsg=$rootScope.globals.currentUser.username;
+    };
 	$scope.sub_menu_arxiki_show = function() {
 		/*alert('sub_menu_arxiki_show');*/
 		$scope.sub_menu_arxiki=false;
