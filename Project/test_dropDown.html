@@ -52,17 +52,23 @@
 		<!-- main part of the page -->
 		<div class="container" >
 			<form name="myForm" ng-controller="testCtrl">
-				<label for="singleSelect"> Select Scientif Director</label><br>
-				<select  ng-model="sciDirSelected" ng-change="update();">
+				<button  ng-click='updateSciDirSelect()'>Go</button>
+			<div>
+				<label for="researchdiv">Επιστημονικός Υπεύθυνος </label><br>
+				<select  ng-model="sciDirSelected" ng-change="updateResearchSelect(sciDirSelected);">
+					<option ng-repeat="sciDir in sciDirForFellow.data" value="{{sciDir.rec_id}}">{{sciDir.scidir_surname}} {{reseach.scidir_name}}</option>
+				</select>
+			</div>
+			<div>
+				<label for="ResearchSelected"> Επιλογή Έρευνας</label><br>
+				<select  ng-model="ResearchSelected" ng-change="updateSciDirSelect();">
 					<option ng-repeat="sciDir in sciDirListData.sciDirList" value="{{sciDir.id}}">{{sciDir.name}}</option>
 				</select>
-				<div  ng-show="{{researchdiv}}">
-				<label for="singleSelect"> Select Refresh</label><br>
-				<select  ng-model="ResearchSelected" ng-change="update();">
-					<option ng-repeat="sciDir in sciDirListData.sciDirList" value="{{sciDir.id}}">{{sciDir.name}}</option>
-				</select>
-				</div>
+			</div>
+				{{sciDirForFellow.data}}<br>
+				{{researchListData.researchList}}
 			</form>
+			
 		</div>
 		<!--   footer region -->
     <div class="container">
