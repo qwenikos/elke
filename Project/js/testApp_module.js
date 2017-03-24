@@ -23,9 +23,9 @@ app.controller('testCtrl', function($rootScope,$scope,$http){
         ]
     };
     console.log($scope.researchListData);
-    $scope.updateSciDirSelect = function(){
+    $scope.updateSciDirSelect = function(fellowId){
         var mylink='services/get_sci_for_fellow.php';
-        var fellowId=1;
+        //var fellowId=1;
         var myparams='?fellowId='+fellowId;
         //param='?surname='+surname;
         var fullurl=mylink+myparams;
@@ -45,19 +45,19 @@ app.controller('testCtrl', function($rootScope,$scope,$http){
 
         
     };
-    $scope.updateResearchSelect = function(sciDirSelected){
+    $scope.updateResearchSelect = function(sciDirSelected,fellowId){
         var mylink='services/get_reseach_for_sci_dir_and_fellow.php';
-        var fellowId=1;
-        var sciDirId=sciDirSelected;
-        var myparams='?fellowId='+fellowId+"&sciDirId="+sciDirId;
+        //var fellowId=1;
+        //var sciDirId=sciDirSelected;
+        var myparams='?fellowId='+fellowId+"&sciDirId="+sciDirSelected;
         //param='?surname='+surname;
         var fullurl=mylink+myparams;
         console.log(fullurl);
         $http.get(fullurl).then( //success
 		function (response) {
-			$scope.sciDirForFellow = response;
+			$scope.researchOfsciDirForFellow = response;
             console.log("ok");
-            console.log($scope.sciDirForFellow);
+            console.log($scope.researchOfsciDirForFellow);
 		},
 		function (response) { //fail
 			$scope.error="error in proccessing";

@@ -52,21 +52,29 @@
 		<!-- main part of the page -->
 		<div class="container" >
 			<form name="myForm" ng-controller="testCtrl">
-				<button  ng-click='updateSciDirSelect()'>Go</button>
+				<!-- must parameter be real fellowId-->
+				<button  ng-click='updateSciDirSelect("1")'>Go</button>
 			<div>
 				<label for="researchdiv">Επιστημονικός Υπεύθυνος </label><br>
-				<select  ng-model="sciDirSelected" ng-change="updateResearchSelect(sciDirSelected);">
-					<option ng-repeat="sciDir in sciDirForFellow.data" value="{{sciDir.rec_id}}">{{sciDir.scidir_surname}} {{reseach.scidir_name}}</option>
+				<!-- must parameter be real fellowId-->
+				<select  ng-model="sciDirSelected" ng-change="updateResearchSelect(sciDirSelected,'1');">
+					<option ng-repeat="sciDir in sciDirForFellow.data" value="{{sciDir.base_scidir_rec_id}}">{{sciDir.scidir_surname}} {{reseach.scidir_name}}</option>
 				</select>
 			</div>
 			<div>
 				<label for="ResearchSelected"> Επιλογή Έρευνας</label><br>
-				<select  ng-model="ResearchSelected" ng-change="updateSciDirSelect();">
-					<option ng-repeat="sciDir in sciDirListData.sciDirList" value="{{sciDir.id}}">{{sciDir.name}}</option>
+				<select  ng-model="ResearchSelected" ng-change="afterupdate();">
+					<option ng-repeat="research in researchOfsciDirForFellow.data" value="{{research.research_code}}">{{research.research_code}}</option>
 				</select>
 			</div>
+			------<br>
 				{{sciDirForFellow.data}}<br>
-				{{researchListData.researchList}}
+				
+				<br>--------<br>
+				{{researchOfsciDirForFellow.data}}<br>
+				------
+				
+				
 			</form>
 			
 		</div>
