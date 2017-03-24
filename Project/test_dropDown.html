@@ -64,7 +64,7 @@
 			<div>
 				<label for="ResearchSelected"> Επιλογή Έρευνας</label><br>
 				<select  ng-model="ResearchSelected" ng-change="afterupdate();">
-					<option ng-repeat="research in researchOfsciDirForFellow.data" value="{{research.research_code}}">{{research.research_code}}</option>
+					<option ng-repeat="research in researchOfsciDirForFellow.data" value="{{research.base_research_rec_id }}">{{research.research_code}}</option>
 				</select>
 			</div>
 			------<br>

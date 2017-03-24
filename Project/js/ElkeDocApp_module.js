@@ -87,6 +87,7 @@ app.config(['$routeProvider', function ($routeProvider) {
 app.run(['$rootScope', '$location', '$cookieStore', '$http',
     function ($rootScope, $location, $cookieStore, $http) {
         // keep user logged in after page refresh
+        console.log("you are in the run ");
         $rootScope.globals = $cookieStore.get('globals') || {};
         if ($rootScope.globals.currentUser) {
             $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
@@ -166,7 +167,7 @@ app.controller('mainCtrl', function($scope){
 
 
 ////////////////////form controller///////////////////////////////////
-app.controller('form_control',function($scope) {
+app.controller('form_control',function($rootScope,$scope,$http) {
     //initialization
     $scope.commonfields_form=true;
     $scope.amoivi_form=false;
@@ -260,8 +261,97 @@ app.controller('form_control',function($scope) {
             $scope.doc_exoda_ereynwn_empty=false;
             
         }         
+    };
+    
+    $scope.msg = 'You are now at submited us page';
+    console.log("you are in the controler testCtrl ");
+    $scope.sciDirListData = {
+        sciDirList: [
+          {id: '1', name: 'SciDir A'},
+          {id: '2', name: 'SciDir B'},
+          {id: '3', name: 'SciDir C'}
+        ]
+    };
+    $scope.researchListData = {
+        researchList: [
+          {id: '1', name: 'Reseach A'},
+          {id: '2', name: 'Reseach B'},
+          {id: '3', name: 'Reseach C'}
+        ]
+    };
+    console.log($scope.researchListData);
+    $scope.updateSciDirSelect = function(fellowId){
+        var mylink='services/get_sci_for_fellow.php';
+        //var fellowId=1;
+        var myparams='?fellowId='+fellowId;
+        //param='?surname='+surname;
+        var fullurl=mylink+myparams;
+        console.log(fullurl);
+        $http.get(fullurl).then( //success
+		function (response) {
+			$scope.sciDirForFellow = response;
+            console.log("ok");
+            console.log($scope.sciDirForFellow);
+		},
+		function (response) { //fail
+			$scope.error="error in proccessing";
+            console.log("error");
+		}
+        );
+        $scope.researchdiv=true;
+
+        
+    };
+    $scope.updateResearchSelect = function(sciDirSelected,fellowId){
+        var mylink='services/get_reseach_for_sci_dir_and_fellow.php';
+        //var fellowId=1;
+        //var sciDirId=sciDirSelected;
+        var myparams='?fellowId='+fellowId+"&sciDirId="+sciDirSelected;
+        //param='?surname='+surname;
+        var fullurl=mylink+myparams;
+        console.log(fullurl);
+        $http.get(fullurl).then( //success
+		function (response) {
+			$scope.researchOfsciDirForFellow = response;
+            console.log("ok");
+            console.log($scope.researchOfsciDirForFellow);
+		},
+		function (response) { //fail
+			$scope.error="error in proccessing";
+            console.log("error");
+		}
+        );
+        $scope.researchdiv=true;   
+    };
+    $scope.afterupdate = function(researchSelected,sciDirSelected,fellowId){
+        var mylink='services/get_details_for_reseach_and_sci_dir_and_fellow.php';
+        //var fellowId=1;
+        //var sciDirId=sciDirSelected;
+        var myparams='?fellowId='+fellowId+"&sciDirId="+sciDirSelected+"&researchId="+researchSelected;
+        //param='?surname='+surname;
+        var fullurl=mylink+myparams;
+        console.log(fullurl);
+        $http.get(fullurl).then( //success
+		function (response) {
+			$scope.DetailsForResearchAndSciDirForFellow = response;
+            console.log("ok");
+            console.log($scope.DetailsForResearchAndSciDirForFellow);
+            $scope.entoli={
+                epistimonikos_name: response.data[0].scidir_name+' '+response.data[0].scidir_surname,
+                kodikos_ereynas: response.data[0].research_code
+            };
+            
+		},
+		function (response) { //fail
+			$scope.error="error in proccessing";
+            console.log("error");
+		}
+        );
+        $scope.researchdiv=true;   
     };    
+	
 });
+
 /////////////////////form controller end/////////////////////
 app.controller("menucontroller1", function($scope) {
   $scope.menus = [
@@ -305,5 +395,9 @@ app.controller("menucontroller1", function($scope) {
 	}
 	];
   });
+
+
+
+
 ///////////////////////END END END ///////////////////////////////
 

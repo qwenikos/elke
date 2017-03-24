@@ -4,7 +4,25 @@
 		<div  class="inputForm" >
 			
 			<div ng-show='commonfields_form'>
+				
 				<table border=1 class='inputformtable'>
+				<tr><td>Go</td>	
+				<td><button  ng-click='updateSciDirSelect("1")'>Go</button></td>
+				</tr>
+				<tr><td>Όνομα</td>
+					<td>
+						<select  ng-model="sciDirSelected" ng-change="updateResearchSelect(sciDirSelected,'1');">
+							<option ng-repeat="sciDir in sciDirForFellow.data" value="{{sciDir.base_scidir_rec_id}}">{{sciDir.scidir_surname}} {{reseach.scidir_name}}</option>
+						</select>
+					</td>
+				</tr>
+				<tr><td>Κ.Α έρευνας</td>
+					<td>
+						<select  ng-model="ResearchSelected" ng-change="afterupdate(ResearchSelected,sciDirSelected,'1');">
+							<option ng-repeat="research in researchOfsciDirForFellow.data" value="{{research.base_research_rec_id }}">{{research.research_code}}</option>
+						</select>
+					</td>
+				</tr>	
 				<tr><td>Όνομα</td>
 					<td><input type="text" ng-model="entoli.epistimonikos_name" placeholder="Όνομα"></td>
 				</tr>

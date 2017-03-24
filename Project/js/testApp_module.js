@@ -8,20 +8,7 @@ app.controller('testCtrl', function($rootScope,$scope,$http){
     //debugger;
 	$scope.msg = 'You are now at submited us page';
     console.log("you are in the controler testCtrl ");
-    $scope.sciDirListData = {
-        sciDirList: [
-          {id: '1', name: 'SciDir A'},
-          {id: '2', name: 'SciDir B'},
-          {id: '3', name: 'SciDir C'}
-        ]
-    };
-    $scope.researchListData = {
-        researchList: [
-          {id: '1', name: 'Reseach A'},
-          {id: '2', name: 'Reseach B'},
-          {id: '3', name: 'Reseach C'}
-        ]
-    };
+
     console.log($scope.researchListData);
     $scope.updateSciDirSelect = function(fellowId){
         var mylink='services/get_sci_for_fellow.php';

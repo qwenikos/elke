@@ -19,6 +19,12 @@ if(isset($_GET['sciDirId'])){
 }else{
    $sciDirId=-100;
 };
+if(isset($_GET['researchId'])){
+    $researchId=$_GET['researchId'];
+    $goon=true;
+}else{
+   $sciDirId=-100;
+};
 /*********/
 /*$fellow_id=1;*/
 $goon=true;
@@ -31,7 +37,8 @@ $queryString='SELECT *,base_research.rec_id as base_research_rec_id  FROM base_s
 ' base_research_per_scidir.scidir_id=base_scidir.rec_id and'.
 ' base_research_per_scidir.research_id=base_research.rec_id and'.
 ' base_fellow.rec_id='.$fellowId.
-' and base_scidir.rec_id='.$sciDirId;
+' and base_scidir.rec_id='.$sciDirId.
+' and base_research.rec_id='.$researchId;
 //print $queryString;
 $result = mysqli_query($conn,$queryString);
 $data=array();
