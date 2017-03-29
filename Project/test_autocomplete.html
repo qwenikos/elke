@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="autocompleteDemo">
+<html ng-app="autocompleteApp">
     <head>
         <meta charset="UTF-8" />
         <title>Angular Js by Nikos</title>
@@ -30,7 +30,8 @@
         <script src="js/autocomplete.js"></script>   
     </head>
     <body>
-        <div ng-controller="DemoCtrl as ctrl" layout="column" ng-cloak>
+        <div ng-controller="AutoCompleteController as ctrl" layout="column" ng-cloak>
+            {{states}}
             <md-content class="md-padding">
                 <form ng-submit="$event.preventDefault()">
                     <md-autocomplete ng-disabled="ctrl.isDisabled" md-no-cache="ctrl.noCache" md-selected-item="ctrl.selectedItem"
