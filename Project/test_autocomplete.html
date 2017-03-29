@@ -32,6 +32,7 @@
     <body>
         <div ng-controller="AutoCompleteController as ctrl" layout="column" ng-cloak>
             {{states}}
+            {{states1}}
             <md-content class="md-padding">
                 <form ng-submit="$event.preventDefault()">
                     <md-autocomplete ng-disabled="ctrl.isDisabled" md-no-cache="ctrl.noCache" md-selected-item="ctrl.selectedItem"
@@ -43,7 +44,7 @@
                     </md-item-template>
                     <md-not-found>
                         Δε βρέθηκε οφελούμενος με ΑΦΜ "{{ctrl.searchText}}" .
-                        <a ng-click="ctrl.newState(ctrl.searchText)">Συμπήρωση νέου Οφελούμενου</a>
+                        <a ng-click="ctrl.insertBenef(ctrl.searchText)">Συμπήρωση νέου Οφελούμενου</a>
                     </md-not-found>
                     </md-autocomplete>
                     <br/>
