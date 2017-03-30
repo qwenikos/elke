@@ -3,37 +3,31 @@
 var app=angular.module('autocompleteApp', ['ngMaterial'])
 
 app.controller('AutoCompleteController',
-               function AutoCompleteController ($timeout,$q,$rootScope,$scope,$http,$log,myService) {
+               function AutoCompleteController ($rootScope,$scope,$http,$log) {
   $rootScope.loaded=true;
   console.log("incontoler");
   var self = this;
-  self.simulateQuery = false;
-  self.isDisabled    = false;
+  self.isDisabled   = false;
+  var fellowId='1';
+  var action='services/get_beneficiaries.php';
+  var params='?fellowId='+fellowId;
+  var fulURL=action+params
+	$http.get(fulURL).then( //success
+		function (response) {
+      $scope.posts =  response.data;
+      self.states=$scope.posts;
+      self.querySearch   = querySearch;
+      self.selectedItemChange = selectedItemChange;
+      self.searchTextChange   = searchTextChange;
+      //create new beneficiary
+      self.insertBenef = insertBenef;
+		},
+		function (response) { //fail
+			$scope.error="error in proccessing";
+		}
+	);
+         
 
-  //$scope.mysqlBenef=myService.myMethod();
-var fellowId='1';
-  myService.myMethod(fellowId, function(resp){
-           $scope.posts =  resp;
-           console.log("------");
-           console.log($scope.posts);
-           console.log("-----");
-             self.states=$scope.posts;
-          //self.states=loadAll();
-          console.log("---++---");
-          console.log(self.states);
-          console.log("---++--");
-          $scope.states=self.states ;
-          self.querySearch   = querySearch;
-          //log
-          self.selectedItemChange = selectedItemChange;
-          self.searchTextChange   = searchTextChange;
-          //create new beneficiary
-          self.insertBenef = insertBenef;
-           
-   });
-
-
-  
   function insertBenef(state) {
     alert("Πρεπει να φτιάξω την function για εισαγωγή νεου ΑΦΜ" + state );
   }
@@ -80,28 +74,7 @@ var fellowId='1';
   
 });
 
-//app.factory('myService', function($rootScope,$q, $timeout, $http) {
-//  return {
-//    myMethod: function() {
-//      return $http.get('services/get_beneficiaries.php').then(function(response) {
-//        $rootScope.nikos=response.data;
-//        return response.data;
-//      });
-//    }
-//  };
-//});
 
-app.factory('myService',  function($http) {
-   var databaseFactory = {};
-    databaseFactory.myMethod = function(fellowId, callback) {
-        return $http.get('services/get_beneficiaries.php', {params: {'fellowID': fellowId}})
-            .then(function (response) {
-                databaseFactory.returnedData = response.data;
-                callback(databaseFactory.returnedData);
-            })
-    }
-    return databaseFactory;
-});
 
 
 
