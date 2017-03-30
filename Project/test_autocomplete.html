@@ -31,7 +31,8 @@
     </head>
     <body>
         <div ng-controller="AutoCompleteController as ctrl" layout="column" ng-cloak>
-            {{benefList}}
+            {{mysqlBenef}}
+            {{nikos}}
             <div ng-if="!loaded">Loading...</div>
             <div ng-if="loaded">
                 <md-content class="md-padding">
