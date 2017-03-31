@@ -191,6 +191,7 @@ app.controller('form_control',function($rootScope,$scope,$http) {
     ];
     
     console.log($scope.users);
+    
     //print adiv function
     $scope.printDiv = function(divName) {
         var printContents = document.getElementById(divName).innerHTML;
@@ -208,6 +209,15 @@ app.controller('form_control',function($rootScope,$scope,$http) {
         popupWin.document.write(html_pre+ '<body onload="window.print()">' + printContents + '</body></html>');
         popupWin.document.close();
     };
+    
+    $scope.saveDiv = function(divName) {
+        var scidirField=$scope.sciDirSelected;
+        var researchSelected=$scope.researchSelected;
+        var name=$scope.entoli
+        console.log($scope.entoli);
+        alert(scidirField+researchSelected,name);
+    }; 
+    
     $scope.changeme = function() {
     alert('here');
     };
@@ -280,6 +290,7 @@ app.controller('form_control',function($rootScope,$scope,$http) {
         ]
     };
     console.log($scope.researchListData);
+    
     $scope.updateSciDirSelect = function(fellowId){
         var mylink='services/get_sci_for_fellow.php';
         //var fellowId=1;
@@ -324,6 +335,7 @@ app.controller('form_control',function($rootScope,$scope,$http) {
         $scope.researchdiv=true;   
     };
     $scope.afterupdate = function(researchSelected,sciDirSelected,fellowId){
+        console.log(researchSelected,sciDirSelected,fellowId)
         var mylink='services/get_details_for_reseach_and_sci_dir_and_fellow.php';
         //var fellowId=1;
         //var sciDirId=sciDirSelected;
@@ -336,10 +348,15 @@ app.controller('form_control',function($rootScope,$scope,$http) {
 			$scope.DetailsForResearchAndSciDirForFellow = response;
             console.log("ok");
             console.log($scope.DetailsForResearchAndSciDirForFellow);
-            $scope.entoli={
-                epistimonikos_name: response.data[0].scidir_name+' '+response.data[0].scidir_surname,
-                kodikos_ereynas: response.data[0].research_code
-            };
+            if (response.data[0]){
+                $scope.entoli={
+                    epistimonikos_name: response.data[0].scidir_name+' '+response.data[0].scidir_surname,
+                    kodikos_ereynas: response.data[0].research_code,
+                    sciDirId:   sciDirSelected,
+                    researchId: researchSelected
+                };
+            
+            }
             
 		},
 		function (response) { //fail

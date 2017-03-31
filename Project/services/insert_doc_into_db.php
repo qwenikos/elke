@@ -1,49 +1,35 @@
 <?php
-// get the scientific responsible for fellow_id
-//allow cross site http request
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
-//mysqli(mysql_server,username,pass,db)
-$outp = "";
-$goon=false;
-if(isset($_GET['fellowId'])){
-    $fellowId=$_GET['fellowId'];
-    $goon=true;
+//header("Access-Control-Allow-Origin: *");
+//header("Content-Type: application/json; charset=UTF-8");
+
+ $postdata = file_get_contents("php://input");
+    $request = json_decode($postdata);
+    $emp_no = $request->benef_name;
+    $first_name = $request->benef_surname;
+    $last_name = $request->benef_afm;
+    $dept_name = $request->benef_desc;
+echo "---".$last_name."---";
+
+$servername = "localhost";
+$username = "root";
+$password = "qwe123"; //Your User Password
+$dbname = "elkedb"; //Your Database Name
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+$sql = "INSERT INTO base_beneficiary (benef_name, benef_surname, benef_afm, benef_desc)
+VALUES ('$emp_no', '$first_name', '$last_name' , '$dept_name')";
+
+if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
 }
-else{
-    $fellowId=-100;
-};
 
-if(isset($_GET['sciDirId'])){
-    $sciDirId=$_GET['sciDirId'];
-    $goon=true;
-}else{
-   $sciDirId=-100;
-};
-
-
-/*********/
-/*$fellow_id=1;*/
-$goon=true;
-/*******/
-$conn = mysqli_connect('localhost', "root", "qwe123", "elkedb");
-$queryString='SELECT *,base_research.rec_id as base_research_rec_id  FROM base_scidir,base_fellow,base_fellow_per_scidir,'.
-' base_research,base_research_per_scidir where'.
-' base_fellow_per_scidir.fellow_id=base_fellow.rec_id and'.
-' base_fellow_per_scidir.scidir_id=base_scidir.rec_id and'.
-' base_research_per_scidir.scidir_id=base_scidir.rec_id and'.
-' base_research_per_scidir.research_id=base_research.rec_id and'.
-' base_fellow.rec_id='.$fellowId.
-' and base_scidir.rec_id='.$sciDirId;
-//print $queryString;
-$result = mysqli_query($conn,$queryString);
-$data=array();
-//error_log($queryString."\n",3,"/var/tmp/php-mysql.log");
-while($row=mysqli_fetch_array($result)) {
-    $data[]=$row;
-}
-    
-//}
-echo json_encode($data);
-mysqli_close($conn);
+$conn->close();
 ?>
