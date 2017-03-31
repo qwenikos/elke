@@ -210,25 +210,27 @@ app.controller('form_control',function($rootScope,$scope,$http) {
         popupWin.document.close();
     };
     
-    $scope.saveDiv = function(divName) {
+    $scope.saveDocToDB = function() {
         console.log($scope.entoli);
-        console.log("in the js");
+        console.log("in the save_Doc");
         
         var actionUrl="services/insert_doc_into_db.php";
-        var data= {
+        /*var data= {
             benef_name: $scope.benef_name,
             benef_surname: $scope.benef_surname,
             benef_afm: $scope.benef_afm,
             benef_desc: $scope.benef_desc,
         };
+        */
         var config = {
             headers : {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         };
-        $http.post(actionUrl,data,config).then( //success
+        $http.post(actionUrl,$scope.entoli,config).then( //success
             function (response) {
-                //$scope.sciDirForFellow = response;
+                console.log(response);
+                $scope.insertDocToMysqlReturn = response.data;
                 //console.log("ok");
                 //console.log($scope.sciDirForFellow);
             },
@@ -237,7 +239,7 @@ app.controller('form_control',function($rootScope,$scope,$http) {
                 //console.log("error");
             }
         );
-        //console.log(response);
+        console.log($scope.insertDocToMysqlReturn);
     };    
 
     $scope.changeme = function() {
@@ -375,7 +377,9 @@ app.controller('form_control',function($rootScope,$scope,$http) {
                     epistimonikos_name: response.data[0].scidir_name+' '+response.data[0].scidir_surname,
                     kodikos_ereynas: response.data[0].research_code,
                     sciDirId:   sciDirSelected,
-                    researchId: researchSelected
+                    researchId: researchSelected,
+                    sciDirSelected:sciDirSelected ,
+                    researchSelected: researchSelected
                 };
             
             }
