@@ -24,7 +24,7 @@
 					</td>
 				</tr>	
 				<tr><td>Όνομα</td>
-					<td><input type="text" ng-model="entoli.epistimonikos_name" placeholder="Όνομα"></td>
+					<td><input type="text" ng-model="entoli.epistimonikos_name" ng-init="entoli.epistimonikos_name=''" placeholder="Όνομα"></td>
 				</tr>
 				<tr><td>Κ.Α έρευνας</td>
 					<td><input type="text" ng-model="entoli.kodikos_ereynas" placeholder="Κ.Α έρευνας"></td>
@@ -60,7 +60,7 @@
 						
 					</tr>
 					<tr><td>Διάστημα εως</td>
-						<td><input type="text" ng-model="entoli.amoivi_diasthma_eos" placeholder="εώς" datetime="dd-MM-yyyy" /></td>
+						<td><input type="text" ng-model="entoli.amoivi_diasthma_eos" ng-init="entoli.amoivi_diasthma_eos=''" placeholder="εώς" datetime="dd-MM-yyyy" /></td>
 					</tr>
 					<tr><td>Ποσό Αμοιβής</td>
 						<td><input type="text" ng-model="entoli.amoivi_poso" placeholder="ποσό"></td>

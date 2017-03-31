@@ -211,13 +211,35 @@ app.controller('form_control',function($rootScope,$scope,$http) {
     };
     
     $scope.saveDiv = function(divName) {
-        var scidirField=$scope.sciDirSelected;
-        var researchSelected=$scope.researchSelected;
-        var name=$scope.entoli
         console.log($scope.entoli);
-        alert(scidirField+researchSelected,name);
-    }; 
-    
+        console.log("in the js");
+        
+        var actionUrl="services/insert_doc_into_db.php";
+        var data= {
+            benef_name: $scope.benef_name,
+            benef_surname: $scope.benef_surname,
+            benef_afm: $scope.benef_afm,
+            benef_desc: $scope.benef_desc,
+        };
+        var config = {
+            headers : {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        };
+        $http.post(actionUrl,data,config).then( //success
+            function (response) {
+                //$scope.sciDirForFellow = response;
+                //console.log("ok");
+                //console.log($scope.sciDirForFellow);
+            },
+            function (response) { //fail
+                //$scope.error="error in proccessing";
+                //console.log("error");
+            }
+        );
+        //console.log(response);
+    };    
+
     $scope.changeme = function() {
     alert('here');
     };
