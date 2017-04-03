@@ -40,18 +40,27 @@
                         <md-autocomplete ng-disabled="ctrl.isDisabled" md-no-cache="ctrl.noCache" md-selected-item="ctrl.selectedItem"
                             md-search-text-change="ctrl.searchTextChange(ctrl.searchText)" md-search-text="ctrl.searchText"
                             md-selected-item-change="ctrl.selectedItemChange(item)" md-items="item in ctrl.querySearch(ctrl.searchText)"
-                            md-item-text="item.value" md-min-length="0" placeholder="Δώσε τον ΑΦΜ">
-                        <md-item-template>
-                            
-                            <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.value}} -- {{item.display}}</span>
-                        </md-item-template>
-                        <md-not-found>
-                            Δε βρέθηκε οφελούμενος με ΑΦΜ "{{ctrl.searchText}}" .
-                            <a ng-click="ctrl.insertBenef(ctrl.searchText)">Συμπήρωση νέου Οφελούμενου</a>
-                        </md-not-found>
+                            md-item-text="item.value" md-min-length="3" placeholder="Δώσε τον ΑΦΜ">
+                            <md-item-template>
+                                
+                                <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.value}} -- {{item.display}}</span>
+                            </md-item-template>
+                            <md-item-template>
+                                <md-not-found ng-show="var1">
+                                    Δε βρέθηκε οφελούμενος με ΑΦΜ "{{ctrl.searchText}}" .
+                                    <a ng-click="ctrl.insertBenef(ctrl.searchText)">Συμπήρωση νέου Οφελούμενου</a>     
+                                </md-not-found>
+                            </md-item-template>
+                            <md-item-template>
+                                  <span>nikos</span>
+                            </md-item-template>  
                         </md-autocomplete>
-                        <br/>
-                        <span md-highlight-text="ctrl.searchText">{{autoName}}</span>
+                        <md-input-container>
+                            
+                            <label>Eπωνυμία</label>
+                            <input type='text' ng-model="autoName" ng-disabled="disable_benef_input"/>
+                        </md-input-container>
+                        <!--<span>{{autoName}}</span>-->
                         <!--<md-checkbox ng-model="ctrl.isDisabled">Disable the input?</md-checkbox> -->
                     </form>
                 </md-content>

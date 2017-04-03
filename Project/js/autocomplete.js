@@ -5,8 +5,11 @@ var app=angular.module('autocompleteApp', ['ngMaterial'])
 app.controller('AutoCompleteController',
                function AutoCompleteController ($rootScope,$scope,$http,$log) {
   $rootScope.loaded=true;
+  $scope.disable_benef_input=true;
   console.log("incontoler");
   var self = this;
+  $scope.sub_div_add_beneficiary=false;
+  console.log($scope.sub_div_add_beneficiary)
   self.isDisabled   = false;
   var fellowId='1';
   var action='services/get_beneficiaries.php';
@@ -29,7 +32,11 @@ app.controller('AutoCompleteController',
          
 
   function insertBenef(state) {
-    alert("Πρεπει να φτιάξω την function για εισαγωγή νεου ΑΦΜ" + state );
+    //alert("Πρεπει να φτιάξω την function για εισαγωγή νεου ΑΦΜ" + state );
+	$scope.disable_benef_input=false;
+	console.log("in insertBenef ");
+	console.log($scope.sub_div_add_beneficiary);
+	var1=false;
   }
 
   function querySearch (query) {
@@ -69,6 +76,7 @@ app.controller('AutoCompleteController',
     if (item){
       $scope.autoAFM=item.value;
       $scope.autoName=item.display;
+	  $scope.disable_benef_input=true;
     }
   }
   

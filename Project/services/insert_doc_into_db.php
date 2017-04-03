@@ -46,13 +46,13 @@ echo $sql;
 /*
 $sql = "INSERT INTO base_beneficiary (benef_name, benef_surname, benef_afm, benef_desc)
 VALUES ('$emp_no', '$first_name', '$last_name' , '$dept_name')";
-
+*/
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
-*/
+
 $conn->close();
 ?>
