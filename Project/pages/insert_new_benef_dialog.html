@@ -1,0 +1,23 @@
+<md-content>
+<form name=newBenefForm ng-submit="save_new_benef()">
+    <md-input-container>
+        <label>Α.Φ.Μ</label>
+        <input type="text" md-maxlength=10 required name=newBenefAfmField ng-model=new_benef_afm >
+        <!--<div ng-messages=newBenefForm.newBenefAfmField.$error><div ng-message=required>Υποχρεωτικό πεδίο</div></div>-->
+        <!--<div ng-message=md-maxlength>Το ονομα πρέπει να είναι το πολύ 10 χαρακτήρες</div>-->
+    </md-input-container>
+    <md-input-container>
+    <md-input-container>
+        <label>Ονομα</label>
+        <input md-maxlength=30 required name=newBenefnameField ng-model=new_benef_name>
+        <!--<div ng-messages=newBenefForm.newBenefnameField.$error><div ng-message=required>Υποχρεωτικό πεδίο</div></div>-->
+        <!--<div ng-message=md-maxlength>Το ονομα πρέπει να είναι το πολύ 30 χαρακτήρες</div>-->
+    </md-input-container>
+    <md-input-container>
+        <label>Επίθετο</label>
+        <input md-maxlength=30 required name=newBenefSurnameField ng-model=new_benef_surname>
+        <!--<div ng-messages=newBenefForm.newBenefSurnameField.$error><div ng-message=required>Υποχρεωτικό πεδίο</div></div>-->
+    </md-input-container>
+    <md-button type="submit" >Υποβολή</md-button>
+</form>
+</md-content>

@@ -49,7 +49,7 @@
                             md-item-text="item.value"
                             md-min-length="1" placeholder="Δώσε τον ΑΦΜ">
                             <div ng-messages="searchText.$error">
-                                <div ng-message="required">This field is required</div>
+                                <div ng-message="required">Υποχρεωτικό πεδίο</div>
                             </div>
 
                             <md-item-template>
@@ -57,7 +57,7 @@
                             </md-item-template>
                             <md-not-found>
                                 Δε βρέθηκε οφελούμενος με ΑΦΜ "{{ctrl.searchText}}" .
-                                <a ng-click="ctrl.insertBenef(ctrl.searchText,$event)">Συμπήρωση νέου Οφελούμενου</a>
+                                <a ng-click="ctrl.insertBenef($event)">Συμπήρωση νέου Οφελούμενου</a>
                             </md-not-found>
 
                         </md-autocomplete>
@@ -67,50 +67,6 @@
                 
             </div>
         </div>
-        
-        
-        <script type="text/ng-template" id="dialog.tmpl.html">
-            <md-dialog aria-label="Autocomplete Dialog Example" ng-cloak>
-          <md-toolbar>
-            <div class="md-toolbar-tools">
-              <h2>Autocomplete Dialog Example</h2>
-              <span flex></span>
-              <md-button class="md-icon-button" ng-click="cancel()">
-                <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
-              </md-button>
-            </div>
-          </md-toolbar>
-        
-          <md-dialog-content>
-            <div class="md-dialog-content">
-              <form role="form">
-                        <div layout-gt-xs="row">
-                          <md-input-container class="md-block" flex-gt-xs="">
-                            <label>Titolo</label>
-                            <input ng-model="titolo"  size="30" placeholder="inserisci il titolo">
-                          </md-input-container>
-                          <md-datepicker ng-model="questList.data" md-placeholder="Inserisci data">
-                          </md-datepicker>
-                          <md-input-container class="md-block" flex-gt-xs="">
-                            <label>Capitolo</label>
-                            <input ng-model="questList.capitolo"  size="30" placeholder="inserisci il capitolo">
-                          </md-input-container>
-                          <md-input-container class="md-block">
-                            <label>Descrizione</label>
-                            <textarea ng-model="questList.descrizione" md-maxlength="150" rows="5" md-select-on-focus placeholder="inserisci la descrizione"></textarea>
-                          </md-input-container>
-                          <md-input-container class="md-icon-float md-icon-right md-block">
-                            <label>Importo</label>
-                            <input ng-model="questList.importo"  size="30" placeholder="inserisci l'importo" type="number" step="0.01">
-                            <md-icon md-svg-src="img/icons/ic_euro_24px.svg"></md-icon>
-                          </md-input-container>
-                          <md-button ng-click="answer(questList)" class="md-raised md-primary">Salva</md-button>
-                        </div>
-                      </form>
-            </div>
-          </md-dialog-content>
-        </md-dialog>
-        </script>
-    
+  
     </body>
 </html>
