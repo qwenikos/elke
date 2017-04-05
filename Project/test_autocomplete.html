@@ -30,22 +30,20 @@
         <script src="js/autocomplete.js"></script>   
     </head>
     <body>
-        <div ng-controller="AutoCompleteController as ctrl" layout="column" ng-cloak>
-            {{mysqlBenef}}
-            {{nikos}}
-            <div ng-if="!loaded">Loading...</div>
-            <div ng-if="loaded">
+        <div ng-controller="AutoCompleteController" layout="column" ng-cloak>
+            <div>
+
                 <md-content class="md-padding">
-                    <form name="ctrl.form" ng-submit="$event.preventDefault()">
+                    <form name="form1" ng-submit="$event.preventDefault()">
                         <md-autocomplete 
-                            md-autofocus=false;
-                            ng-disabled="ctrl.isDisabled"
-                            md-no-cache="ctrl.noCache"
-                            md-selected-item="ctrl.selectedItem"
-                            md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
-                            md-search-text="ctrl.searchText"
-                            md-selected-item-change="ctrl.selectedItemChange(item)"
-                            md-items="item in ctrl.querySearch(ctrl.searchText)"
+                            md-autofocus="false"
+                            ng-disabled="isDisabled"
+                            md-no-cache="noCache"
+                            md-selected-item="selectedItem"
+                            md-search-text-change="searchTextChange(searchText)"
+                            md-search-text="searchText"
+                            md-selected-item-change="selectedItemChange(item)"
+                            md-items="item in querySearch(searchText)"
                             md-item-text="item.value"
                             md-min-length="1" placeholder="Δώσε τον ΑΦΜ">
                             <div ng-messages="searchText.$error">
@@ -53,22 +51,19 @@
                             </div>
 
                             <md-item-template>
-                                <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.value}} -- {{item.display}}</span>
+                                <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.value}} -- {{item.display}}</span>
                             </md-item-template>
                             <md-not-found>
                                 Δε βρέθηκε οφελούμενος με ΑΦΜ "{{ctrl.searchText}}" .
-                                <a ng-click="ctrl.insertBenef($event)">Συμπήρωση νέου Οφελούμενου</a>
+                                <a ng-click="insertBenef($event)">Συμπήρωση νέου Οφελούμενου</a>
                             </md-not-found>
-
+                            
                         </md-autocomplete>
                     </form>
                 </md-content>
-                <input type="text" name="benefName" value={{new_benef_name}} {{new_benef_surname}}>
+                <input type="text" name="benefName" value={{new_benef_name}}{{new_benef_surname}}>
                 <input type="text" name="benefAFM" value={{new_benef_afm}}>
-                <br>
-                
+                <br>               
             </div>
-        </div>
-  
     </body>
 </html>

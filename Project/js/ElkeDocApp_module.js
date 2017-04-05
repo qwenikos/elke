@@ -2,8 +2,7 @@
 
 // declare modules
 angular.module('Authentication', []);
-
-var app=angular.module('ElkeDocApp', ['Authentication','ngRoute','ngCookies'])
+var app=angular.module('ElkeDocApp', ['Authentication','ngRoute','ngCookies','ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
 
 ///////// Create Controller with name submitedCtrl///////////////////
 app.controller('submitedCtrl', function($scope,$http){
@@ -25,7 +24,6 @@ app.controller('submitedCtrl', function($scope,$http){
 	);
 });
 
-
 app.controller('navigationController',function ($scope, $location, $rootScope, AuthenticationService) {
     //debugger;
     //$scope.isConnected = function() {
@@ -40,7 +38,7 @@ app.controller('navigationController',function ($scope, $location, $rootScope, A
     //console.log($scope.isConnected);
 });
 
-
+//////////////////////////////
 app.controller('ApplicationController', function($scope,$rootScope){
 	$scope.userLoggedId =$rootScope.userid;
 	console.log($rootScope.userid);
@@ -83,7 +81,7 @@ app.config(['$routeProvider', function ($routeProvider) {
         .otherwise({ redirectTo: '/login' });
 }]);
 	
- ///////////////////// run /////////////////////////////
+///////////////////// run /////////////////////////////
 app.run(['$rootScope', '$location', '$cookieStore', '$http',
     function ($rootScope, $location, $cookieStore, $http) {
         // keep user logged in after page refresh
@@ -165,9 +163,8 @@ app.controller('mainCtrl', function($scope){
 });
 
 
-
 ////////////////////form controller///////////////////////////////////
-app.controller('form_control',function($rootScope,$scope,$http) {
+app.controller('form_control',function($rootScope,$scope,$http,$log,$mdDialog) {
     //initialization
     $scope.commonfields_form=true;
     $scope.amoivi_form=false;
@@ -391,7 +388,89 @@ app.controller('form_control',function($rootScope,$scope,$http) {
 		}
         );
         $scope.researchdiv=true;   
-    };    
+    };
+    ////start autocompete part for bebef autocomplete
+    $scope.disable_benef_input=true;
+	console.log("in the contoller");
+	//var self = this;
+	$scope.sub_div_add_beneficiary=false;
+	$scope.isDisabled   = false;
+	var fellowId='1';
+	var action='services/get_beneficiaries.php';
+	var params='?fellowId='+fellowId;
+	var fulURL=action+params;
+
+	$scope.querySearch   = querySearch;
+	$scope.selectedItemChange = selectedItemChange;
+	$scope.searchTextChange   = searchTextChange;	
+	$scope.insertBenef = insertBenef;
+	
+	$http.get(fulURL).then( //success
+		function (response) {
+			console.log("in the httpGet");
+			$scope.posts =  response.data;
+			console.log($scope.posts);
+			$scope.states=$scope.posts;
+			//create new beneficiary
+		},
+		function (response) { //fail
+			$scope.error="error in proccessing";
+		}
+	);
+	$scope.save_new_benef=function(){
+		console.log("save new benef to database");
+		$scope.mytestdata='nikos';
+		$mdDialog.hide();
+	};
+	console.log("ENDDD");
+	function insertBenef ($event) {
+		console.log("in insertBenef function");
+		$mdDialog.show({
+			scope: $scope,
+			preserveScope: true,
+			controller: 'AutoCompleteController',
+			templateUrl: 'pages/insert_new_benef_dialog.html'
+        });
+	}
+
+	function querySearch (query) {
+		console.log("test0");
+	  var results;
+	  if (query){
+		results=$scope.states.filter( createFilterFor(query));
+	  }else{
+	   results= $scope.states;
+	  }
+	  return results; 
+	}
+  
+	function createFilterFor(query) {
+		console.log("test1");
+	  return function filterFn(benef) {
+		return (benef.value.indexOf(query) === 0);
+		
+	  };
+	}
+
+	function searchTextChange(text) {
+		console.log("test2");
+		if (text.length==11) {
+		alert("Whatt");	
+		}
+	}
+	
+	function selectedItemChange(item) {
+		console.log("test3");
+		if (item){
+			$scope.new_benef_name=item.display;
+			$scope.new_benef_afm=item.value;
+			$scope.disable_benef_input=true;
+		}
+	}
+    ///end autocomplete part
+    ////////////form contoller general functions
+    
+    ////////////end form controller genera functions
 	
 });
 
