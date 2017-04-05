@@ -15,15 +15,16 @@ app.controller('AutoCompleteController',
 	var action='services/get_beneficiaries.php';
 	var params='?fellowId='+fellowId;
 	var fulURL=action+params
-	  $http.get(fulURL).then( //success
-		  function (response) {
-		$scope.posts =  response.data;
-		self.states=$scope.posts;
-		self.querySearch   = querySearch;
-		self.selectedItemChange = selectedItemChange;
-		self.searchTextChange   = searchTextChange;
-		//create new beneficiary
-		self.insertBenef = insertBenef;
+	$http.get(fulURL).then( //success
+		function (response) {
+			console.log("in the httpGet");
+			$scope.posts =  response.data;
+			self.states=$scope.posts;
+			self.querySearch   = querySearch;
+			self.selectedItemChange = selectedItemChange;
+			self.searchTextChange   = searchTextChange;
+			//create new beneficiary
+			self.insertBenef = insertBenef;
 		  },
 		  function (response) { //fail
 			  $scope.error="error in proccessing";
@@ -31,42 +32,52 @@ app.controller('AutoCompleteController',
 	  );
 	  
 	$scope.save_new_benef=function(){
-		console.log("save new benef to database");	
+		console.log("save new benef to database");
+		$scope.close();
 	};
+	
 	$scope.close = function() {
 	  $mdDialog.hide();
 	};
-	$scope.insertBenef = function (event)  {
+	
+	//$scope.insertBenef = function (event)  {
+	//	console.log("in $scope.insertBenef ");
+	//	$mdDialog.show({
+	//		scope: $scope,
+	//		preserveScope: true,
+	//		controller: 'AutoCompleteController',
+	//		templateUrl: 'pages/insert_new_benef_dialog.html'
+    //    });
+	//};
+	
+	function insertBenef ($event) {
+		console.log("in insertBenef function");
 		$mdDialog.show({
 			scope: $scope,
 			preserveScope: true,
 			controller: 'AutoCompleteController',
 			templateUrl: 'pages/insert_new_benef_dialog.html'
         });
-	};
+	}
+
+	function querySearch (query) {
+	  var results;
+	  if (query){
+		results=self.states.filter( createFilterFor(query));
+	  }else{
+	   results= self.states;
+	  }
+	  return results; 
+	}
   
-
-  
-
-  function querySearch (query) {
-    var results;
-    if (query){
-      results=self.states.filter( createFilterFor(query));
-    }else{
-     results= self.states;
-    }
-    return results; 
-  }
-  
-  function createFilterFor(query) {
-    return function filterFn(benef) {
-      return (benef.value.indexOf(query) === 0);
-      
-    };
-  }
+	function createFilterFor(query) {
+	  return function filterFn(benef) {
+		return (benef.value.indexOf(query) === 0);
+		
+	  };
+	}
 
 
-    /*****log the data to console *******/
 	function searchTextChange(text) {
 		// $log.info('Text changed to ' + text);
 		 //console.log(text.length);
