@@ -33,6 +33,7 @@ app.controller('AutoCompleteController',
 	  
 	$scope.save_new_benef=function(){
 		console.log("save new benef to database");
+		$scope.mytestdata='nikos'
 		$scope.close();
 	};
 	
@@ -90,8 +91,12 @@ app.controller('AutoCompleteController',
 	function selectedItemChange(item) {
 		//$log.info('Item changed to ' + JSON.stringify(item));
 		if (item){
-			$scope.autoAFM=item.value;
-			$scope.autoName=item.display;
+			//$scope.autoAFM=item.value;
+			//$scope.autoName=item.display;
+			
+			$scope.new_benef_name=item.display;
+			$scope.new_benef_afm=item.value;
+			
 			$scope.disable_benef_input=true;
 		}
 	}
