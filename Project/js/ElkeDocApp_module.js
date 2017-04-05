@@ -390,6 +390,7 @@ app.controller('form_control',function($rootScope,$scope,$http,$log,$mdDialog) {
         $scope.researchdiv=true;   
     };
     ////start autocompete part for bebef autocomplete
+    
     $scope.disable_benef_input=true;
 	console.log("in the contoller");
 	//var self = this;
@@ -428,7 +429,7 @@ app.controller('form_control',function($rootScope,$scope,$http,$log,$mdDialog) {
 		$mdDialog.show({
 			scope: $scope,
 			preserveScope: true,
-			controller: 'AutoCompleteController',
+			controller: 'form_control',
 			templateUrl: 'pages/insert_new_benef_dialog.html'
         });
 	}
@@ -462,6 +463,8 @@ app.controller('form_control',function($rootScope,$scope,$http,$log,$mdDialog) {
 	function selectedItemChange(item) {
 		console.log("test3");
 		if (item){
+           $scope.entoli.dikaioyxos_afm=item.value;
+           $scope.entoli.dikaioyxos_name=item.display;
 			$scope.new_benef_name=item.display;
 			$scope.new_benef_afm=item.value;
 			$scope.disable_benef_input=true;

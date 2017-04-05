@@ -4,46 +4,106 @@
 		<div  class="inputForm" >
 			
 			<div ng-show='commonfields_form'>
-				
 				<table border=1 class='inputformtable'>
-				<tr><td>Go</td>	
-				<td><button  ng-click='updateSciDirSelect("1")'>Go</button></td>
+				<tr>
+					<td>&nbsp</td>
+					<td><md-button  ng-click='updateSciDirSelect("1")'>Go</md-button></td>
 				</tr>
-				<tr><td>Όνομα</td>
+	
+				<tr>
 					<td>
-						<select  ng-model="entoli.sciDirSelected" ng-change="updateResearchSelect(entoli.sciDirSelected,'1');">
-							<option ng-repeat="sciDir in sciDirForFellow.data" value="{{sciDir.base_scidir_rec_id}}">{{sciDir.scidir_surname}} {{reseach.scidir_name}}</option>
-						</select>
+						<label>Όνομα</label></td><td>
+						<md-select  ng-model="entoli.sciDirSelected" ng-change="updateResearchSelect(entoli.sciDirSelected,'1');">
+							<md-option ng-repeat="sciDir in sciDirForFellow.data" value="{{sciDir.base_scidir_rec_id}}">{{sciDir.scidir_surname}} {{reseach.scidir_name}}</md-option>
+						</md-select>
 					</td>
 				</tr>
-				<tr><td>Κ.Α έρευνας</td>
+				<tr>
 					<td>
-						<select  ng-model="entoli.researchSelected" ng-change="afterupdate(entoli.researchSelected,entoli.sciDirSelected,'1');">
-							<option ng-repeat="research in researchOfsciDirForFellow.data" value="{{research.base_research_rec_id }}">{{research.research_code}}</option>
-						</select>
+						<label>Κ.Α έρευνας</label></td><td>
+						<md-select  ng-model="entoli.researchSelected" ng-change="afterupdate(entoli.researchSelected,entoli.sciDirSelected,'1');">
+							<md-option ng-repeat="research in researchOfsciDirForFellow.data" value="{{research.base_research_rec_id }}">{{research.research_code}}</md-option>
+						</md-select>
 					</td>
-				</tr>	
-				<tr><td>Όνομα</td>
-					<td><input type="text" ng-model="entoli.epistimonikos_name" ng-init="entoli.epistimonikos_name=''" placeholder="Όνομα"></td>
 				</tr>
-				<tr><td>Κ.Α έρευνας</td>
-					<td><input type="text" ng-model="entoli.kodikos_ereynas" placeholder="Κ.Α έρευνας"></td>
-				</tr>
-				<tr><td>ΑΦΜ Δικαιούχου</td>
-					<td><input type="text" ng-model="entoli.dikaioyxos_afm" placeholder="ΑΦΜ Δικαιούχου "></td>
-				</tr>
-				<tr><td>Όνομα Δικαιούχου</td>
-					<td><input type="text" ng-model="entoli.dikaioyxos_name" placeholder="Όνομα Δικαιούχου"></td>
-				</tr>
-				<!---->		
-				<tr><td>Τύπος Εντολής</td>
 					<td>
-					<select ng-model="entoli.typos" ng-options="dtype.name for (did,dtype) in doctypes" ng-required  ng-change="showdivfortype(entoli.typos.did)" >
-					
-					</select>
+						<label>Όνομα</label></td><td>
+						<md-input-container><input ng-model="entoli.epistimonikos_name" ng-init="entoli.epistimonikos_name=''"></md-input-container>
+					</td>
+				</tr>
+				</tr>
+					<td>
+						<label>Κ.Α έρευνας</label></td><td>
+						<md-input-container><input ng-model="entoli.kodikos_ereynas"></md-input-container>
+					</td>
+				</tr>
+
+				<!-- start from auto compete-->
+
+				<tr>
+					<td>
+						<label>ΑΦΜ Δικαιούχου</label></td><td>
+						<form name="form1" ng-submit="$event.preventDefault()">
+							<md-autocomplete 
+								md-autofocus="false"
+								ng-disabled="isDisabled"
+								md-no-cache="noCache"
+								md-selected-item="selectedItem"
+								md-search-text-change="searchTextChange(searchText)"
+								md-search-text="searchText"
+								md-selected-item-change="selectedItemChange(item)"
+								md-items="item in querySearch(searchText)"
+								md-item-text="item.value"
+								md-min-length="1" placeholder="Δώσε τον ΑΦΜ">
+								<div ng-messages="searchText.$error">
+									<div ng-message="required">Υποχρεωτικό πεδίο</div>
+								</div>
+								<md-item-template>
+									<span md-highlight-text="searchText" md-highlight-flags="^i">{{item.value}} -- {{item.display}}</span>
+								</md-item-template>
+								<md-not-found>
+									
+									<a ng-click="insertBenef($event)">Εισαγωγή Νέου </a>
+								</md-not-found>
+								
+							</md-autocomplete>
+						</form>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>ΑΦΜ Δικαιούχου</label>
+					</td>
+					<td>		
+						<md-input-container><input type="text" ng-model="entoli.dikaioyxos_afm"  value=value={{new_benef_afm}}></md-input-container>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>Όνομα Δικαιούχου</label>
+					</td>
+					<td>		
+						<md-input-container><input type="text" ng-model="entoli.dikaioyxos_name"  value={{new_benef_name}}{{new_benef_surname}}></md-input-container>
+					</td>
+				</tr>
+
+				<!---->
+				<tr><td><label>Τύπος Εντολής</label></td>
+					<td>
+					<md-select ng-model="entoli.typos"   ng-change="showdivfortype(entoli.typos)" >
+						<md-option ng-repeat="doctype in doctypes"  ng-value="{{doctype.did}}">{{doctype.name}}</md-option>
+					</md-select>
 					<!-- {{entoli.typos}} -->
 					</td>
 				</tr>
+				<!--<tr><td><label>Τύπος Εντολής</label></td>
+					<td>
+					<md-select ng-model="entoli.typos" ng-options="dtype.name for (did,dtype) in doctypes" ng-required  ng-change="showdivfortype(entoli.typos.did)" >
+					</md-select>
+					
+					</td>
+				</tr>
+				-->
 				</table>
 			</div>
 			<div ng-show="amoivi_form">
