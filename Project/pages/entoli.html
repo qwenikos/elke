@@ -1,337 +1,374 @@
 <div class="clear_div">
 	<div ng-controller="form_control">
-	<!-- form input  starting-->
-		<div  class="inputForm" >
-			
-			<div ng-show='commonfields_form'>
-				<table border=1 class='inputformtable'>
-				<tr>
-					<td>&nbsp</td>
-					<td><md-button  ng-click='updateSciDirSelect("1")'>Go</md-button></td>
-				</tr>
-	
-				<tr>
-					<td>
-						<label>Όνομα</label></td><td>
-						<md-select  ng-model="entoli.sciDirSelected" ng-change="updateResearchSelect(entoli.sciDirSelected,'1');">
-							<md-option ng-repeat="sciDir in sciDirForFellow.data" value="{{sciDir.base_scidir_rec_id}}">{{sciDir.scidir_surname}} {{reseach.scidir_name}}</md-option>
-						</md-select>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label>Κ.Α έρευνας</label></td><td>
-						<md-select  ng-model="entoli.researchSelected" ng-change="afterupdate(entoli.researchSelected,entoli.sciDirSelected,'1');">
-							<md-option ng-repeat="research in researchOfsciDirForFellow.data" value="{{research.base_research_rec_id }}">{{research.research_code}}</md-option>
-						</md-select>
-					</td>
-				</tr>
-					<td>
-						<label>Όνομα</label></td><td>
-						<md-input-container><input ng-model="entoli.epistimonikos_name" ng-init="entoli.epistimonikos_name=''"></md-input-container>
-					</td>
-				</tr>
-				</tr>
-					<td>
-						<label>Κ.Α έρευνας</label></td><td>
-						<md-input-container><input ng-model="entoli.kodikos_ereynas"></md-input-container>
-					</td>
-				</tr>
-
-				<!-- start from auto compete-->
-
-				<tr>
-					<td>
-						<label>ΑΦΜ Δικαιούχου</label></td><td>
-						<form name="form1" ng-submit="$event.preventDefault()">
-							<md-autocomplete 
-								md-autofocus="false"
-								ng-disabled="isDisabled"
-								md-no-cache="noCache"
-								md-selected-item="selectedItem"
-								md-search-text-change="searchTextChange(searchText)"
-								md-search-text="searchText"
-								md-selected-item-change="selectedItemChange(item)"
-								md-items="item in querySearch(searchText)"
-								md-item-text="item.value"
-								md-min-length="1" placeholder="Δώσε τον ΑΦΜ">
-								<div ng-messages="searchText.$error">
-									<div ng-message="required">Υποχρεωτικό πεδίο</div>
-								</div>
-								<md-item-template>
-									<span md-highlight-text="searchText" md-highlight-flags="^i">{{item.value}} -- {{item.display}}</span>
-								</md-item-template>
-								<md-not-found>
-									
-									<a ng-click="insertBenef($event)">Εισαγωγή Νέου </a>
-								</md-not-found>
-								
-							</md-autocomplete>
-						</form>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label>ΑΦΜ Δικαιούχου</label>
-					</td>
-					<td>		
-						<md-input-container><input type="text" ng-model="entoli.dikaioyxos_afm"  value=value={{new_benef_afm}}></md-input-container>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label>Όνομα Δικαιούχου</label>
-					</td>
-					<td>		
-						<md-input-container><input type="text" ng-model="entoli.dikaioyxos_name"  value={{new_benef_name}}{{new_benef_surname}}></md-input-container>
-					</td>
-				</tr>
-
-				<!---->
-				<tr><td><label>Τύπος Εντολής</label></td>
-					<td>
-					<md-select ng-model="entoli.typos"   ng-change="showdivfortype(entoli.typos)" >
-						<md-option ng-repeat="doctype in doctypes"  ng-value="{{doctype.did}}">{{doctype.name}}</md-option>
-					</md-select>
-					<!-- {{entoli.typos}} -->
-					</td>
-				</tr>
-				<!--<tr><td><label>Τύπος Εντολής</label></td>
-					<td>
-					<md-select ng-model="entoli.typos" ng-options="dtype.name for (did,dtype) in doctypes" ng-required  ng-change="showdivfortype(entoli.typos.did)" >
-					</md-select>
-					
-					</td>
-				</tr>
-				-->
-				</table>
-			</div>
-			<div ng-show="amoivi_form">
-				<table  class='inputformtable'>
-					<tr><td>Διάστημα από </td>
-						<td>
-						
-						<input type="text" ng-model="entoli.amoivi_diasthma_apo" placeholder="από"  datetime="dd-MM-yyyy" /><br>
-						<!--
-						<input type="date" id="exampleInput" name="input" ng-model="example.value" placeholder="yyyy-MM-dd" min="2013-01-01" max="2013-12-31" required />
-						<md-datepicker ng-model="entoli.amoivi_diasthma_apo" md-placeholder="Enter date"></md-datepicker>
-						-->
-						</td>
-						
-					</tr>
-					<tr><td>Διάστημα εως</td>
-						<td><input type="text" ng-model="entoli.amoivi_diasthma_eos" ng-init="entoli.amoivi_diasthma_eos=''" placeholder="εώς" datetime="dd-MM-yyyy" /></td>
-					</tr>
-					<tr><td>Ποσό Αμοιβής</td>
-						<td><input type="text" ng-model="entoli.amoivi_poso" placeholder="ποσό"></td>
-					</tr>
-				</table>
-			</div>
-			<div ng-show="prokatavoli_form"  class='inputformtable'>
-				<table>
-					<tr><td>Προκαταβολη Περιγραφή</td>
-						<td><input type="text" ng-model="entoli.prokatavoli_desc" placeholder="dec"></td>
-					</tr>
-					<tr><td>Προκαταβολή Ποσό</td>
-						<td><input type="text" ng-model="entoli.prokatavoli_poso" placeholder="ποσό"></td>
-					</tr>
-				</table>
-			</div>
-			
-			<div ng-show="exoda_ereynwn_form">
-			<table>
-				<tr><td>Εξοδα Ερευνών Περιγραφή</td>
-					<td><input type="text" ng-model="entoli.exoda_ereynwn_desc" placeholder="dec"></td>
-				</tr>
-				<tr><td>Έξοδα Ερευνών Ποσό</td>
-					<td><input type="text" ng-model="entoli.exoda_ereynwn_poso" placeholder="ποσό" ></td>		
-				</tr>
-				
-				<tr>
-					<td>Εκτίμηση Τιμών Αγοράς</td>
-					<td><input type="checkbox" ng-model="entoli.check_agora" value="agora" ng-click=agora_clicked()>
-					</td>
-				</tr>
-				<tr>
-					
-					<td>Διαγωνισμός</td>
-					<td><input type="checkbox" ng-model="entoli.check_diagonismos" value="diagonismos" ng-click=diagonismos_clicked()></td>
-				</tr>
-			</table>
-			</div>
-			<div class="form_buttons" >
-			<table>
-				<tr>
-					<td><input type="button" ng-click="saveDocToDB()" value="save The doc"/></td>
-					<td><input type="button" ng-click="printDiv('outputDocId')" value="Print The doc"/></td>
-				</tr>
-			</table>
-			</div>
-		</div>
-		<!-- form input ending -->
-		<!-- doc output starting -->
-		<div id='outputDocId' class='outputDoc'>
-			<div class="inneroutputDoc">
-				<!-- header Start -->
-				<div class="header">
-					<table>
+		<md-content md-theme="docs-dark" layout-xs="row" layout-padding>
+			<div  class="inputForm" >			
+				<div ng-show='commonfields_form'>
+					<table border=1 class='inputformtable'>
 						<tr>
-							<td rowspan=2 width=100px><img src="Images/athina.jpg" width=95px></td>
-							<td>ΕΛΛΗΝΙΚΗ ΔΗΜΟΚΡΑΤΙΑ<br>Εθνικόν και Καποδιστριακόν<br>Πανεπιστήμιον Αθηνών</td>
+							<td>&nbsp</td>
+							<td><md-button  ng-click='updateSciDirSelect("1")'>Go</md-button></td>
 						</tr>
 						<tr>
-							<td>ΕΙΔΙΚΟΣ ΛΟΓΑΡΙΑΣΜΟΣ ΚΟΝΔΥΛΙΩΝ ΕΡΕΥΝΑΣ<br>ΓΡΑΜΜΑΤΕΙΑ ΕΠΙΤΡΟΠΗΣ ΕΡΕΥΝΩΝ</td>
+							<td>
+								<label>Όνομα</label>
+							</td>
+							<td>
+								<md-select  ng-model="entoli.sciDirSelected" ng-change="updateResearchSelect(entoli.sciDirSelected,'1');">
+									<md-option ng-repeat="sciDir in sciDirForFellow.data" value="{{sciDir.base_scidir_rec_id}}">{{sciDir.scidir_surname}} {{reseach.scidir_name}}</md-option>
+								</md-select>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Κ.Α έρευνας</label>
+							</td>
+							<td>
+								<md-select  ng-model="entoli.researchSelected" ng-change="afterupdate(entoli.researchSelected,entoli.sciDirSelected,'1');">
+									<md-option ng-repeat="research in researchOfsciDirForFellow.data" value="{{research.base_research_rec_id }}">{{research.research_code}}</md-option>
+								</md-select>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Όνομα</label>
+							</td>
+							<td>
+								<md-input-container><input ng-model="entoli.epistimonikos_name" ng-init="entoli.epistimonikos_name=''"></md-input-container>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Κ.Α έρευνας</label>
+							</td>
+							<td>
+								<md-input-container><input ng-model="entoli.kodikos_ereynas"></md-input-container>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>ΑΦΜ Δικαιούχου</label>
+							</td>
+							<td>
+								<form name="form1" ng-submit="$event.preventDefault()">
+									<md-autocomplete 
+										md-autofocus="false"
+										ng-disabled="isDisabled"
+										md-no-cache="noCache"
+										md-selected-item="selectedItem"
+										md-search-text-change="searchTextChange(searchText)"
+										md-search-text="searchText"
+										md-selected-item-change="selectedItemChange(item)"
+										md-items="item in querySearch(searchText)"
+										md-item-text="item.value"
+										md-min-length="1" placeholder="Δώσε τον ΑΦΜ">
+										<div ng-messages="searchText.$error">
+											<div ng-message="required">
+												Υποχρεωτικό πεδίο
+											</div>
+										</div>
+										<md-item-template>
+											<span md-highlight-text="searchText" md-highlight-flags="^i">{{item.value}} -- {{item.display}}</span>
+										</md-item-template>
+										<md-not-found>
+											
+											<a ng-click="insertBenef($event)">Εισαγωγή Νέου </a>
+										</md-not-found>
+										
+									</md-autocomplete>
+								</form>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>ΑΦΜ Δικαιούχου</label>
+							</td>
+							<td>		
+								<md-input-container><input type="text" ng-model="entoli.dikaioyxos_afm"  value=value={{new_benef_afm}}></md-input-container>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Όνομα Δικαιούχου</label>
+							</td>
+							<td>		
+								<md-input-container><input type="text" ng-model="entoli.dikaioyxos_name"  value={{new_benef_name}}{{new_benef_surname}}></md-input-container>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Τύπος Εντολής</label>
+							</td>
+							<td>
+								<md-select ng-model="entoli.typos"   ng-change="showdivfortype(entoli.typos)" >
+									<md-option ng-repeat="doctype in doctypes"  ng-value="{{doctype.did}}">{{doctype.name}}</md-option>
+								</md-select>
+							</td>
 						</tr>
 					</table>
-					<div align=center>
-						ΕΝΤΟΛΗ ΕΠΙΣΤΗΜΟΝΙΚΟΥ ΥΠΕΥΘΥΝΟΥ
+				</div>
+				<div ng-show="amoivi_form">
+					<table  class='inputformtable'>
+						<tr>
+							<td>
+								<label>Διάστημα από </label>
+							</td>
+							<td>						
+								<md-input-container><input type="text" ng-model="entoli.amoivi_diasthma_apo"   datetime="dd-MM-yyyy" /></md-input-container>
+							</td>	
+						</tr>
+						<tr>
+							<td>
+								<label>Διάστημα εως</label>
+							</td>
+							<td>
+								<md-input-container><input type="text" ng-model="entoli.amoivi_diasthma_eos" ng-init="entoli.amoivi_diasthma_eos=''" datetime="dd-MM-yyyy" /></md-input-container>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Ποσό Αμοιβής</label>
+							</td>
+							<td>
+								<md-input-container><input type="text" ng-model="entoli.amoivi_poso" placeholder="ποσό"></md-input-container>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div ng-show="prokatavoli_form"  class='inputformtable'>
+					<table>
+						<tr>
+							<td>
+								<label>
+									Προκαταβολη Περιγραφή
+								</label>
+							</td>
+							<td>
+								<md-input-container><input type="text" ng-model="entoli.prokatavoli_desc" ></md-input-container>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Προκαταβολή Ποσό</label>
+							</td>
+							<td>
+								<md-input-container><input type="text" ng-model="entoli.prokatavoli_poso" ></md-input-container>
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+				<div ng-show="exoda_ereynwn_form">
+					<table>
+						<tr>
+							<td>
+								<label>Εξοδα Ερευνών Περιγραφή</label>
+							</td>
+							<td>
+								<md-input-container><input type="text" ng-model="entoli.exoda_ereynwn_desc" placeholder="dec"></md-input-container>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Έξοδα Ερευνών Ποσό</label>
+							</td>
+							<td>
+								<md-input-container><input type="text" ng-model="entoli.exoda_ereynwn_poso" placeholder="ποσό" ></md-input-container>
+							</td>		
+						</tr>
+						<tr>
+							<td>&nbsp</td>
+							<td>
+								<md-checkbox ng-model="entoli.check_agora" value="agora" ng-change=agora_clicked()> Εκτίμηση Τιμών Αγοράς</md-checkbox>
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp</td>
+							<td>
+								<md-checkbox ng-model="entoli.check_diagonismos" value="diagonismos" ng-change=diagonismos_clicked()>Διαγωνισμός</md-checkbox>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="form_buttons">
+					<table>
+						<tr>
+							<td>
+								<md-button ng-click="saveDocToDB()" > Ολοκλήρωση</md-button>
+							</td>
+							<td>
+								<md-button ng-click="printDiv('outputDocId')" >Μόνο Εκτύπωση</md-button>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		
+
+			<div id='outputDocId' class='outputDoc'>
+				<div class="inneroutputDoc">
+					<!-- header Start -->
+					<div class="header">
+						<table>
+							<tr>
+								<td rowspan=2 width=100px><img src="Images/athina.jpg" width=95px></td>
+								<td>ΕΛΛΗΝΙΚΗ ΔΗΜΟΚΡΑΤΙΑ<br>Εθνικόν και Καποδιστριακόν<br>Πανεπιστήμιον Αθηνών</td>
+							</tr>
+							<tr>
+								<td>ΕΙΔΙΚΟΣ ΛΟΓΑΡΙΑΣΜΟΣ ΚΟΝΔΥΛΙΩΝ ΕΡΕΥΝΑΣ<br>ΓΡΑΜΜΑΤΕΙΑ ΕΠΙΤΡΟΠΗΣ ΕΡΕΥΝΩΝ</td>
+							</tr>
+						</table>
+						<div align=center>
+							ΕΝΤΟΛΗ ΕΠΙΣΤΗΜΟΝΙΚΟΥ ΥΠΕΥΘΥΝΟΥ
+						</div>
 					</div>
-				</div>
-				<!-- header End-->
-				<!--body start-->
-				<div class="docbody">
-					<ul class="leaders"><!-- line 1-->
-					<li><span>Ο/Η</span>
-					<span><b>{{entoli.epistimonikos_name}} </b></span><br>
-					</ul>
-					
-					<ul class=leaders><!-- line 2-->
-					<li><span></span>
-					<span style="float:right;" >Επιστημονικός/η Υπεύθυνος/η της έρευνας με Κ.Α.</span><br>
-					</ul>
-					
-					<ul class=leaders><!-- line 3-->
-					<li><span>70/{{entoli.kodikos_ereynas}}</span>
-					<span style="float:right;">παρακαλώ να εκδώσετε επιταγή σε διαταγή/να</span><br>
-					</ul>
-					
-					
-					<span>εμβάσετε σε:<br></span><!-- line 4-->
-					
-					<span align=justify>Ονοματεπώνυμο / Επωνυμία Δικαιούχου :</span><!-- line 5-->
-					
-					<ul class=leaders>
-					<li><span>{{entoli.dikaioyxos_name}}</span><br><!-- line 6-->
-					</ul>
-					
-					<ul class=leaders>
-					<li><span></span><br><!-- line 8-->
-					</ul>
-					<span align=justify>ΑΦΜ</span><!-- line 9-->
-					
-					<ul class=leaders>
-					<li><span>{{entoli.dikaioyxos_afm}}</span><br><!-- line 10-->
-					</ul>	
-					<span>. . . . . . . . . .</span><br><!-- line 11-->
-					<span><br></span><br><!-- line 12-->
-					<span>για:<br></span><!-- line 13-->
+					<!-- header End-->
+					<!--body start-->
+					<div class="docbody">
+						<ul class="leaders"><!-- line 1-->
+						<li><span>Ο/Η</span>
+						<span><b>{{entoli.epistimonikos_name}} </b></span><br>
+						</ul>
+						
+						<ul class=leaders><!-- line 2-->
+						<li><span></span>
+						<span style="float:right;" >Επιστημονικός/η Υπεύθυνος/η της έρευνας με Κ.Α.</span><br>
+						</ul>
+						
+						<ul class=leaders><!-- line 3-->
+						<li><span>70/{{entoli.kodikos_ereynas}}</span>
+						<span style="float:right;">παρακαλώ να εκδώσετε επιταγή σε διαταγή/να</span><br>
+						</ul>
+						
+						
+						<span>εμβάσετε σε:<br></span><!-- line 4-->
+						
+						<span align=justify>Ονοματεπώνυμο / Επωνυμία Δικαιούχου :</span><!-- line 5-->
+						
+						<ul class=leaders>
+						<li><span>{{entoli.dikaioyxos_name}}</span><br><!-- line 6-->
+						</ul>
+						
+						<ul class=leaders>
+						<li><span></span><br><!-- line 8-->
+						</ul>
+						<span align=justify>ΑΦΜ</span><!-- line 9-->
+						
+						<ul class=leaders>
+						<li><span>{{entoli.dikaioyxos_afm}}</span><br><!-- line 10-->
+						</ul>	
+						<span>. . . . . . . . . .</span><br><!-- line 11-->
+						<span><br></span><br><!-- line 12-->
+						<span>για:<br></span><!-- line 13-->
+				
+						<!-- doc type output stat-->
+						<div class="tab">
 			
-					<!-- doc type output stat-->
-					<div class="tab">
-						
-						<div ng-show="doc_amoivi_empty">
-							<ul class=leaders><!-- line 14-->
-							<li><span>-Αμοιβή του/της</span>
-							<span style="float:right;">για</span><br>
-							</ul>
 							
-							<ul class=leaders><!-- line 15-->
-							<li><span>για το διάστημα από</span>
-							<span style="float:left;">. . ./. . ./. . .</span>
-							<span style="float:left;">έως</span>
-							<span style="float:left;">. . ./. . ./. . .</span><br>
-							</ul>
+							<div ng-show="doc_amoivi_empty">
+								<ul class=leaders><!-- line 14-->
+								<li><span>-Αμοιβή του/της</span>
+								<span style="float:right;">για</span><br>
+								</ul>
+								
+								<ul class=leaders><!-- line 15-->
+								<li><span>για το διάστημα από</span>
+								<span style="float:left;">. . ./. . ./. . .</span>
+								<span style="float:left;">έως</span>
+								<span style="float:left;">. . ./. . ./. . .</span><br>
+								</ul>
+								
+								<span style="float:right;">το ποσό των <b>. . . . . . . . . .</b> Ευρώ</span><br><!-- line 16-->
+							</div>
 							
-							<span style="float:right;">το ποσό των <b>. . . . . . . . . .</b> Ευρώ</span><br><!-- line 16-->
+							<div ng-show="doc_amoivi">
+								<ul class=leaders><!-- line 14-->
+								<li><span>-Αμοιβή του/της <b>{{entoli.dikaioyxos_name}}</b></span>
+								<span style="float:right;">για</span><br>
+								</ul>
+								
+								<ul class=leaders><!-- line 15-->
+								<li><span>για το διάστημα από</span>
+								<span style="float:left;"> {{entoli.amoivi_diasthma_apo| date: "dd-MM-yyyy"}} </span>
+								<span style="float:left;"> έως </span>
+								<span style="float:left;"> {{entoli.amoivi_diasthma_eos| date: "dd-MM-yyyy"}} </span><br>
+								</ul>
+								
+								<span style="float:right;">το ποσό των <b>. . .{{entoli.amoivi_poso}}. . . </b>Ευρώ</span><br><!-- line 16-->
+							</div>
+							
+							<div ng-show="doc_prokatavoli_empty">	
+								<span style="float:left;">Προκαταβολή για</span><br><!-- line 17-->
+			
+								<ul class=leaders><!-- line 18-->
+								<li><span></span><br>
+								</ul>
+								<ul class=leaders><!-- line 19-->
+								<li><span></span><br>
+								</ul>
+								<span>. . . . . . . . . .</span><br><!-- line 20-->
+								
+								<span style="float:right;">το ποσό των <b>. . . . . . . . . .</b> Ευρώ</span><br><!-- line 21-->
+							</div>
+							
+							<div ng-show="doc_prokatavoli">	
+								<span style="float:left;">Προκαταβολή για </span><br><!-- line 17-->
+			
+								<ul class=leaders><!-- line 18-->
+								<li><span> {{entoli.prokatavoli_desc}} </span><br>
+								</ul>
+								<ul class=leaders><!-- line 19-->
+								<li><span></span><br>
+								</ul>
+								<span>. . . . . . . . . .</span><br><!-- line 20-->
+								
+								<span style="float:right;">το ποσό των <b>. . . {{entoli.prokatavoli_poso}}. . .</b> Ευρώ</span><br><!-- line 21-->
+							</div>
+							<div ng-show="doc_exoda_ereynwn_empty">	
+								<span align=justify>Έξοδα ερευνών</span><!-- line 22-->			
+								<ul class=leaders><!-- line 23-->
+								<li><span></span><br>
+								</ul>
+								<ul class=leaders><!-- line 25-->
+								<li><span></span><br>
+								</ul>
+								<span>. . . . . . . . . .</span><br><!-- line 25-->
+								
+								<span style="float:right;">το ποσό των <b>. . . . . . . . . .</b> Ευρώ<sup>1</sup></span><br><!-- line 26-->
+								<div class="tab">
+									<input  type="checkbox" ng-checked="entoli.check_agora_no"   onclick="return false">
+									ύστερα από εκτίμηση των τιμών που προσφέρει η αγορά<br> <!-- line 27-->
+									<input  type="checkbox" ng-checked="entoli.check_diagonismos_no"  onclick="return false" >
+									ύστερα από την προβλεπόμενη από το νομοθετικό πλάισιο <br><!-- line 26-->
+									διαγνωστική διαδικασία<sup>3</sup><!-- line 29-->
+								</div>				
+							</div>
+							<div ng-show="doc_exoda_ereynwn">	
+								<span align=justify>Έξοδα ερευνών</span><!-- line 22-->			
+								<ul class=leaders><!-- line 23-->
+								<li><span> {{entoli.exoda_ereynwn_desc}}</span><br>
+								</ul>
+								<ul class=leaders><!-- line 25-->
+								<li><span></span><br>
+								</ul>
+								<span> </span><br><!-- line 25-->
+								
+								<span style="float:right;">το ποσό των <b>... {{entoli.exoda_ereynwn_poso}} ...</b> Ευρώ<sup>1</sup></span><br><!-- line 26-->
+								<div >
+									<input  type="checkbox" ng-checked="entoli.check_agora">
+									ύστερα από εκτίμηση των τιμών που προσφέρει η αγορά<br> <!-- line 27-->
+									<input  type="checkbox" ng-checked="entoli.check_diagonismos">
+									ύστερα από την προβλεπόμενη από το νομοθετικό πλάισιο <br><!-- line 26-->
+									διαγνωστική διαδικασία<sup>3</sup><!-- line 29-->
+								</div>					
+							</div>
 						</div>
-						
-						<div ng-show="doc_amoivi">
-							<ul class=leaders><!-- line 14-->
-							<li><span>-Αμοιβή του/της <b>{{entoli.dikaioyxos_name}}</b></span>
-							<span style="float:right;">για</span><br>
-							</ul>
-							
-							<ul class=leaders><!-- line 15-->
-							<li><span>για το διάστημα από</span>
-							<span style="float:left;"> {{entoli.amoivi_diasthma_apo| date: "dd-MM-yyyy"}} </span>
-							<span style="float:left;"> έως </span>
-							<span style="float:left;"> {{entoli.amoivi_diasthma_eos| date: "dd-MM-yyyy"}} </span><br>
-							</ul>
-							
-							<span style="float:right;">το ποσό των <b>. . .{{entoli.amoivi_poso}}. . . </b>Ευρώ</span><br><!-- line 16-->
-						</div>
-						
-						<div ng-show="doc_prokatavoli_empty">	
-							<span style="float:left;">Προκαταβολή για</span><br><!-- line 17-->
-		
-							<ul class=leaders><!-- line 18-->
-							<li><span></span><br>
-							</ul>
-							<ul class=leaders><!-- line 19-->
-							<li><span></span><br>
-							</ul>
-							<span>. . . . . . . . . .</span><br><!-- line 20-->
-							
-							<span style="float:right;">το ποσό των <b>. . . . . . . . . .</b> Ευρώ</span><br><!-- line 21-->
-						</div>
-						
-						<div ng-show="doc_prokatavoli">	
-							<span style="float:left;">Προκαταβολή για </span><br><!-- line 17-->
-		
-							<ul class=leaders><!-- line 18-->
-							<li><span> {{entoli.prokatavoli_desc}} </span><br>
-							</ul>
-							<ul class=leaders><!-- line 19-->
-							<li><span></span><br>
-							</ul>
-							<span>. . . . . . . . . .</span><br><!-- line 20-->
-							
-							<span style="float:right;">το ποσό των <b>. . . {{entoli.prokatavoli_poso}}. . .</b> Ευρώ</span><br><!-- line 21-->
-						</div>
-						<div ng-show="doc_exoda_ereynwn_empty">	
-							<span align=justify>Έξοδα ερευνών</span><!-- line 22-->			
-							<ul class=leaders><!-- line 23-->
-							<li><span></span><br>
-							</ul>
-							<ul class=leaders><!-- line 25-->
-							<li><span></span><br>
-							</ul>
-							<span>. . . . . . . . . .</span><br><!-- line 25-->
-							
-							<span style="float:right;">το ποσό των <b>. . . . . . . . . .</b> Ευρώ<sup>1</sup></span><br><!-- line 26-->
-							<div class="tab">
-								<input  type="checkbox" ng-checked="entoli.check_agora_no"   onclick="return false">
-								ύστερα από εκτίμηση των τιμών που προσφέρει η αγορά<br> <!-- line 27-->
-								<input  type="checkbox" ng-checked="entoli.check_diagonismos_no"  onclick="return false" >
-								ύστερα από την προβλεπόμενη από το νομοθετικό πλάισιο <br><!-- line 26-->
-								διαγνωστική διαδικασία<sup>3</sup><!-- line 29-->
-							</div>				
-						</div>
-						<div ng-show="doc_exoda_ereynwn">	
-							<span align=justify>Έξοδα ερευνών</span><!-- line 22-->			
-							<ul class=leaders><!-- line 23-->
-							<li><span> {{entoli.exoda_ereynwn_desc}}</span><br>
-							</ul>
-							<ul class=leaders><!-- line 25-->
-							<li><span></span><br>
-							</ul>
-							<span> </span><br><!-- line 25-->
-							
-							<span style="float:right;">το ποσό των <b>... {{entoli.exoda_ereynwn_poso}} ...</b> Ευρώ<sup>1</sup></span><br><!-- line 26-->
-							<div >
-								<input  type="checkbox" ng-checked="entoli.check_agora">
-								ύστερα από εκτίμηση των τιμών που προσφέρει η αγορά<br> <!-- line 27-->
-								<input  type="checkbox" ng-checked="entoli.check_diagonismos">
-								ύστερα από την προβλεπόμενη από το νομοθετικό πλάισιο <br><!-- line 26-->
-								διαγνωστική διαδικασία<sup>3</sup><!-- line 29-->
-							</div>					
-						</div>
-					</div>	
-				σύμφωνα με τον εγκεκριμένο από την Επιτροπή Ερευνών προυπολογισμό.
-				</div>
-				<!--body End-->
-			</div><!-- div innerdocument class  ending -->
+					</div>
+					σύμφωνα με τον εγκεκριμένο από την Επιτροπή Ερευνών προυπολογισμό.
+					</div>
+					<!--body End-->
+				</div><!-- div innerdocument class  ending -->
 		</div>
-	</div>
+	</md-content>
+
 </div>
 
