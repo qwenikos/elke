@@ -241,6 +241,8 @@ app.controller('form_control',function($rootScope,$scope,$http,$log,$mdDialog) {
     };
     
     $scope.showdivfortype = function(divname) {
+        $scope.entoli.typos=divname;
+        console.log("type changed to "+divname);
         if (divname=='1'){
             $scope.amoivi_form=true;
             $scope.doc_amoivi=true;
