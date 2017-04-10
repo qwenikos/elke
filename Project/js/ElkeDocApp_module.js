@@ -4,47 +4,28 @@
 angular.module('Authentication', []);
 var app=angular.module('ElkeDocApp', ['Authentication','ngRoute','ngCookies','ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
 
-///////// Create Controller with name submitedCtrl///////////////////
-app.controller('submitedCtrl', function($scope,$http){
-    //debugger;
-	$scope.msg = 'You are now at submited us page';
-	$scope.doc_entoli_num=1;
-    var mylink='services/get_doc_entoli_all.php';
-	var myparams='';
-	//param='?surname='+surname;
-	var fullurl=mylink+myparams;
-	console.log(fullurl);
-	$http.get(fullurl).then( //success
-		function (response) {
-			$scope.docEntoles = response.data;
-		},
-		function (response) { //fail
-			$scope.error="error in proccessing";
-		}
-	);
-});
 
-app.controller('navigationController',function ($scope, $location, $rootScope, AuthenticationService) {
-    //debugger;
-    //$scope.isConnected = function() {
-    //    return !($rootScope.globals.currentUser);
-    //};
-	
-	$rootScope.$watch('globals', function(newVal, oldVal) {
-            $scope.isConnected = !($rootScope.globals.currentUser);
-    }, true);
-	
-	//$scope.isConnected=false;
-    //console.log($scope.isConnected);
-});
+/////###############  RUN ####################/////	
+app.run(['$rootScope', '$location', '$cookieStore', '$http',
+    function ($rootScope, $location, $cookieStore, $http) {
+        // keep user logged in after page refresh
+        console.log("you are in the run ");
+        $rootScope.globals = $cookieStore.get('globals') || {};
+        if ($rootScope.globals.currentUser) {
+            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
+        }
+        $rootScope.$on('$locationChangeStart', function (event, next, current) {
+            // redirect to login page if not logged in
+            if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
+                $location.path('/login');
+            }
+        });
+    }
+]);
 
-//////////////////////////////
-app.controller('ApplicationController', function($scope,$rootScope){
-	$scope.userLoggedId =$rootScope.userid;
-	console.log($rootScope.userid);
-});
 
- ///////// route config //////////////////////////////
+/////############route config################/////
+
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
         .when('/login', {
@@ -80,27 +61,66 @@ app.config(['$routeProvider', function ($routeProvider) {
 		
         .otherwise({ redirectTo: '/login' });
 }]);
-	
-///////////////////// run /////////////////////////////
-app.run(['$rootScope', '$location', '$cookieStore', '$http',
-    function ($rootScope, $location, $cookieStore, $http) {
-        // keep user logged in after page refresh
-        console.log("you are in the run ");
-        $rootScope.globals = $cookieStore.get('globals') || {};
-        if ($rootScope.globals.currentUser) {
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
-        }
-        $rootScope.$on('$locationChangeStart', function (event, next, current) {
-            // redirect to login page if not logged in
-            if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
-                $location.path('/login');
-            }
-        });
-    }]);
 
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
+
+/////##########################################/////
+ 
+app.controller('docsCtrl', function($scope){
+	$scope.msg = 'You are now at docs us page';
+});
+ 
+/////##########################################/////
+ 
+app.controller('contactCtrl', function($scope){
+	$scope.msg = 'Cotact us';
+});
+
+/////##########################################/////
+
+app.controller('mainCtrl', function($scope){
+ 
+	$scope.msg = 'Wellcome to AngularJS Application Main Page';
+});
+
+/////##########################################/////
+
+app.controller('submitedCtrl', function($scope,$http){
+    //debugger;
+	$scope.msg = 'You are now at submited us page';
+	$scope.doc_entoli_num=1;
+    var mylink='services/get_doc_entoli_all.php';
+	var myparams='';
+	//param='?surname='+surname;
+	var fullurl=mylink+myparams;
+	console.log(fullurl);
+	$http.get(fullurl).then( //success
+		function (response) {
+			$scope.docEntoles = response.data;
+		},
+		function (response) { //fail
+			$scope.error="error in proccessing";
+		}
+	);
+});
+/////##########################################/////
+
+app.controller('navigationController',function ($scope, $location, $rootScope, AuthenticationService) {
+	
+	$rootScope.$watch('globals', function(newVal, oldVal) {
+            $scope.isConnected = !($rootScope.globals.currentUser);
+    }, true);
+});
+
+/////##########################################/////
+
+/*app.controller('ApplicationController', function($scope,$rootScope){
+	$scope.userLoggedId =$rootScope.userid;
+	console.log($rootScope.userid);
+});*/
+
+
+/////##########################################/////
+
 app.controller('menucontroller2', function($rootScope,$scope,$window){
 	$scope.msg = 'You are now at docs us page';
     if ($rootScope.globals.currentUser === undefined){
@@ -145,25 +165,9 @@ app.controller('menucontroller2', function($rootScope,$scope,$window){
 	
 });
 
-////////////// Create Controller with name aboutCtrl//////////////////
- 
-app.controller('docsCtrl', function($scope){
-	$scope.msg = 'You are now at docs us page';
-});
- 
-///////// Create Controller with name contactCtrl///////////////////
- 
-app.controller('contactCtrl', function($scope){
-	$scope.msg = 'Cotact us';
-});
-///////////////////////////////////
-app.controller('mainCtrl', function($scope){
- 
-	$scope.msg = 'Wellcome to AngularJS Application Main Page';
-});
 
+/////############ FORM CONTROLLER##################/////
 
-////////////////////form controller///////////////////////////////////
 app.controller('form_control',function($rootScope,$scope,$http,$log,$mdDialog) {
     //initialization
     $scope.commonfields_form=true;
@@ -186,10 +190,7 @@ app.controller('form_control',function($rootScope,$scope,$http,$log,$mdDialog) {
         {did:2, name:'Προκαταβολή'},
         {did:3, name:'Έξοδα Ερευνών'}
     ];
-    
-    console.log($scope.users);
-    
-    //print adiv function
+
     $scope.printDiv = function(divName) {
         var printContents = document.getElementById(divName).innerHTML;
         var popupWin = window.open('', '_blank', 'width=595,height=842');
@@ -207,18 +208,11 @@ app.controller('form_control',function($rootScope,$scope,$http,$log,$mdDialog) {
         popupWin.document.close();
     };
     
-    $scope.saveDocToDB = function() {
+    $scope.insertDocToDB = function() {
         console.log($scope.entoli);
-        console.log("in the save_Doc");
+        console.log("in the sinsertDocToDB");
         
         var actionUrl="services/insert_doc_into_db.php";
-        /*var data= {
-            benef_name: $scope.benef_name,
-            benef_surname: $scope.benef_surname,
-            benef_afm: $scope.benef_afm,
-            benef_desc: $scope.benef_desc,
-        };
-        */
         var config = {
             headers : {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -228,30 +222,25 @@ app.controller('form_control',function($rootScope,$scope,$http,$log,$mdDialog) {
             function (response) {
                 console.log(response);
                 $scope.insertDocToMysqlReturn = response.data;
-                //console.log("ok");
-                //console.log($scope.sciDirForFellow);
             },
             function (response) { //fail
-                //$scope.error="error in proccessing";
-                //console.log("error");
             }
         );
         console.log($scope.insertDocToMysqlReturn);
     };    
 
     $scope.changeme = function() {
-    alert('here');
     };
+    
     $scope.agora_clicked = function() {
-    //alert('agora');
-    $scope.entoli.check_diagonismos=false;
+        $scope.entoli.check_diagonismos=false;
     };
+    
     $scope.diagonismos_clicked = function() {
-    //alert('diagonisnos');
-    $scope.entoli.check_agora=false;
+        $scope.entoli.check_agora=false;
     };
+    
     $scope.showdivfortype = function(divname) {
-    //alert(divname);
         if (divname=='1'){
             $scope.amoivi_form=true;
             $scope.doc_amoivi=true;
@@ -303,6 +292,7 @@ app.controller('form_control',function($rootScope,$scope,$http,$log,$mdDialog) {
           {id: '3', name: 'SciDir C'}
         ]
     };
+    
     $scope.researchListData = {
         researchList: [
           {id: '1', name: 'Reseach A'},
@@ -310,6 +300,7 @@ app.controller('form_control',function($rootScope,$scope,$http,$log,$mdDialog) {
           {id: '3', name: 'Reseach C'}
         ]
     };
+    
     console.log($scope.researchListData);
     
     $scope.updateSciDirSelect = function(fellowId){
@@ -330,10 +321,9 @@ app.controller('form_control',function($rootScope,$scope,$http,$log,$mdDialog) {
             console.log("error");
 		}
         );
-        $scope.researchdiv=true;
-
-        
+        $scope.researchdiv=true;      
     };
+    
     $scope.updateResearchSelect = function(sciDirSelected,fellowId){
         var mylink='services/get_reseach_for_sci_dir_and_fellow.php';
         //var fellowId=1;
@@ -389,7 +379,7 @@ app.controller('form_control',function($rootScope,$scope,$http,$log,$mdDialog) {
         );
         $scope.researchdiv=true;   
     };
-    ////start autocompete part for bebef autocomplete
+    ////start autocompete part for benef autocomplete
     
     $scope.disable_benef_input=true;
 	console.log("in the contoller");
@@ -418,12 +408,12 @@ app.controller('form_control',function($rootScope,$scope,$http,$log,$mdDialog) {
 			$scope.error="error in proccessing";
 		}
 	);
-	$scope.save_new_benef=function(){
-		console.log("save new benef to database");
+	$scope.insert_new_benef=function(){
+		console.log("insert new benef to database");
 		$scope.mytestdata='nikos';
 		$mdDialog.hide();
 	};
-	console.log("ENDDD");
+	console.log("END");
 	function insertBenef ($event) {
 		console.log("in insertBenef function");
 		$mdDialog.show({
@@ -471,57 +461,8 @@ app.controller('form_control',function($rootScope,$scope,$http,$log,$mdDialog) {
 		}
 	}
     ///end autocomplete part
-    ////////////form contoller general functions
-    
-    ////////////end form controller genera functions
 	
 });
-
-/////////////////////form controller end/////////////////////
-app.controller("menucontroller1", function($scope) {
-  $scope.menus = [
-	{
-	  title: "Menu1", 
-	  action: "#", 
-	  menus: [
-		{
-		  title: "Submenu 1a",
-		  action: "stuff"
-		},
-		{
-		  title: "Submenu 1b",
-		  action: "moreStuff",
-		  menus: [
-			{
-			  title: "Submenu 1b 1",
-			  action: "stuff"
-			},
-			{
-			  title: "Submenu 1b 2",
-			  action: "moreStuff"
-			}
-		  ]
-		}
-	  ]
-	},
-	{
-    title: "Menu2", 
-    action: "#", 
-    menus: [
-      {
-        title: "Submenu 2a",
-        action: "awesomeStuff"
-      },
-      {
-        title: "Submenu 2b",
-        action: "moreAwesomeStuff"
-      }
-    ]
-	}
-	];
-  });
-
-
 
 
 ///////////////////////END END END ///////////////////////////////

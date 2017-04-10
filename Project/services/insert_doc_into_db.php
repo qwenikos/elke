@@ -49,7 +49,14 @@ VALUES ('$emp_no', '$first_name', '$last_name' , '$dept_name')";
 */
 
 if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+    /* get protocol */
+    printf ("New Record has id %d.\n", $conn->insert_id);
+    $protocolNumberString="";
+    $SubmitterEmail="nikosp@di.uoa.gr";
+    $protocol_sql="INSERT INTO base_protocol (protocol_number,submit_email)
+    VALUES ('$protocolNumberString','$SubmitterEmail')";
+    echo "New record created successfully with protocol=<<$protocolNumberString>>";
+    
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
