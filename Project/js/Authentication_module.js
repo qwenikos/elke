@@ -1,6 +1,32 @@
 'use strict';
 
 angular.module('Authentication',[])
+
+
+
+.controller('LoginController',
+    ['$scope', '$rootScope', '$location', 'AuthenticationService',
+    function ($scope, $rootScope, $location, AuthenticationService) {
+        // reset login status
+        //debugger;
+        AuthenticationService.ClearCredentials();
+ 
+        $scope.login = function () {
+            $scope.dataLoading = true;
+            AuthenticationService.Login($scope.username, $scope.password, function(response) {
+                if(response.success) {
+                    AuthenticationService.SetCredentials($scope.username, $scope.password);
+                    $location.path('/');     
+                }
+                else {
+                    $scope.error = response.message;
+                    $scope.dataLoading = false;
+                }
+            });
+        };
+    }])
+  
+ 
  
 .factory('AuthenticationService',['Base64', '$http', '$cookieStore', '$rootScope', '$timeout',function (Base64, $http, $cookieStore, $rootScope, $timeout) {
     var service = {};
@@ -14,7 +40,7 @@ angular.module('Authentication',[])
                 response.message = 'Username or password is incorrect';
             }
             callback(response);
-        }, 1000);
+        }, 100);
 
         /* Use this for real authentication
          ----------------------------------------------*/
@@ -36,7 +62,9 @@ angular.module('Authentication',[])
         };
 
         $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
+        //$http.defaults.headers.common['auth-token'] = 'C3PO R2D2';
         $cookieStore.put('globals', $rootScope.globals);
+        
     };
 
     service.ClearCredentials = function () {
@@ -132,27 +160,5 @@ angular.module('Authentication',[])
     };
  
     /* jshint ignore:end */
-})
+});
 
-.controller('LoginController',
-    ['$scope', '$rootScope', '$location', 'AuthenticationService',
-    function ($scope, $rootScope, $location, AuthenticationService) {
-        // reset login status
-        //debugger;
-        AuthenticationService.ClearCredentials();
- 
-        $scope.login = function () {
-            $scope.dataLoading = true;
-            AuthenticationService.Login($scope.username, $scope.password, function(response) {
-                if(response.success) {
-                    AuthenticationService.SetCredentials($scope.username, $scope.password);
-                    $location.path('/');     
-                }
-                else {
-                    $scope.error = response.message;
-                    $scope.dataLoading = false;
-                }
-            });
-        };
-    }]);
- 
