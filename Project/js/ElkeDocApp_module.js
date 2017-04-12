@@ -94,7 +94,7 @@ app.controller('submitedCtrl', function($scope,$http){
 	//param='?surname='+surname;
 	var fullurl=mylink+myparams;
 	console.log(fullurl);
-	$http.get(fullurl).then( //success
+	$http.get(fullurl,{withCredentials: true}).then( //success
 		function (response) {
 			$scope.docEntoles = response.data;
 		},
@@ -313,7 +313,7 @@ app.controller('form_control',function($rootScope,$scope,$http,$log,$mdDialog) {
         //param='?surname='+surname;
         var fullurl=mylink+myparams;
         console.log(fullurl);
-        $http.get(fullurl).then( //success
+        $http.get(mylink,{params:{"fellowId": fellowId, "param2": "testVal"}},{headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}}).then( //success
 		function (response) {
 			$scope.sciDirForFellow = response;
             console.log("ok");
