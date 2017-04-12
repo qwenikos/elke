@@ -11,7 +11,22 @@ $goon=false;
 if(isset($_GET['fellowId'])){
     $fellowId=$_GET['fellowId'];
     $goon=true;
-}
+}else{
+$fellowId=-1 ;   
+};
+
+/********************/
+
+//echo json_encode($txt);
+
+//$headers =  getallheaders();
+//if ($auth=$headers["Authorization"]){
+//    echo json_encode($auth);
+//}else
+//echo json_encode("error");
+
+ /*******************/
+
 /*********/
 //$fellowId=1;
 $goon=true;
