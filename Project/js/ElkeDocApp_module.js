@@ -136,6 +136,7 @@ app.controller('menucontroller2', function($rootScope,$scope,$window){
 		$scope.sub_menu_entypa=false;
 		$scope.sub_menu_entoli=false;
 		$scope.sub_menu_epikoinonia=false;
+        $scope.sub_menu_proypologismos=false;
 	};
 	$scope.sub_menu_entypa_show = function() {
 		/*alert('sub_menu_entypa_show');*/
@@ -143,6 +144,7 @@ app.controller('menucontroller2', function($rootScope,$scope,$window){
 		$scope.sub_menu_entypa=true;
 		$scope.sub_menu_entoli=false;
 		$scope.sub_menu_epikoinonia=false;
+        $scope.sub_menu_proypologismos=false;
 	};
 	$scope.sub_menu_entoli_show = function() {
 		/*alert('sub_menu_entoli_show');*/
@@ -150,6 +152,15 @@ app.controller('menucontroller2', function($rootScope,$scope,$window){
 		$scope.sub_menu_entypa=false;
 		$scope.sub_menu_entoli=true;
 		$scope.sub_menu_epikoinonia=false;
+        $scope.sub_menu_proypologismos=false;
+	};
+	$scope.sub_menu_proypologismos_show = function() {
+		/*alert('sub_menu_entoli_show');*/
+		$scope.sub_menu_arxiki=false;
+		$scope.sub_menu_entypa=false;
+		$scope.sub_menu_entoli=false;
+		$scope.sub_menu_epikoinonia=false;
+        $scope.sub_menu_proypologismos=true;
 	};
 	$scope.sub_menu_epikoinonia_show = function() {
 		/*alert('sub_menu_epikoinonia_show');*/
@@ -157,6 +168,7 @@ app.controller('menucontroller2', function($rootScope,$scope,$window){
 		$scope.sub_menu_entypa=false;
 		$scope.sub_menu_entoli=false;
 		$scope.sub_menu_epikoinonia=true;
+        $scope.sub_menu_proypologismos=false;
 	};
 	$scope.sub_menu_login = function() {
 		$window.location.href = 'pages/login.html';

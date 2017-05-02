@@ -59,6 +59,7 @@
 							<li><a href="#/" ng-click="sub_menu_arxiki_show()" >Αρχική</a></li>
 							<li><a href="#/docs" ng-click="sub_menu_entypa_show()" >Εντυπά</a></li>
 							<li><a href="#/" ng-click="sub_menu_entoli_show()" >εντολη επ. υπευθυνου</a></li>
+							<li><a href="#/" ng-click="sub_menu_proypologismos_show()" >Προυπολογισμός</a></li>
 							<li><a href="#/contact" ng-click="sub_menu_epikoinonia_show()" >Επικοινωνία</a></li>
 							<li><a href="#/login" " >Αποσύνδεση</a></li>
 							<li>userLoggedId-->{{userLoggedMsg}}<br></li>
@@ -81,6 +82,13 @@
 						<ul id="sub-menu">
 							<li><a href="#submited_docs">Yποβληθήσες Εντολές</a></li>
 							<li><a href="#entoli">Νέα Εντολή</a></li>
+							<li><a href="#diaxeirisi">Διαχείριση</a></li>
+						</ul>
+					</div>
+					<div class="sub-nav" ng-show="sub_menu_proypologismos">
+						<ul id="sub-menu">
+							<li><a href="#submited_docs">Απεσταλμένοι προυπολογισμοί</a></li>
+							<li><a href="#entoli">Νέος Προυπολογισμός</a></li>
 							<li><a href="#diaxeirisi">Διαχείριση</a></li>
 						</ul>
 					</div>
