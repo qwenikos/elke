@@ -59,6 +59,21 @@ app.config(['$routeProvider', function ($routeProvider) {
 			templateUrl: 'pages/submited.html',
 			controller: 'submitedCtrl'
 		})
+        
+        .when('/submited_proypologismos', {
+			templateUrl: 'pages/submited_proypologismos.html',
+			controller: 'contactCtrl'
+		})
+        
+        .when('/neos_proypologismos', {
+			templateUrl: 'pages/neos_proypologismos.html',
+			controller: 'contactCtrl'
+		})
+        
+        .when('/diaxeirisi_proypologismos', {
+			templateUrl: 'pages/diaxeirisi_proypologismos.html',
+			controller: 'contactCtrl'
+		})
 		
         .otherwise({ redirectTo: '/login' });
 }]);
