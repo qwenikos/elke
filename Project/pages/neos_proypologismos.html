@@ -1,6 +1,586 @@
-<div class="text-center">
-	<center><h2>Διεπαφή διαδικτυακών Εφαρμογών ΕΛΚΕ  </h2>
-	
-	<h1>elke<b><font size=+8>X</font></b>ternal  </h1></center>
-	<p>new proypologimos</p>
+<div class="clear_div">
+	<div ng-controller="form_proypologismos_control">
+		<md-content md-theme="docs-dark" layout-xs="row" layout-padding>
+			<div  class="inputForm" >	
+				<div ng-show='commonfields_form_proypologismos'>
+					<table border=1 class='inputformtable'>
+						<tr>
+							<td>&nbsp</td>
+							<td><md-button  ng-click='updateSciDirSelect("1")'>Go</md-button></td>
+						</tr>
+						<tr>
+							<td>
+								<label>Όνομα</label>
+							</td>
+							<td>
+								<md-select  ng-model="entoli.sciDirSelected" ng-change="updateResearchSelect(entoli.sciDirSelected,'1');">
+									<md-option ng-repeat="sciDir in sciDirForFellow.data" value="{{sciDir.base_scidir_rec_id}}">{{sciDir.scidir_surname}} {{reseach.scidir_name}}</md-option>
+								</md-select>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Κ.Α έρευνας</label>
+							</td>
+							<td>
+								<md-select  ng-model="entoli.researchSelected" ng-change="afterupdate(entoli.researchSelected,entoli.sciDirSelected,'1');">
+									<md-option ng-repeat="research in researchOfsciDirForFellow.data" value="{{research.base_research_rec_id }}">{{research.research_code}}</md-option>
+								</md-select>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Όνομα</label>
+							</td>
+							<td>
+								<md-input-container><input ng-model="entoli.epistimonikos_name" ng-init="entoli.epistimonikos_name=''"></md-input-container>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Κ.Α έρευνας</label>
+							</td>
+							<td>
+								<md-input-container><input ng-model="entoli.kodikos_ereynas"></md-input-container>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="form_buttons">
+					<table>
+						<tr>
+							<td>
+								<md-button ng-click="insertDocToDB()" > Ολοκλήρωση</md-button>
+							</td>
+							<td>
+								<md-button ng-click="printDiv('outputDocProypologismomsId')" >Μόνο Εκτύπωση</md-button>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div  id='outputDocProypologismomsId' class="outputDoc" >
+				<table cellspacing="0" border="1">
+					<colgroup ></colgroup>
+					<colgroup ></colgroup>
+					<colgroup ></colgroup>
+					<tr>
+						<td>Προς :</td>
+						<td>την Επιτροπή Ερευνών</td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><br></td>
+						<td>του Εθνικού και Καποδιστριακού</td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><br></td>
+						<td>Πανεπιστημίου Αθηνών</td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><br></td>
+						<td>Αθήνα,</td>
+						<td>Αθήνα, ………</td>
+					</tr>
+					<tr>
+						<td>Σας αποστέλλουμε τον προϋπολογισμό του ερευνητικού έργου με τίτλο :</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>……………………………………</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>……………………………………</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>και Eπιστημονικό Yπεύθυνο</td>
+						<td>: …………………………………………...</td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>και παρακαλούμε για την έγκρισή του.</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Χρηματοδότης</td>
+						<td>: …………………………………………...</td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Ποσό Προϋπολογισμού*</td>
+						<td>: …………………………………………..</td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Κ.Α. Έρευνας</td>
+						<td>: …………………………………………..</td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Διάρκεια Έργου**</td>
+						<td>: από …………… έως ……...</td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><br></td>
+						</tr>
+					<tr>
+						<td><br></td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><b>ΠΡΟΫΠΟΛΟΓΙΣΜΟΣ</b></td>
+						</tr>
+					<tr>
+						<td><b><u>1. ΜΗ ΑΝΑΛΩΣΙΜΑ</u></b></td>
+						<td><b><u><br></u></b></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Α. ΕΠΙΣΤΗΜΟΝΙΚΑ ΟΡΓΑΝΑ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Β. Η/Υ ΚΑΙ ΠΕΡΙΦΕΡΕΙΑΚΑ Η/Υ (ΕΚΤΥΠΩΤΕΣ, ΟΘΟΝΕΣ, κ.λ.π)</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Γ. ΦΩΤΟΤΥΠΙΚΑ ΚΑΙ ΠΑΡΕΜΦΕΡΗ ΜΗΧΑΝΗΜΑΤΑ </td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Δ. ΛΟΓΙΣΜΙΚΑ ΠΡΟΓΡΑΜΜΑΤΑ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Ε. ΟΠΤΙΚΟΑΚΟΥΣΤΙΚΑ ΜΕΣΑ (ΤΗΛΕΠ/ΚΟΣ ΕΞΟΠΛΙΣΜΟΣ) </td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>ΣΤ. ΕΞΟΠΛΙΣΜΟΣ ΓΡΑΦΕΙΟΥ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Ζ. ΒΙΒΛΙΑ – ΕΝΤΥΠΑ –ΠΕΡΙΟΔΙΚΑ </td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Η. ΑΥΤΟΚΙΝΗΤΑ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Θ. ΛΟΙΠΟΣ ΕΞΟΠΛΙΣΜΟΣ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Ι. ΑΛΛΟ (Παρακαλούμε εξειδικεύστε το είδος)</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><b>ΣΥΝΟΛΟ ΜΗ ΑΝΑΛΩΣΙΜΩΝ :</b></td>
+						<td><b><br></b></td>
+						<td><b>0</b></td>
+					</tr>
+					<tr>
+						<td><br></td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><b><u>2. ΑΝΑΛΩΣΙΜΑ</u></b></td>
+						<td><b><u><br></u></b></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Α. ΑΝΤΙΔΡΑΣΤΗΡΙΑ (Χημικά, Ιατρικά, κ.α).</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Β. ΕΡΓΑΣΤΗΡΙΑΚΑ ΑΝΑΛΩΣΙΜΑ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Γ. ΟΔΟΝΤΙΑΤΡΙΚΑ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Δ. ΦΑΡΜΑΚΕΥΤΙΚΑ ΠΡΟΪΟΝΤΑ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Ε. ΑΚΤΙΝΟΓΡΑΦΙΚΑ ΕΙΔΗ </td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>ΣΤ. ΠΕΙΡΑΜΑΤΟΖΩΑ &amp; ΥΛΙΚΑ ΣΥΝΤΗΡΗΣΗΣ ΤΟΥΣ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Ζ. ΑΕΡΙΑ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Η. ΓΡΑΦΙΚΗ ΥΛΗ- – ΑΝΑΛΩΣΙΜΑ ΓΡΑΦΕΙΟΥ - ΑΝΑΛΩΣΙΜΑ Η/Υ </td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Θ. ΥΓΕΙΟΝΟΜΙΚΟ ΥΛΙΚΟ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Ι. ΥΛΙΚΑ ΚΑΘΑΡΙΟΤΗΤΑΣ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Κ. ΑΛΛΟ (Παρακαλούμε εξειδικεύστε το είδος)</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><b>ΣΥΝΟΛΟ ΑΝΑΛΩΣΙΜΩΝ: </b></td>
+						<td><b><br></b></td>
+						<td><b>0</b></td>
+					</tr>
+					<tr>
+						<td><br></td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><b><u>3. ΑΜΟΙΒΕΣ</u></b></td>
+						<td><b><u><br></u></b></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Α. ΕΠΙΣΤΗΜΟΝΙΚΟΥ ΥΠΕΥΘΥΝΟΥ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Β. ΕΠΙΣΤΗΜΟΝΙΚΟΥ ΠΡΟΣΩΠΙΚΟΥ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Γ. ΦΟΙΤΗΤΩΝ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Δ. ΛΟΙΠΟΥ ΠΡΟΣΩΠΙΚΟΥ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Ε. ΑΛΛΟ (Παρακαλούμε εξειδικεύστε το είδος)</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><b>ΣΥΝΟΛΟ ΑΜΟΙΒΩΝ :</b></td>
+						<td><b><br></b></td>
+						<td><b>0</b></td>
+					</tr>
+					<tr>
+						<td><br></td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><b><u>4. ΥΠΗΡΕΣΙΕΣ</u></b></td>
+						<td><b><u><br></u></b></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Α. ΕΚΤΥΠΩΣΕΙΣ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Β. ΤΑΧΥΔΡΟΜΙΚΑ – ΥΠΗΡΕΣΙΕΣ ΜΕΤΑΦΟΡΑΣ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Γ. ΣΥΝΔΡΟΜΕΣ ΣΕ ΟΡΓΑΝΙΣΜΟΥΣ, ΕΠΙΣΤΗΜΟΝΙΚΑ ΠΕΡΙΟΔΙΚΑ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>   Ή ΒΑΣΕΙΣ ΔΕΔΟΜΕΝΩΝ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Δ. ΔΙΟΡΓΑΝΩΣΗΣ ΣΥΝΕΔΡΙΩΝ/ ΕΞΟΔΑ ΠΡΟΒΟΛΗΣ </td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>   ΚΑΙ ΔΙΑΦΗΜΙΣΗΣ / ΕΙΣΙΤΗΡΙΑ – ΔΙΑΜΟΝΗ ΜΕΤΑΚΙΝΟΥΜΕΝΩΝ***</td>
+						<td><br></td>
+						<td><u><br></u></td>
+					</tr>
+					<tr>
+						<td>Ε. ΑΛΛΟ (Παρακαλούμε εξειδικεύστε το είδος)</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><b>ΣΥΝΟΛΟ ΥΠΗΡΕΣΙΩΝ :</b></td>
+						<td><b><br></b></td>
+						<td><b>0</b></td>
+					</tr>
+					<tr>
+						<td><b><br></b></td>
+						<td><b><br></b></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><b><u>5. ΕΠΙΣΚΕΥΕΣ/ΣΥΝΤΗΡΗΣΕΙΣ</u></b></td>
+						<td><b><u><br></u></b></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Α. ΕΠΙΣΚΕΥΗ ΚΑΙ ΣΥΝΤΗΡΗΣΗ ΕΠΙΣΤΗΜΟΝΙΚΩΝ ΟΡΓΑΝΩΝ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Β. ΕΠΙΣΚΕΥΗ ΚΑΙ ΣΥΝΤΗΡΗΣΗ ΛΟΙΠΟΥ ΕΞΟΠΛΙΣΜΟΥ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Γ. ΕΠΙΣΚΕΥΗ ΚΑΙ ΣΥΝΤΗΡΗΣΗ Η/Υ, ΕΚΤΥΠΩΤΩΝ, ΦΩΤΟΤΥΠΙΚΩΝ </td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Δ. ΑΛΛΟ (Παρακαλούμε εξειδικεύστε το είδος)</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><b>ΣΥΝΟΛΟ ΕΠΙΣΚΕΥΩΝ/ΣΥΝΤΗΡΗΣΕΩΝ :</b></td>
+						<td><b><br></b></td>
+						<td><b>0</b></td>
+					</tr>
+					<tr>
+						<td><br></td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><b><u>6. ΕΝΟΙΚΙΑΣΕΙΣ</u></b></td>
+						<td><b><u><br></u></b></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Α. ΕΝΟΙΚΙΑΣΗ ΧΩΡΩΝ (κάλυψη αναγκών στέγασης ερ/κών προγ/των) </td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Β. ΕΝΟΙΚΙΑ ΜΕΤΑΦΟΡΙΚΩΝ ΜΕΣΩΝ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Γ. ΕΝΟΙΚΙΑ ΕΠΙΣΤΗΜΟΝΙΚΩΝ ΟΡΓΑΝΩΝ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Δ. ΕΝΟΙΚΙΑ ΛΟΙΠΟΥ ΕΞΟΠΛΙΣΜΟΥ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Ε. ΑΛΛΟ (Παρακαλούμε εξειδικεύστε το είδος)</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><b>ΣΥΝΟΛΟ ΕΝΟΙΚΙΑΣΕΩΝ : </b></td>
+						<td><b><br></b></td>
+						<td><b>0</b></td>
+					</tr>
+					<tr>
+						<td><br></td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><b><u>7. ΔΙΑΦΟΡΑ ΕΞΟΔΑ</u></b></td>
+						<td><b><u><br></u></b></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Α. ΜΕΤΑΚΙΝΗΣΕΙΣ ****</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Β. ΔΙΑΜΟΡΦΩΣΗ ΧΩΡΩΝ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Ε. ΔΙΑΦΟΡΑ</td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Δ. ΑΛΛΟ (Παρακαλούμε εξειδικεύστε το είδος) </td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><b>ΣΥΝΟΛΟ ΔΙΑΦΟΡΩΝ ΕΞΟΔΩΝ :</b></td>
+						<td><b><br></b></td>
+						<td><b>0</b></td>
+					</tr>
+					<tr>
+						<td><br></td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><br></td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><b>8. Γενικά Διαχειριστικά Έξοδα (π.χ. Κράτηση υπέρ Ειδικού Λογαριασμού)</b></td>
+						<td><b><br></b></td>
+						<td><b>0</b></td>
+					</tr>
+					<tr>
+						<td><br></td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><b><u>9. ΑΛΛΗ ΚΑΤΗΓΟΡΙΑ</u></b></td>
+						<td><b><u><br></u></b></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><b><u>(Παρακαλούμε εξειδικεύστε την κατηγορία και το είδος)</u></b></td>
+						<td><b><u><br></u></b></td>
+						<td><b>0</b></td>
+					</tr>
+					<tr>
+						<td><br></td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><b>ΓΕΝΙΚΟ ΣΥΝΟΛΟ :</b></td>
+						<td><b><br></b></td>
+						<td><b>0</b></td>
+					</tr>
+					<tr>
+						<td><br></td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><br></td>
+						<td>Ο / Η Επιστημονικ … Υπεύθυν….</td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><br></td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><br></td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><br></td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><br></td>
+						<td>(Υπογραφή)</td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><br></td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><i>Στοιχεία επικοινωνίας του υπευθύνου σύνταξης του προϋπολογισμού: </i></td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><i>Ονοματεπώνυμο: </i></td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><i>Τηλ.: </i></td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><i>E-mail:</i></td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>*, ** Συμπληρώνεται ο προϋπολογισμός και η διάρκεια του έργου:  για τα Ευρωπαϊκά Προγράμματα, τις Κλινικές Μελέτες και για όλα τα προγράμματα που έχουν συγκεκριμένο χρονικό διάστημα υλοποίησης συμπληρώνεται για το σύνολο του έργου με την αποδοχή του έργου από τον Φορέα Χρηματοδότησης ενώ για τα λοιπά έργα (Νοσήλια, ΠΜΣ, Οικονομικές Ενισχύσεις κλ.π.) συμπληρώνεται σε ετήσια βάση.</td>
+						</tr>
+					<tr>
+						<td><a href="#_ftnref1">*** Αφορά στις μετακινήσεις ομάδων στο πλαίσιο του έργου.</a></td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td><a href="#_ftnref2">**** Αφορά μεμονωμένες μετακινήσεις</a></td>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+				</table>				
+			</div>
+		</md-content>
+	</div>
 </div>
+	

@@ -194,6 +194,111 @@ app.controller('menucontroller2', function($rootScope,$scope,$window){
 });
 
 
+/////############ FORM Proypologismos CONTROLLER##################/////
+app.controller('form_proypologismos_control',function($rootScope,$scope,$http,$log,$mdDialog) {
+    $scope.commonfields_form_proypologismos=true
+    $scope.doctypes = [
+        {did:1, name:'Αμοιβή'},
+        {did:2, name:'Προκαταβολή'},
+        {did:3, name:'Έξοδα Ερευνών'}   
+    ];
+    
+    $scope.printDiv = function(divName) {
+        console.log("printing div");
+        var printContents = document.getElementById(divName).innerHTML;
+        var popupWin = window.open('', '_blank', 'width=595,height=842');
+        popupWin.document.open();
+        var html_pre;
+        html_pre='<html><head>';
+        html_pre+='<link rel="stylesheet" type="text/css" href="css/uoashare.css">';
+        html_pre+='<link rel="stylesheet" type="text/css" href="css/nikos_tables.css">';
+        html_pre+='<link rel="stylesheet" type="text/css" href="css/nikos_base.css">';
+        html_pre+='<link rel="stylesheet" type="text/css" href="css/nikos_nav.css">';
+        html_pre+='<script src="./js/angularjs/1.5.7/angular.min.js"></script>';
+        html_pre+='<script src="./js/app_routing.js"></script>';
+        html_pre+='</head>';
+        popupWin.document.write(html_pre+ '<body onload="window.print()">' + printContents + '</body></html>');
+        popupWin.document.close();
+    };
+    $scope.updateSciDirSelect = function(fellowId){
+        var mylink='services/get_sci_for_fellow.php';
+        //var fellowId=1;
+        var myparams='?fellowId='+fellowId;
+        //param='?surname='+surname;
+        var fullurl=mylink+myparams;
+        console.log(fullurl);
+        $http.get(mylink,{params:{"fellowId": fellowId, "param2": "testVal"}},{headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}}).then( //success
+		function (response) {
+			$scope.sciDirForFellow = response;
+            console.log("ok");
+            console.log($scope.sciDirForFellow);
+		},
+		function (response) { //fail
+			$scope.error="error in proccessing";
+            console.log("error");
+		}
+        );
+        $scope.researchdiv=true;      
+    };
+    $scope.updateResearchSelect = function(sciDirSelected,fellowId){
+        var mylink='services/get_reseach_for_sci_dir_and_fellow.php';
+        //var fellowId=1;
+        //var sciDirId=sciDirSelected;
+        var myparams='?fellowId='+fellowId+"&sciDirId="+sciDirSelected;
+        //param='?surname='+surname;
+        var fullurl=mylink+myparams;
+        console.log(fullurl);
+        $http.get(fullurl).then( //success
+		function (response) {
+			$scope.researchOfsciDirForFellow = response;
+            console.log("ok");
+            console.log($scope.researchOfsciDirForFellow);
+		},
+		function (response) { //fail
+			$scope.error="error in proccessing";
+            console.log("error");
+		}
+        );
+        $scope.researchdiv=true;   
+    };
+    
+    $scope.afterupdate = function(researchSelected,sciDirSelected,fellowId){
+        console.log(researchSelected,sciDirSelected,fellowId)
+        var mylink='services/get_details_for_reseach_and_sci_dir_and_fellow.php';
+        //var fellowId=1;
+        //var sciDirId=sciDirSelected;
+        var myparams='?fellowId='+fellowId+"&sciDirId="+sciDirSelected+"&researchId="+researchSelected;
+        //param='?surname='+surname;
+        var fullurl=mylink+myparams;
+        console.log(fullurl);
+        $http.get(fullurl).then( //success
+		function (response) {
+			$scope.DetailsForResearchAndSciDirForFellow = response;
+            console.log("ok");
+            console.log($scope.DetailsForResearchAndSciDirForFellow);
+            if (response.data[0]){
+                $scope.entoli={
+                    epistimonikos_name: response.data[0].scidir_name+' '+response.data[0].scidir_surname,
+                    kodikos_ereynas: response.data[0].research_code,
+                    sciDirId:   sciDirSelected,
+                    researchId: researchSelected,
+                    sciDirSelected:sciDirSelected ,
+                    researchSelected: researchSelected
+                };
+            
+            }
+            
+		},
+		function (response) { //fail
+			$scope.error="error in proccessing";
+            console.log("error");
+		}
+        );
+        $scope.researchdiv=true;   
+    };
+    
+    
+});
 /////############ FORM CONTROLLER##################/////
 
 app.controller('form_control',function($rootScope,$scope,$http,$log,$mdDialog) {
@@ -220,6 +325,7 @@ app.controller('form_control',function($rootScope,$scope,$http,$log,$mdDialog) {
     ];
 
     $scope.printDiv = function(divName) {
+        console.log("printing div");
         var printContents = document.getElementById(divName).innerHTML;
         var popupWin = window.open('', '_blank', 'width=595,height=842');
         popupWin.document.open();
