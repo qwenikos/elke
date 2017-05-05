@@ -26,6 +26,12 @@ app.run(['$rootScope', '$location', '$cookieStore', '$http',
 
 
 /////############route config################/////
+app.config(function($mdThemingProvider) {
+  $mdThemingProvider.theme('default')
+    .primaryPalette('grey')
+    //.dark();
+});
+
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
@@ -196,12 +202,145 @@ app.controller('menucontroller2', function($rootScope,$scope,$window){
 
 /////############ FORM Proypologismos CONTROLLER##################/////
 app.controller('form_proypologismos_control',function($rootScope,$scope,$http,$log,$mdDialog) {
-    $scope.commonfields_form_proypologismos=true
+    $scope.commonfields_form_proypologismos=true;
+    $scope.entoli={};
     $scope.doctypes = [
         {did:1, name:'Αμοιβή'},
         {did:2, name:'Προκαταβολή'},
         {did:3, name:'Έξοδα Ερευνών'}   
     ];
+    
+    $scope.insertDocToDB = function() {
+        console.log($scope.entoli);
+        console.log("in the proypologismos section insertDocToDB");
+        
+        var actionUrl="services/insert_proypologismos_into_db.php";
+        var config = {
+            headers : {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        };
+        $http.post(actionUrl,$scope.entoli,config).then( //success
+            function (response) {
+                console.log(response);
+                $scope.insertDocToMysqlReturn = response.data;
+            },
+            function (response) { //fail
+            }
+        );
+        console.log($scope.insertDocToMysqlReturn);
+    };
+    
+    $scope.init_proypologismos_form = function() {
+        console.log("initialize form values")
+        
+        $scope.entoli.table_1A="";$scope.entoli.table_1B="";$scope.entoli.table_1G="";$scope.entoli.table_1D="";
+        $scope.entoli.table_1E="";$scope.entoli.table_1ST="";$scope.entoli.table_1Z="";$scope.entoli.table_1H="";
+        $scope.entoli.table_1T="";$scope.entoli.table_1I="";
+        
+        $scope.entoli.table_2A="";$scope.entoli.table_2B="";$scope.entoli.table_2G="";$scope.entoli.table_2D="";
+        $scope.entoli.table_2E="";$scope.entoli.table_2ST="";$scope.entoli.table_2Z="";$scope.entoli.table_2H="";
+        $scope.entoli.table_2T="";$scope.entoli.table_2I="";$scope.entoli.table_2K="";
+        
+        $scope.entoli.table_3A="";$scope.entoli.table_3B="";$scope.entoli.table_3G="";$scope.entoli.table_3D="";
+        $scope.entoli.table_3E="";
+        
+        $scope.entoli.table_4A="";$scope.entoli.table_4B="";$scope.entoli.table_4G="";$scope.entoli.table_4D="";
+        $scope.entoli.table_4E="";
+        
+        $scope.entoli.table_5A="";$scope.entoli.table_5B="";$scope.entoli.table_5G="";$scope.entoli.table_5D="";
+    
+        $scope.entoli.table_6A="";$scope.entoli.table_6B="";$scope.entoli.table_6G="";$scope.entoli.table_6D="";
+        $scope.entoli.table_6E="";
+        
+        $scope.entoli.table_7A="";$scope.entoli.table_7B="";$scope.entoli.table_7E="";$scope.entoli.table_7D="";
+        
+        $scope.entoli.table_8A="";
+        
+        $scope.entoli.table_9A1="";
+        $scope.entoli.table_9A2="";
+        
+        $scope.entoli.geniko_synolo="";
+    }
+    $scope.init_proypologismos_form();
+    console.log("in the controller proypologismos");
+    console.log($scope.entoli);
+    
+    $scope.updateTotal = function() {
+        $scope.entoli.table_1total=     +$scope.entoli.table_1A +
+                                        +$scope.entoli.table_1B +
+                                        +$scope.entoli.table_1G +                                   
+                                        +$scope.entoli.table_1D +                                    
+                                        +$scope.entoli.table_1E +                                    
+                                        +$scope.entoli.table_1ST +                                    
+                                        +$scope.entoli.table_1Z +                                    
+                                        +$scope.entoli.table_1H +
+                                        +$scope.entoli.table_1T +
+                                        +$scope.entoli.table_1I;
+                                        
+        $scope.entoli.table_2total=     +$scope.entoli.table_2A +
+                                        +$scope.entoli.table_2B +
+                                        +$scope.entoli.table_2G +                                   
+                                        +$scope.entoli.table_2D +                                    
+                                        +$scope.entoli.table_2E +                                    
+                                        +$scope.entoli.table_2ST +                                    
+                                        +$scope.entoli.table_2Z +                                    
+                                        +$scope.entoli.table_2H +
+                                        +$scope.entoli.table_2T +
+                                        +$scope.entoli.table_2I +
+                                        +$scope.entoli.table_2K;
+                                        
+        $scope.entoli.table_3total=     +$scope.entoli.table_3A +
+                                        +$scope.entoli.table_3B +
+                                        +$scope.entoli.table_3G +                                   
+                                        +$scope.entoli.table_3D +                                    
+                                        +$scope.entoli.table_3E;                                    
+    
+                                        
+        $scope.entoli.table_4total=     +$scope.entoli.table_4A +
+                                        +$scope.entoli.table_4B +
+                                        +$scope.entoli.table_4G +                                   
+                                        +$scope.entoli.table_4D +                                    
+                                        +$scope.entoli.table_4E;                                 
+    
+                                                                            
+        $scope.entoli.table_5total=     +$scope.entoli.table_5A +
+                                        +$scope.entoli.table_5B +
+                                        +$scope.entoli.table_5G +                                   
+                                        +$scope.entoli.table_5D;                                  
+    
+                                        
+        $scope.entoli.table_6total=     +$scope.entoli.table_6A +
+                                        +$scope.entoli.table_6B +
+                                        +$scope.entoli.table_6G +                                   
+                                        +$scope.entoli.table_6D +                                    
+                                        +$scope.entoli.table_6E;                                   
+    
+                                                                            
+        $scope.entoli.table_7total=     +$scope.entoli.table_7A +
+                                        +$scope.entoli.table_7B +
+                                        +$scope.entoli.table_7E +                                   
+                                        +$scope.entoli.table_7D;                                   
+                                      
+    
+                                        
+    
+        $scope.entoli.geniko_synolo=    +$scope.entoli.table_1total +
+                                        +$scope.entoli.table_2total +  
+                                        +$scope.entoli.table_3total +
+                                        +$scope.entoli.table_4total +
+                                        +$scope.entoli.table_5total +
+                                        +$scope.entoli.table_6total +
+                                        +$scope.entoli.table_7total +
+                                        +$scope.entoli.table_8A +
+                                        +$scope.entoli.table_9A2;
+        
+        console.log("update total");
+      
+    }
+
+    
+    
     
     $scope.printDiv = function(divName) {
         console.log("printing div");
@@ -220,6 +359,7 @@ app.controller('form_proypologismos_control',function($rootScope,$scope,$http,$l
         popupWin.document.write(html_pre+ '<body onload="window.print()">' + printContents + '</body></html>');
         popupWin.document.close();
     };
+    
     $scope.updateSciDirSelect = function(fellowId){
         var mylink='services/get_sci_for_fellow.php';
         //var fellowId=1;
@@ -240,6 +380,7 @@ app.controller('form_proypologismos_control',function($rootScope,$scope,$http,$l
         );
         $scope.researchdiv=true;      
     };
+    
     $scope.updateResearchSelect = function(sciDirSelected,fellowId){
         var mylink='services/get_reseach_for_sci_dir_and_fellow.php';
         //var fellowId=1;
@@ -287,7 +428,7 @@ app.controller('form_proypologismos_control',function($rootScope,$scope,$http,$l
                 };
             
             }
-            
+        $scope.init_proypologismos_form(); 
 		},
 		function (response) { //fail
 			$scope.error="error in proccessing";

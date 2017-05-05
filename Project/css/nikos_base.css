@@ -91,3 +91,30 @@ thead {
     text-align: start;
     font-variant: normal normal;
 }
+
+.ScenarioDetailsDropdown {
+  margin: 0;
+  background: green
+}
+
+.ScenarioDetailsDropdown h4 {
+  margin: 0;
+}
+
+.ScenarioDetailsDropdown md-select {
+  background: white;
+}
+
+.ScenarioDetailsDropdown md-select md-select-value {
+  height: 20px;
+  min-height: 20px;
+}
+
+.mySelect {
+  margin:0px 0;
+  width: 80%;
+  line-height: 30px;
+  height: 30px;
+
+}
+
