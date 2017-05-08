@@ -38,7 +38,10 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
+if (!$conn->set_charset("utf8")) {
+    printf("Error loading character set utf8: %s\n", $mysqli->error);
+    exit();
+}
 /*
 $sql = "INSERT INTO base_beneficiary (benef_name, benef_surname, benef_afm, benef_desc)
 VALUES ('$emp_no', '$first_name', '$last_name' , '$dept_name')";

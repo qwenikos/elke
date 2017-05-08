@@ -26,6 +26,7 @@
         if (property_exists($request,"table_2A")){$table_2A =$request->table_2A ; }else{$table_2A = 'NULL';};
         if (property_exists($request,"table_2B")){$table_2B =$request->table_2B ; }else{$table_2B = 'NULL';};
         if (property_exists($request,"table_2G")){$table_2G =$request->table_2G ; }else{$table_2G = 'NULL';};
+        if (property_exists($request,"table_2D")){$table_2D =$request->table_2D ; }else{$table_2D = 'NULL';};
         if (property_exists($request,"table_2E")){$table_2E =$request->table_2E ; }else{$table_2E = 'NULL';};
         if (property_exists($request,"table_2ST")){$table_2ST =$request->table_2ST ; }else{$table_2ST = 'NULL';};
         if (property_exists($request,"table_2Z")){$table_2Z =$request->table_2Z ; }else{$table_2Z = 'NULL';};
@@ -42,7 +43,7 @@
         if (property_exists($request,"table_3E")){$table_3E =$request->table_3E ; }else{$table_3E = 'NULL';};
         if (property_exists($request,"table_4A")){$table_4A =$request->table_4A ; }else{$table_4A = 'NULL';};
         if (property_exists($request,"table_4B")){$table_4B =$request->table_4B ; }else{$table_4B = 'NULL';};
-        if (property_exists($request,"table_4C")){$table_4C =$request->table_4C ; }else{$table_4C = 'NULL';};
+        if (property_exists($request,"table_4G")){$table_4G =$request->table_4G ; }else{$table_4G = 'NULL';};
         if (property_exists($request,"table_4D")){$table_4D =$request->table_4D ; }else{$table_4D = 'NULL';};
         if (property_exists($request,"table_4EA")){$table_4EA =$request->table_4EA ; }else{$table_4EA = 'NULL';};
         if (property_exists($request,"table_4E")){$table_4E =$request->table_4E ; }else{$table_4E = 'NULL';};
@@ -59,10 +60,10 @@
         if (property_exists($request,"table_6E")){$table_6E =$request->table_6E ; }else{$table_6E = 'NULL';};
         if (property_exists($request,"table_7A")){$table_7A =$request->table_7A ; }else{$table_7A = 'NULL';};
         if (property_exists($request,"table_7B")){$table_7B =$request->table_7B ; }else{$table_7B = 'NULL';};
-        if (property_exists($request,"table_7G")){$table_7G =$request->table_7G ; }else{$table_7G = 'NULL';};
-        if (property_exists($request,"table_7DA")){$table_7DA =$request->table_7DA ; }else{$table_7DA = 'NULL';};
+        if (property_exists($request,"table_7E")){$table_7E =$request->table_7E ; }else{$table_7E = 'NULL';};
         if (property_exists($request,"table_7D")){$table_7D =$request->table_7D ; }else{$table_7D = 'NULL';};
-        if (property_exists($request,"table_8")){$table_8 =$request->table_8 ; }else{$table_8 = 'NULL';};
+        if (property_exists($request,"table_7DA")){$table_7DA =$request->table_7DA ; }else{$table_7DA = 'NULL';};
+        if (property_exists($request,"table_8A")){$table_8A =$request->table_8A ; }else{$table_8A = 'NULL';};
         if (property_exists($request,"table_9A1")){$table_9A1 =$request->table_9A1 ; }else{$table_9A1 = 'NULL';};
         if (property_exists($request,"table_9A2")){$table_9A2 =$request->table_9A2 ; }else{$table_9A2 = 'NULL';};
         if (property_exists($request,"budget_resp_name")){$budget_resp_name =$request->budget_resp_name ; }else{$budget_resp_name = 'NULL';};
@@ -97,12 +98,18 @@ $password = "qwe123"; //Your User Password
 $dbname = "elkedb"; //Your Database Name
 
 // Create connection
+
 $conn = new mysqli($servername, $username, $password, $dbname);
+
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
+/* change character set to utf8 */
+if (!$conn->set_charset("utf8")) {
+    printf("Error loading character set utf8: %s\n", $mysqli->error);
+    exit();
+}
 /*
 $sql = "INSERT INTO base_beneficiary (benef_name, benef_surname, benef_afm, benef_desc)
 VALUES ('$emp_no', '$first_name', '$last_name' , '$dept_name')";
@@ -121,26 +128,27 @@ if ($conn->query($protocol_sql) === TRUE) {
     echo "--->".$doc_protocol."\n";
     $sql="INSERT INTO base_doc_proypologismos (scidir_id, research_id, financier, budget_amount,".
     "contact_start, contract_end, table_1A, table_1B, table_1G, table_1D, table_1E, table_1ST,table_1Z,".
-    " table_1H, table_1T,table_1IA, table_1I, table_2A, table_2B, table_2G, table_2E, table_2ST, table_2Z,".
+    " table_1H, table_1T,table_1IA, table_1I, table_2A, table_2B, table_2G,table_2D, table_2E, table_2ST, table_2Z,".
     " table_2H, table_2T, table_2I, table_2KA,table_2K, table_3A, table_3B, table_3G, table_3D, table_3EA,".
-    " table_3E, table_4A, table_4B, table_4C, table_4D, table_4EA,table_4E, table_5A, table_5B,".
+    " table_3E, table_4A, table_4B, table_4G, table_4D, table_4EA,table_4E, table_5A, table_5B,".
     " table_5G, table_5DA, table_5D, table_6A, table_6B, table_6G, table_6D, table_6EA, table_6E,".
-    "table_7A, table_7B, table_7G, table_7DA, table_7D, table_8, table_9A1, table_9A2,".
+    "table_7A, table_7B, table_7E,table_7D, table_7DA, table_8A, table_9A1, table_9A2,".
     " budget_resp_name, budget_resp_tel,budget_resp_email)".
     "VALUES".
-    "($sciDirSelected, $researchSelected, '$epistimonikos_name', '$poso_proypologismou',".
+    "($sciDirSelected, $researchSelected,'$xrimatodotis','$poso_proypologismou',".
     "'$ergo_apo','$ergo_eos' , '$table_1A', '$table_1B', '$table_1G', '$table_1D', '$table_1E', '$table_1ST','$table_1Z',".
-    " '$table_1H','$table_1T','$table_1IA','$table_1I','$table_2A','$table_2B','$table_2G','$table_2E','$table_2ST','$table_2Z',".
+    " '$table_1H','$table_1T','$table_1IA','$table_1I','$table_2A','$table_2B','$table_2G','$table_2D','$table_2E','$table_2ST','$table_2Z',".
     " '$table_2H','$table_2T','$table_2I','$table_2KA','$table_2K','$table_3A','$table_3B','$table_3G','$table_3D', '$table_3EA',".
-    "'$table_3E', '$table_4A', '$table_4B', '$table_4C', '$table_4D', '$table_4EA', '$table_4E', '$table_5A', '$table_5B',".
+    "'$table_3E', '$table_4A', '$table_4B', '$table_4G', '$table_4D', '$table_4EA', '$table_4E', '$table_5A', '$table_5B',".
     " '$table_5G', '$table_5DA', '$table_5D', '$table_6A', '$table_6B', '$table_6G', '$table_6D', '$table_6EA', '$table_6E',".
-    " '$table_7A', '$table_7B', '$table_7G', '$table_7DA', '$table_7D', '$table_8', '$table_9A1', '$table_9A2',".
+    " '$table_7A', '$table_7B', '$table_7E', '$table_7D', '$table_7DA', '$table_8A', '$table_9A1', '$table_9A2',".
     " '$budget_resp_name', '$budget_resp_tel', '$budget_resp_email');";
     
     //$sql="INSERT INTO base_doc_proypologismos (scidir_id,research_id,benef_afm,fellow_id,entoli_type_id,paymentof,payment_start_period,peyment_end_period,payment_amount,advance_peyment_desc,advance_payment_amount,research_expenses_desc,reseach_expenses_amount,market_eval,legal_process,doc_protocol)
     //VALUES ( $sciDirSelected, $researchSelected, '$dikaioyxos_afm', '1', $typos, '$dikaioyxos_afm', '$amoivi_diasthma_apo', '$amoivi_diasthma_eos', $amoivi_poso,'$prokatavoli_desc',$prokatavoli_poso, '$exoda_ereynwn_des',$exoda_ereynwn_poso,$check_agora,$check_diagonismos,'$doc_protocol')";
     
     echo $sql;
+    
     
     if ($conn->query($sql) === TRUE) {
         /* get protocol */
