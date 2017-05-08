@@ -122,8 +122,9 @@
 							</tr>						
 							<tr><td>Θ. ΛΟΙΠΟΣ ΕΞΟΠΛΙΣΜΟΣ</td>
 								<td><input ng-model="entoli.table_1T" ng-change="updateTotal();"></td>
-							</tr>						
-							<tr><td>Ι. ΑΛΛΟ (Παρακαλούμε εξειδικεύστε το είδος)</td>
+							</tr>
+
+							<tr><td>Ι. ΑΛΛΟ <input ng-model="entoli.table_1IA" ng-change="updateTotal();"></td>
 								<td><input ng-model="entoli.table_1I" ng-change="updateTotal();"></td>
 							</tr>
 							<tr><td>ΣΥΝΟΛΟ ΜΗ ΑΝΑΛΩΣΙΜΩΝ</td>
@@ -167,7 +168,7 @@
 							<tr><td>Ι. ΥΛΙΚΑ ΚΑΘΑΡΙΟΤΗΤΑΣ</td>
 								<td><input ng-model="entoli.table_2I" ng-change="updateTotal();"></td>
 							</tr>
-							<tr><td>Κ. ΑΛΛΟ (Παρακαλούμε εξειδικεύστε το είδος)</td>
+							<tr><td>Κ. ΑΛΛΟ <input ng-model="entoli.table_2KA" ng-change="updateTotal();"></td>
 								<td><input ng-model="entoli.table_2K" ng-change="updateTotal();"></td>
 							</tr>
 							<tr><td>ΣΥΝΟΛΟ ΑΝΑΛΩΣΙΜΩΝ</td>
@@ -192,7 +193,8 @@
 							<tr><td>Δ. ΛΟΙΠΟΥ ΠΡΟΣΩΠΙΚΟΥ</td>
 								<td><input ng-model="entoli.table_3D" ng-change="updateTotal();"></td>
 							</tr>
-							<tr><td>E. ΑΛΛΟ (Παρακαλούμε εξειδικεύστε το είδος)</td>
+							<tr><td>E. ΑΛΛΟ ONOMA</td><td><input ng-model="entoli.table_3EA" ng-change="updateTotal();"></td>
+								</tr><rt><td>ΑΛΛΟ ΑΞΙΑ</td>
 								<td><input ng-model="entoli.table_3E" ng-change="updateTotal();"></td>
 							</tr>
 							<tr><td>ΣΥΝΟΛΟ ΑΝΟΙΒΩΝ</td>
@@ -217,7 +219,7 @@
 							<tr><td>Δ. ΔΙΟΡΓΑΝΩΣΗΣ ΣΥΝΕΔΡΙΩΝ/ ΕΞΟΔΑ ΠΡΟΒΟΛΗΣ ΚΑΙ ΔΙΑΦΗΜΙΣΗΣ / ΕΙΣΙΤΗΡΙΑ – ΔΙΑΜΟΝΗ ΜΕΤΑΚΙΝΟΥΜΕΝΩΝ***</td>
 								<td><input ng-model="entoli.table_4D" ng-change="updateTotal();"></td>
 							</tr>
-							<tr><td>Ε. ΑΛΛΟ (Παρακαλούμε εξειδικεύστε το είδος)</td>
+							<tr><td>Ε. ΑΛΛΟ <input ng-model="entoli.table_4EA" ng-change="updateTotal();"></td>
 								<td><input ng-model="entoli.table_4E" ng-change="updateTotal();"></td>
 							</tr>
 							<tr><td>ΣΥΝΟΛΟ ΥΠΗΡΕΣΙΩΝ</td>
@@ -239,7 +241,7 @@
 							<tr><td>Γ. ΕΠΙΣΚΕΥΗ ΚΑΙ ΣΥΝΤΗΡΗΣΗ Η/Υ, ΕΚΤΥΠΩΤΩΝ, ΦΩΤΟΤΥΠΙΚΩΝ</td>
 								<td><input ng-model="entoli.table_5G" ng-change="updateTotal();"></td>
 							</tr>
-							<tr><td>Δ. ΑΛΛΟ (Παρακαλούμε εξειδικεύστε το είδος)</td>
+							<tr><td>Δ. ΑΛΛΟ <input ng-model="entoli.table_4DA" ng-change="updateTotal();"></td>
 								<td><input ng-model="entoli.table_5D" ng-change="updateTotal();"></td>
 							</tr>
 							<tr><td>ΣΥΝΟΛΟ ΕΠΙΣΚΕΥΩΝ/ΣΥΝΤΗΡΗΣΕΩΝ</td>
@@ -265,7 +267,7 @@
 							<tr><td>Δ. ΕΝΟΙΚΙΑ ΛΟΙΠΟΥ ΕΞΟΠΛΙΣΜΟΥ</td>
 								<td><input ng-model="entoli.table_6D" ng-change="updateTotal();"></td>
 							</tr>
-							<tr><td>Ε. ΑΛΛΟ (Παρακαλούμε εξειδικεύστε το είδος)</td>
+							<tr><td>Ε. ΑΛΛΟ <input ng-model="entoli.table_6EA" ng-change="updateTotal();"></td>
 								<td><input ng-model="entoli.table_6E" ng-change="updateTotal();"></td>
 							</tr>
 							<tr><td>ΣΥΝΟΛΟ ΕΝΟΙΚΙΑΣΕΩΝ</td>
@@ -287,7 +289,7 @@
 							<tr><td>Ε. ΔΙΑΦΟΡΑ</td>
 								<td><input ng-model="entoli.table_7E" ng-change="updateTotal();"></td>
 							</tr>
-							<tr><td>Δ. ΑΛΛΟ (Παρακαλούμε εξειδικεύστε το είδος)</td>
+							<tr><td>Δ. ΑΛΛΟ <input ng-model="entoli.table_7DA" ng-change="updateTotal();"></td>
 								<td><input ng-model="entoli.table_7D" ng-change="updateTotal();"></td>
 							</tr>
 							<tr><td>ΣΥΝΟΛΟ ΔΙΑΦΟΡΩΝ ΕΞΟΔΩΝ</td>
