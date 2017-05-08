@@ -7,7 +7,11 @@
         if (property_exists($request,"sciDirSelected")){$sciDirSelected =$request->sciDirSelected ; }else{$sciDirSelected = 'NULL';};
         if (property_exists($request,"researchSelected")){$researchSelected =$request->researchSelected ; }else{$researchSelected = 'NULL';};
         if (property_exists($request,"epistimonikos_name")){$epistimonikos_name =$request->epistimonikos_name ; }else{$epistimonikos_name = 'NULL';};
+        if (property_exists($request,"poso_proypologismou")){$poso_proypologismou =$request->poso_proypologismou ; }else{$poso_proypologismou = 'NULL';};
         if (property_exists($request,"kodikos_ereynas")){$kodikos_ereynas =$request->kodikos_ereynas ; }else{$kodikos_ereynas = 'NULL';};
+        if (property_exists($request,"ergo_apo")){$ergo_apo =$request->ergo_apo ; }else{$ergo_apo = 'NULL';};
+        if (property_exists($request,"ergo_eos")){$ergo_eos =$request->ergo_eos ; }else{$ergo_eos = 'NULL';};
+        
         if (property_exists($request,"table_1A")){$table_1A =$request->table_1A ; }else{$table_1A = 'NULL';};
         if (property_exists($request,"table_1B")){$table_1B =$request->table_1B ; }else{$table_1B = 'NULL';};
         if (property_exists($request,"table_1G")){$table_1G =$request->table_1G ; }else{$table_1G = 'NULL';};
@@ -115,7 +119,7 @@ if ($conn->query($protocol_sql) === TRUE) {
     $today = date("Ymd");  
     $doc_protocol=$today."-".$protocol_rec_id;
     echo "--->".$doc_protocol."\n";
-    $sql="INSERT INTO base_doc_proypologismos (scidir_id, research_id, financier, budget_amount, base_doc_proypologismoscol,".
+    $sql="INSERT INTO base_doc_proypologismos (scidir_id, research_id, financier, budget_amount, base_doc_proypologismos,".
     "contact_start, contract_end, table_1A, table_1B, table_1G, table_1D, table_1E, table_1ST, table_1Z, table_1H, table_1T,".
     "table_1IA, table_1I, table_2A, table_2B, table_2G, table_2E, table_2ST, table_2Z, table_2H, table_2T, table_2I, table_2KA,".
     "table_2K, table_3A, table_3B, table_3G, table_3D, table_3EA, table_3E, table_4A, table_4B, table_4C, table_4D, table_4EA,".
@@ -123,14 +127,13 @@ if ($conn->query($protocol_sql) === TRUE) {
     "table_7A, table_7B, table_7G, table_7DA, table_7D, table_8, table_9A1, table_9A2, budget_resp_name, budget_resp_tel,".
     "budget_resp_email)".
     "VALUES".
-    "('1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1');";
+    "($sciDirSelected, $researchSelected, '$epistimonikos_name', '$poso_proypologismou',".
+    "'1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1');";
     
+    //$sql="INSERT INTO base_doc_proypologismos (scidir_id,research_id,benef_afm,fellow_id,entoli_type_id,paymentof,payment_start_period,peyment_end_period,payment_amount,advance_peyment_desc,advance_payment_amount,research_expenses_desc,reseach_expenses_amount,market_eval,legal_process,doc_protocol)
+    //VALUES ( $sciDirSelected, $researchSelected, '$dikaioyxos_afm', '1', $typos, '$dikaioyxos_afm', '$amoivi_diasthma_apo', '$amoivi_diasthma_eos', $amoivi_poso,'$prokatavoli_desc',$prokatavoli_poso, '$exoda_ereynwn_des',$exoda_ereynwn_poso,$check_agora,$check_diagonismos,'$doc_protocol')";
     
-    
-    /*$sql="INSERT INTO base_doc_proypologismos (scidir_id,research_id,benef_afm,fellow_id,entoli_type_id,paymentof,payment_start_period,peyment_end_period,payment_amount,advance_peyment_desc,advance_payment_amount,research_expenses_desc,reseach_expenses_amount,market_eval,legal_process,doc_protocol)
-    VALUES ( $sciDirSelected, $researchSelected, '$dikaioyxos_afm', '1', $typos, '$dikaioyxos_afm', '$amoivi_diasthma_apo', '$amoivi_diasthma_eos', $amoivi_poso,'$prokatavoli_desc',$prokatavoli_poso, '$exoda_ereynwn_des',$exoda_ereynwn_poso,$check_agora,$check_diagonismos,'$doc_protocol')";
-    */
-    //echo $sql;
+    echo $sql;
     
     if ($conn->query($sql) === TRUE) {
         /* get protocol */
