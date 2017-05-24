@@ -1,6 +1,156 @@
-<div class="text-center">
-	<center><h2>Διεπαφή διαδικτυακών Εφαρμογών ΕΛΚΕ  </h2>
-	
-	<h1>elke<b><font size=+8>X</font></b>ternal  </h1></center>
-	<p>submitted proypologimos</p>
+<div class="row">
+   <!--<div class="col-md-12" ng-show="customers.length > 0">  -->
+   <div class="col-md-12" ng-show="doc_proypologismos_num > 0">
+      <!--<nav class= "navbar navbar-default" role= "navigation" >
+         <div class= "navbar-header" >
+            <a class="btn btn-lg btn-success" href="#/edit-customer/0"><i class="glyphicon glyphicon-plus"></i>&nbsp;Add new Customer</a>
+         </div>
+      
+      </nav>-->
+      {{msg}}
+      <table class="table table-bordered table-hover">
+         <thead>
+               <th>data.scidir_id</th>
+               <th>data.research_id</th>
+               <th>data.financier</th>
+			   <th>data.budget_amount</th>
+			   <th>data.contact_start</th>
+			   <th>data.contract_end</th>
+			   <th>data.table_1A</th>
+			   <th>data.table_1B</th>
+			   <th>data.table_1G</th>
+			   <th>data.table_1D</th>
+			   <th>data.table_1E</th>
+			   <th>data.table_1ST</th>
+			   <th>data.table_1Z</th>
+			   <th>data.table_1H</th>
+			   <th>data.table_1T</th>
+			   <th>data.table_1IA</th>
+			   <th>data.table_1I</th>
+			   <th>data.table_2A</th>
+			   <th>data.table_2B</th>
+			   <th>data.table_2G</th>
+			   <th>data.table_2D</th>
+			   <th>data.table_2E</th>
+			   <th>data.table_2ST</th>
+			   <th>data.table_2Z</th>
+			   <th>data.table_2H</th>
+			   <th>data.table_2T</th>
+			   <th>data.table_2I</th>
+			   <th>data.table_2KA</th>
+			   <th>data.table_2K</th>
+			   <th>data.table_3A</th>
+			   <th>data.table_3B</th>
+			   <th>data.table_3G</th>
+			   <th>data.table_3D</th>
+			   <th>data.table_3E</th>
+			   <th>data.table_4A</th>
+			   <th>data.table_4B</th>
+			   <th>data.table_4G</th>
+			   <th>data.table_4D}</th>
+			   <th>data.table_4EA</th>
+			   <th>data.table_4E</th>
+			   <th>data.table_5A</th>
+			   <th>data.table_5B</th>
+			   <th>data.table_5G</th>
+			   <th>data.table_5DA</th>
+			   <th>data.table_5D</th>
+			   <th>data.table_6A</th>
+			   <th>data.table_6B</th>
+			   <th>data.table_6G</th>
+			   <th>data.table_6D</th>
+			   <th>data.table_6EA</th>
+			   <th>data.table_6E</th>
+			   <th>data.table_7A</th>
+			   <th>data.table_7B</th>
+			   <th>data.table_7E</th>
+			   <th>data.table_7D</th>
+			   <th>data.table_7DA</th>
+			   <th>data.table_8A</th>
+			   <th>data.table_9A1</th>
+			   <th>data.table_9A2</th>
+			   <th>data.budget_resp_name</th>
+			   <th>data.budget_resp_tel</th>
+			   <th>data.budget_resp_email</th>
+         </thead>
+         <tbody>
+            <tr ng-repeat="data in docProypologismos">
+               <td>{{data.scidir_id}}</td>
+               <td>{{data.research_id}}</td>
+               <td>{{data.financier}}</td>
+			   <td>{{data.budget_amount}}</td>
+			   <td>{{data.contact_start}}</td>
+			   <td>{{data.contract_end}}</td>
+			   <td>{{data.table_1A}}</td>
+			   <td>{{data.table_1B}}</td>
+			   <td>{{data.table_1G}}</td>
+			   <td>{{data.table_1D}}</td>
+			   <td>{{data.table_1E}}</td>
+			   <td>{{data.table_1ST}}</td>
+			   <td>{{data.table_1Z}}</td>
+			   <td>{{data.table_1H}}</td>
+			   <td>{{data.table_1T}}</td>
+			   <td>{{data.table_1IA}}</td>
+			   <td>{{data.table_1I}}</td>
+			   <td>{{data.table_2A}}</td>
+			   <td>{{data.table_2B}}</td>
+			   <td>{{data.table_2G}}</td>
+			   <td>{{data.table_2D}}</td>
+			   <td>{{data.table_2E}}</td>
+			   <td>{{data.table_2ST}}</td>
+			   <td>{{data.table_2Z}}</td>
+			   <td>{{data.table_2H}}</td>
+			   <td>{{data.table_2T}}</td>
+			   <td>{{data.table_2I}}</td>
+			   <td>{{data.table_2KA}}</td>
+			   <td>{{data.table_2K}}</td>
+			   <td>{{data.table_3A}}</td>
+			   <td>{{data.table_3B}}</td>
+			   <td>{{data.table_3G}}</td>
+			   <td>{{data.table_3D}}</td>
+			   <td>{{data.table_3E}}</td>
+			   <td>{{data.table_4A}}</td>
+			   <td>{{data.table_4B}}</td>
+			   <td>{{data.table_4G}}</td>
+			   <td>{{data.table_4D}</td>
+			   <td>{{data.table_4EA}}</td>
+			   <td>{{data.table_4E}}</td>
+			   <td>{{data.table_5A}}</td>
+			   <td>{{data.table_5B}}</td>
+			   <td>{{data.table_5G}}</td>
+			   <td>{{data.table_5DA}}</td>
+			   <td>{{data.table_5D}}</td>
+			   <td>{{data.table_6A}}</td>
+			   <td>{{data.table_6B}}</td>
+			   <td>{{data.table_6G}}</td>
+			   <td>{{data.table_6D}}</td>
+			   <td>{{data.table_6EA}}</td>
+			   <td>{{data.table_6E}}</td>
+			   <td>{{data.table_7A}}</td>
+			   <td>{{data.table_7B}}</td>
+			   <td>{{data.table_7E}}</td>
+			   <td>{{data.table_7D}}</td>
+			   <td>{{data.table_7DA}}</td>
+			   <td>{{data.table_8A}}</td>
+			   <td>{{data.table_9A1}}</td>
+			   <td>{{data.table_9A2}}</td>
+			   <td>{{data.budget_resp_name}}</td>
+			   <td>{{data.budget_resp_tel}}</td>
+			   <td>{{data.budget_resp_email}}</td>
+
+			   
+               <td><a href="#/edit-doc_entoli/{{data.doc_entoli_id}}" class="btn">&nbsp;<i class="glyphicon glyphicon-edit"></i>&nbsp;Διόρθωση</a></td>
+            </tr>
+         </tbody>
+      </table>
+
+      
+   </div>
+   <div class="col-md-12" ng-show="doc_entoli_num == 0">
+      <div class="col-md-12">
+         <h4>No customers found!</h4>
+      </div>
+   </div>
 </div>
+
+

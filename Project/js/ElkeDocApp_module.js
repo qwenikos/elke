@@ -68,7 +68,7 @@ app.config(['$routeProvider', function ($routeProvider) {
         
         .when('/submited_proypologismos', {
 			templateUrl: 'pages/submited_proypologismos.html',
-			controller: 'contactCtrl'
+			controller: 'submitedProypologismosCtrl'
 		})
         
         .when('/neos_proypologismos', {
@@ -103,7 +103,26 @@ app.controller('mainCtrl', function($scope){
  
 	$scope.msg = 'Wellcome to AngularJS Application Main Page';
 });
+/////##########################################/////
 
+app.controller('submitedProypologismosCtrl', function($scope,$http){
+    //debugger;
+	$scope.msg = 'You are now at submited proypologismos  page';
+	$scope.doc_proypologismos_num=1;
+    var mylink='services/get_doc_proypologismos_all.php';
+	var myparams='';
+	//param='?surname='+surname;
+	var fullurl=mylink+myparams;
+	console.log(fullurl);
+	$http.get(fullurl,{withCredentials: true}).then( //success
+		function (response) {
+			$scope.docProypologismos = response.data;
+		},
+		function (response) { //fail
+			$scope.error="error in proccessing";
+		}
+	);
+});
 /////##########################################/////
 
 app.controller('submitedCtrl', function($scope,$http){
