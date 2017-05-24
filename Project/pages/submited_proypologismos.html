@@ -8,141 +8,155 @@
       
       </nav>-->
       {{msg}}
-      <table class="table table-bordered table-hover">
-         <thead>
-               <th>data.scidir_id</th>
-               <th>data.research_id</th>
-               <th>data.financier</th>
-			   <th>data.budget_amount</th>
-			   <th>data.contact_start</th>
-			   <th>data.contract_end</th>
-			   <th>data.table_1A</th>
-			   <th>data.table_1B</th>
-			   <th>data.table_1G</th>
-			   <th>data.table_1D</th>
-			   <th>data.table_1E</th>
-			   <th>data.table_1ST</th>
-			   <th>data.table_1Z</th>
-			   <th>data.table_1H</th>
-			   <th>data.table_1T</th>
-			   <th>data.table_1IA</th>
-			   <th>data.table_1I</th>
-			   <th>data.table_2A</th>
-			   <th>data.table_2B</th>
-			   <th>data.table_2G</th>
-			   <th>data.table_2D</th>
-			   <th>data.table_2E</th>
-			   <th>data.table_2ST</th>
-			   <th>data.table_2Z</th>
-			   <th>data.table_2H</th>
-			   <th>data.table_2T</th>
-			   <th>data.table_2I</th>
-			   <th>data.table_2KA</th>
-			   <th>data.table_2K</th>
-			   <th>data.table_3A</th>
-			   <th>data.table_3B</th>
-			   <th>data.table_3G</th>
-			   <th>data.table_3D</th>
-			   <th>data.table_3E</th>
-			   <th>data.table_4A</th>
-			   <th>data.table_4B</th>
-			   <th>data.table_4G</th>
-			   <th>data.table_4D}</th>
-			   <th>data.table_4EA</th>
-			   <th>data.table_4E</th>
-			   <th>data.table_5A</th>
-			   <th>data.table_5B</th>
-			   <th>data.table_5G</th>
-			   <th>data.table_5DA</th>
-			   <th>data.table_5D</th>
-			   <th>data.table_6A</th>
-			   <th>data.table_6B</th>
-			   <th>data.table_6G</th>
-			   <th>data.table_6D</th>
-			   <th>data.table_6EA</th>
-			   <th>data.table_6E</th>
-			   <th>data.table_7A</th>
-			   <th>data.table_7B</th>
-			   <th>data.table_7E</th>
-			   <th>data.table_7D</th>
-			   <th>data.table_7DA</th>
-			   <th>data.table_8A</th>
-			   <th>data.table_9A1</th>
-			   <th>data.table_9A2</th>
-			   <th>data.budget_resp_name</th>
-			   <th>data.budget_resp_tel</th>
-			   <th>data.budget_resp_email</th>
-         </thead>
-         <tbody>
-            <tr ng-repeat="data in docProypologismos">
-               <td>{{data.scidir_id}}</td>
-               <td>{{data.research_id}}</td>
-               <td>{{data.financier}}</td>
-			   <td>{{data.budget_amount}}</td>
-			   <td>{{data.contact_start}}</td>
-			   <td>{{data.contract_end}}</td>
-			   <td>{{data.table_1A}}</td>
-			   <td>{{data.table_1B}}</td>
-			   <td>{{data.table_1G}}</td>
-			   <td>{{data.table_1D}}</td>
-			   <td>{{data.table_1E}}</td>
-			   <td>{{data.table_1ST}}</td>
-			   <td>{{data.table_1Z}}</td>
-			   <td>{{data.table_1H}}</td>
-			   <td>{{data.table_1T}}</td>
-			   <td>{{data.table_1IA}}</td>
-			   <td>{{data.table_1I}}</td>
-			   <td>{{data.table_2A}}</td>
-			   <td>{{data.table_2B}}</td>
-			   <td>{{data.table_2G}}</td>
-			   <td>{{data.table_2D}}</td>
-			   <td>{{data.table_2E}}</td>
-			   <td>{{data.table_2ST}}</td>
-			   <td>{{data.table_2Z}}</td>
-			   <td>{{data.table_2H}}</td>
-			   <td>{{data.table_2T}}</td>
-			   <td>{{data.table_2I}}</td>
-			   <td>{{data.table_2KA}}</td>
-			   <td>{{data.table_2K}}</td>
-			   <td>{{data.table_3A}}</td>
-			   <td>{{data.table_3B}}</td>
-			   <td>{{data.table_3G}}</td>
-			   <td>{{data.table_3D}}</td>
-			   <td>{{data.table_3E}}</td>
-			   <td>{{data.table_4A}}</td>
-			   <td>{{data.table_4B}}</td>
-			   <td>{{data.table_4G}}</td>
-			   <td>{{data.table_4D}</td>
-			   <td>{{data.table_4EA}}</td>
-			   <td>{{data.table_4E}}</td>
-			   <td>{{data.table_5A}}</td>
-			   <td>{{data.table_5B}}</td>
-			   <td>{{data.table_5G}}</td>
-			   <td>{{data.table_5DA}}</td>
-			   <td>{{data.table_5D}}</td>
-			   <td>{{data.table_6A}}</td>
-			   <td>{{data.table_6B}}</td>
-			   <td>{{data.table_6G}}</td>
-			   <td>{{data.table_6D}}</td>
-			   <td>{{data.table_6EA}}</td>
-			   <td>{{data.table_6E}}</td>
-			   <td>{{data.table_7A}}</td>
-			   <td>{{data.table_7B}}</td>
-			   <td>{{data.table_7E}}</td>
-			   <td>{{data.table_7D}}</td>
-			   <td>{{data.table_7DA}}</td>
-			   <td>{{data.table_8A}}</td>
-			   <td>{{data.table_9A1}}</td>
-			   <td>{{data.table_9A2}}</td>
-			   <td>{{data.budget_resp_name}}</td>
-			   <td>{{data.budget_resp_tel}}</td>
-			   <td>{{data.budget_resp_email}}</td>
+	<br>
 
-			   
-               <td><a href="#/edit-doc_entoli/{{data.doc_entoli_id}}" class="btn">&nbsp;<i class="glyphicon glyphicon-edit"></i>&nbsp;Διόρθωση</a></td>
+	</br>
+	<table class="TableButtonList"><tr>
+	<td><a href="" ng-click="showSubTableGeneral = !showSubTableGeneral">&nbspΓΕΝΙΚΑ</a></td>
+	<td><a href="" ng-click="showSubTable1 = !showSubTable1">&nbspΜΗ ΑΝΑΛΩΣΗΜΑ</a></td>
+	<td><a href="" ng-click="showSubTable2 = !showSubTable2">&nbspΑΝΑΛΩΣΗΜΑ</a></td>
+	<td><a href="" ng-click="showSubTable3 = !showSubTable3">&nbspΑΜΟΙΒΕΣ</a></td>
+	<td><a href="" ng-click="showSubTable4 = !showSubTable4">&nbspΥΠΗΡΕΣΙΕΣ</a></td>
+	<td><a href="" ng-click="showSubTable5 = !showSubTable5">&nbspΕΠΙΣΚΕΥΕΣ</a></td>
+	<td><a href="" ng-click="showSubTable6 = !showSubTable6">&nbspΕΝΟΙΚΙΑΣΕΙΣ</a></td>
+	<td><a href="" ng-click="showSubTable7 = !showSubTable7">&nbspΔΙΑΦΟΡΑ</a></td>
+	<td><a href="" ng-click="showSubTable8 = !showSubTable8">&nbspΔΙΑΧΕΙΡΙΣΤΙΚΑ</a></td>
+	<td><a href="" ng-click="showSubTableSyntaktis = !showSubTableSyntaktis">ΣΥΝΤΑΚΤΗΣ</a></td>
+	</tr></table>
+		
+    <table class="table table-bordered table-hover">
+        <thead>
+			<th ng-if="showSubTableGeneral"><span class="myVerticalText">Επιστ Υπευθ</span></th>
+			<th ng-if="showSubTableGeneral"><span class="myVerticalText">Έρευνα</span></th>
+			<th ng-if="showSubTableGeneral"><span class="myVerticalText">Χρηματοδότης</span></th>
+			<th ng-if="showSubTableGeneral"><span class="myVerticalText">Ποσό Προυπ</span></th>
+			<th ng-if="showSubTableGeneral"><span class="myVerticalText">Διάρκεια από  </span></th>
+			<th ng-if="showSubTableGeneral"><span class="myVerticalText">Διάρκεια Εως</span></th>
+			<th ng-if="showSubTable1"><span class="myVerticalText">1A</span></th>
+			<th ng-if="showSubTable1"><span class="myVerticalText">1B</span></th>
+			<th ng-if="showSubTable1"><span class="myVerticalText">1G</span></th>
+			<th ng-if="showSubTable1"><span class="myVerticalText">1D</span></th>
+			<th ng-if="showSubTable1"><span class="myVerticalText">1E</span></th>
+			<th ng-if="showSubTable1"><span class="myVerticalText">1ST</span></th>
+			<th ng-if="showSubTable1"><span class="myVerticalText">1Z</span></th>
+			<th ng-if="showSubTable1"><span class="myVerticalText">1H</span></th>
+			<th ng-if="showSubTable1"><span class="myVerticalText">1T</span></th>
+			<th ng-if="showSubTable1"><span class="myVerticalText">1IA</span></th>
+			<th ng-if="showSubTable1"><span class="myVerticalText">1I</span></th>
+			<th ng-if="showSubTable2"><span class="myVerticalText">2A</span></th>
+			<th ng-if="showSubTable2"><span class="myVerticalText">2B</span></th>
+			<th ng-if="showSubTable2"><span class="myVerticalText">2G</span></th>
+			<th ng-if="showSubTable2"><span class="myVerticalText">2D</span></th>
+			<th ng-if="showSubTable2"><span class="myVerticalText">2E</span></th>
+			<th ng-if="showSubTable2"><span class="myVerticalText">2ST</span></th>
+			<th ng-if="showSubTable2"><span class="myVerticalText">2Z</span></th>
+			<th ng-if="showSubTable2"><span class="myVerticalText">2H</span></th>
+			<th ng-if="showSubTable2"><span class="myVerticalText">2T</span></th>
+			<th ng-if="showSubTable2"><span class="myVerticalText">2I</span></th>
+			<th ng-if="showSubTable2"><span class="myVerticalText">2KA</span></th>
+			<th ng-if="showSubTable2"><span class="myVerticalText">2K</span></th>
+			<th ng-if="showSubTable3"><span class="myVerticalText">3A</span></th>
+			<th ng-if="showSubTable3"><span class="myVerticalText">3B</span></th>
+			<th ng-if="showSubTable3"><span class="myVerticalText">3G</span></th>
+			<th ng-if="showSubTable3"><span class="myVerticalText">3D</span></th>
+			<th ng-if="showSubTable3"><span class="myVerticalText">3E</span></th>
+			<th ng-if="showSubTable4"><span class="myVerticalText">4A</span></th>
+			<th ng-if="showSubTable4"><span class="myVerticalText">4B</span></th>
+			<th ng-if="showSubTable4"><span class="myVerticalText">4G</span></th>
+			<th ng-if="showSubTable4"><span class="myVerticalText">4D</span></th>
+			<th ng-if="showSubTable4"><span class="myVerticalText">4EA</span></th>
+			<th ng-if="showSubTable4"><span class="myVerticalText">4E</span></th>
+			<th ng-if="showSubTable5"><span class="myVerticalText">5A</span></th>
+			<th ng-if="showSubTable5"><span class="myVerticalText">5B</span></th>
+			<th ng-if="showSubTable5"><span class="myVerticalText">5G</span></th>
+			<th ng-if="showSubTable5"><span class="myVerticalText">5DA</span></th>
+			<th ng-if="showSubTable5"><span class="myVerticalText">5D</span></th>
+			<th ng-if="showSubTable6"><span class="myVerticalText">6A</span></th>
+			<th ng-if="showSubTable6"><span class="myVerticalText">6B</span></th>
+			<th ng-if="showSubTable6"><span class="myVerticalText">6G</span></th>
+			<th ng-if="showSubTable6"><span class="myVerticalText">6D</span></th>
+			<th ng-if="showSubTable6"><span class="myVerticalText">6EA</span></th>
+			<th ng-if="showSubTable6"><span class="myVerticalText">6E</span></th>
+			<th ng-if="showSubTable7"><span class="myVerticalText">7A</span></th>
+			<th ng-if="showSubTable7"><span class="myVerticalText">7B</span></th>
+			<th ng-if="showSubTable7"><span class="myVerticalText">7E</span></th>
+			<th ng-if="showSubTable7"><span class="myVerticalText">7D</span></th>
+			<th ng-if="showSubTable7"><span class="myVerticalText">7DA</span></th>
+			<th ng-if="showSubTable8"><span class="myVerticalText">8A</span></th>
+			<th ng-if="showSubTable9"><span class="myVerticalText">9A1</span></th>
+			<th ng-if="showSubTable9"><span class="myVerticalText">9A2</span></th>
+			<th ng-if="showSubTableSyntaktis"><span class="myVerticalText">Ον/μο Συντάκτης Προυπ </span></th>
+			<th ng-if="showSubTableSyntaktis"><span class="myVerticalText">Τηλ. Συντάκτη </span></th>
+			<th ng-if="showSubTableSyntaktis"><span class="myVerticalText"> e-mail Συντάκτη</span></th>
+		</thead>
+        <tbody>
+            <tr ng-repeat="data in docProypologismos">
+				<td ng-if="showSubTableGeneral">{{data.scidir_id}}</td>
+				<td ng-if="showSubTableGeneral">{{data.research_id}}</td>
+				<td ng-if="showSubTableGeneral">{{data.financier}}</td>
+				<td ng-if="showSubTableGeneral">{{data.budget_amount}}</td>
+				<td ng-if="showSubTableGeneral">{{data.contact_start}}</td>
+				<td ng-if="showSubTableGeneral">{{data.contract_end}}</td>
+				<td ng-if="showSubTable1">{{data.table_1A}}</td>
+				<td ng-if="showSubTable1">{{data.table_1B}}</td>
+				<td ng-if="showSubTable1">{{data.table_1G}}</td>
+				<td ng-if="showSubTable1">{{data.table_1D}}</td>
+				<td ng-if="showSubTable1">{{data.table_1E}}</td>
+				<td ng-if="showSubTable1">{{data.table_1ST}}</td>
+				<td ng-if="showSubTable1">{{data.table_1Z}}</td>
+				<td ng-if="showSubTable1">{{data.table_1H}}</td>
+				<td ng-if="showSubTable1">{{data.table_1T}}</td>
+				<td ng-if="showSubTable1">{{data.table_1IA}}</td>
+				<td ng-if="showSubTable1">{{data.table_1I}}</td>
+				<td ng-if="showSubTable2">{{data.table_2A}}</td>
+				<td ng-if="showSubTable2">{{data.table_2B}}</td>
+				<td ng-if="showSubTable2">{{data.table_2G}}</td>
+				<td ng-if="showSubTable2">{{data.table_2D}}</td>
+				<td ng-if="showSubTable2">{{data.table_2E}}</td>
+				<td ng-if="showSubTable2">{{data.table_2ST}}</td>
+				<td ng-if="showSubTable2">{{data.table_2Z}}</td>
+				<td ng-if="showSubTable2">{{data.table_2H}}</td>
+				<td ng-if="showSubTable2">{{data.table_2T}}</td>
+				<td ng-if="showSubTable2">{{data.table_2I}}</td>
+				<td ng-if="showSubTable2">{{data.table_2KA}}</td>
+				<td ng-if="showSubTable2">{{data.table_2K}}</td>
+				<td ng-if="showSubTable3">{{data.table_3A}}</td>
+				<td ng-if="showSubTable3">{{data.table_3B}}</td>
+				<td ng-if="showSubTable3">{{data.table_3G}}</td>
+				<td ng-if="showSubTable3">{{data.table_3D}}</td>
+				<td ng-if="showSubTable3">{{data.table_3E}}</td>
+				<td ng-if="showSubTable4">{{data.table_4A}}</td>
+				<td ng-if="showSubTable4">{{data.table_4B}}</td>
+				<td ng-if="showSubTable4">{{data.table_4G}}</td>
+				<td ng-if="showSubTable4">{{data.table_4D}</td>
+				<td ng-if="showSubTable4">{{data.table_4EA}}</td>
+				<td ng-if="showSubTable4">{{data.table_4E}}</td>
+				<td ng-if="showSubTable5">{{data.table_5A}}</td>
+				<td ng-if="showSubTable5">{{data.table_5B}}</td>
+				<td ng-if="showSubTable5">{{data.table_5G}}</td>
+				<td ng-if="showSubTable5">{{data.table_5DA}}</td>
+				<td ng-if="showSubTable5">{{data.table_5D}}</td>
+				<td ng-if="showSubTable6">{{data.table_6A}}</td>
+				<td ng-if="showSubTable6">{{data.table_6B}}</td>
+				<td ng-if="showSubTable6">{{data.table_6G}}</td>
+				<td ng-if="showSubTable6">{{data.table_6D}}</td>
+				<td ng-if="showSubTable6">{{data.table_6EA}}</td>
+				<td ng-if="showSubTable6">{{data.table_6E}}</td>
+				<td ng-if="showSubTable7">{{data.table_7A}}</td>
+				<td ng-if="showSubTable7">{{data.table_7B}}</td>
+				<td ng-if="showSubTable7">{{data.table_7E}}</td>
+				<td ng-if="showSubTable7">{{data.table_7D}}</td>
+				<td ng-if="showSubTable7">{{data.table_7DA}}</td>
+				<td ng-if="showSubTable8">{{data.table_8A}}</td>
+				<td ng-if="showSubTable9">{{data.table_9A1}}</td>
+				<td ng-if="showSubTable9">{{data.table_9A2}}</td>
+				<td ng-if="showSubTableSyntaktis">{{data.budget_resp_name}}</td>
+				<td ng-if="showSubTableSyntaktis">{{data.budget_resp_tel}}</td>
+				<td ng-if="showSubTableSyntaktis">{{data.budget_resp_email}}</td>
+				<td><a href="#/edit-doc_entoli/{{data.doc_entoli_id}}" class="btn">&nbsp;<i class="glyphicon glyphicon-edit"></i>&nbsp;Διόρθωση</a></td>
             </tr>
-         </tbody>
-      </table>
+        </tbody>
+    </table>
 
       
    </div>

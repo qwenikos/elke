@@ -107,6 +107,7 @@ app.controller('mainCtrl', function($scope){
 
 app.controller('submitedProypologismosCtrl', function($scope,$http){
     //debugger;
+    $scope.showSubTableGeneral=1
 	$scope.msg = 'You are now at submited proypologismos  page';
 	$scope.doc_proypologismos_num=1;
     var mylink='services/get_doc_proypologismos_all.php';
