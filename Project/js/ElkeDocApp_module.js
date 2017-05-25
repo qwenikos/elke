@@ -107,7 +107,19 @@ app.controller('mainCtrl', function($scope){
 
 app.controller('submitedProypologismosCtrl', function($scope,$http){
     //debugger;
-    $scope.showSubTableGeneral=1
+    $scope.showSubTableGeneral=1;
+    $scope.showSubTable1=1;
+    $scope.showSubTable2=1;
+    $scope.showSubTable3=1;
+    $scope.showSubTable4=1;
+    $scope.showSubTable5=1;
+    $scope.showSubTable6=1;
+    $scope.showSubTable7=1;
+    $scope.showSubTable8=1;
+    $scope.showSubTable9=1;
+    $scope.showSubTableSyntaktis=1;
+    
+    
 	$scope.msg = 'You are now at submited proypologismos  page';
 	$scope.doc_proypologismos_num=1;
     var mylink='services/get_doc_proypologismos_all.php';

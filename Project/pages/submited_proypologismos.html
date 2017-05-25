@@ -21,75 +21,89 @@
 	<td><a href="" ng-click="showSubTable6 = !showSubTable6">&nbspΕΝΟΙΚΙΑΣΕΙΣ</a></td>
 	<td><a href="" ng-click="showSubTable7 = !showSubTable7">&nbspΔΙΑΦΟΡΑ</a></td>
 	<td><a href="" ng-click="showSubTable8 = !showSubTable8">&nbspΔΙΑΧΕΙΡΙΣΤΙΚΑ</a></td>
+	<td><a href="" ng-click="showSubTable9 = !showSubTable9">&nbspΑΛΛΗ ΚΑΤΗΓΟΡΙΑ</a></td>
 	<td><a href="" ng-click="showSubTableSyntaktis = !showSubTableSyntaktis">ΣΥΝΤΑΚΤΗΣ</a></td>
 	</tr></table>
 		
     <table class="table table-bordered table-hover">
-        <thead>
-			<th ng-if="showSubTableGeneral"><span class="myVerticalText">Επιστ Υπευθ</span></th>
-			<th ng-if="showSubTableGeneral"><span class="myVerticalText">Έρευνα</span></th>
-			<th ng-if="showSubTableGeneral"><span class="myVerticalText">Χρηματοδότης</span></th>
-			<th ng-if="showSubTableGeneral"><span class="myVerticalText">Ποσό Προυπ</span></th>
-			<th ng-if="showSubTableGeneral"><span class="myVerticalText">Διάρκεια από  </span></th>
-			<th ng-if="showSubTableGeneral"><span class="myVerticalText">Διάρκεια Εως</span></th>
-			<th ng-if="showSubTable1"><span class="myVerticalText">ΕΠΙΣΤΗΜΟΝΙΚΑ ΟΡΓΑΝΑ</span></th>
-			<th ng-if="showSubTable1"><span class="myVerticalText">Η/Υ ΚΑΙ ΠΕΡΙΦΕΡΕΙΑΚΑ</span></th>
-			<th ng-if="showSubTable1"><span class="myVerticalText">ΦΩΤΟΤΥΠΙΚΑ ΚΑΙ ΠΑΡΕΜΦΕΡΗ ΜΗΧΑΝΗΜΑΤΑ</span></th>
-			<th ng-if="showSubTable1"><span class="myVerticalText">ΛΟΓΙΣΜΙΚΑ ΠΡΟΓΡΑΜΜΑΤΑ</span></th>
-			<th ng-if="showSubTable1"><span class="myVerticalText">ΟΠΤΙΚΟΑΚΟΥΣΤΙΚΑ ΜΕΣΑ</span></th>
-			<th ng-if="showSubTable1"><span class="myVerticalText">ΕΞΟΠΛΙΣΜΟΣ ΓΡΑΦΕΙΟΥ</span></th>
-			<th ng-if="showSubTable1"><span class="myVerticalText">ΒΙΒΛΙΑ – ΕΝΤΥΠΑ –ΠΕΡΙΟΔΙΚΑ</span></th>
-			<th ng-if="showSubTable1"><span class="myVerticalText">ΑΥΤΟΚΙΝΗΤΑ</span></th>
-			<th ng-if="showSubTable1"><span class="myVerticalText">ΛΟΙΠΟΣ ΕΞΟΠΛΙΣΜΟΣ</span></th>
-			<th ng-if="showSubTable1"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΟΝΟΜΑ </span></th>
-			<th ng-if="showSubTable1"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΠΟΣΟ</span></th>
-			<th ng-if="showSubTable2"><span class="myVerticalText">ΑΝΤΙΔΡΑΣΤΗΡΙΑ</span></th>
-			<th ng-if="showSubTable2"><span class="myVerticalText">ΕΡΓΑΣΤΗΡΙΑΚΑ ΑΝΑΛΩΣΙΜΑ</span></th>
-			<th ng-if="showSubTable2"><span class="myVerticalText">ΟΔΟΝΤΙΑΤΡΙΚΑ</span></th>
-			<th ng-if="showSubTable2"><span class="myVerticalText">ΦΑΡΜΑΚΕΥΤΙΚΑ ΠΡΟΪΟΝΤΑ</span></th>
-			<th ng-if="showSubTable2"><span class="myVerticalText">ΑΚΤΙΝΟΓΡΑΦΙΚΑ ΕΙΔΗ</span></th>
-			<th ng-if="showSubTable2"><span class="myVerticalText">ΠΕΙΡΑΜΑΤΟΖΩΑ</span></th>
-			<th ng-if="showSubTable2"><span class="myVerticalText">ΑΕΡΙΑ</span></th>
-			<th ng-if="showSubTable2"><span class="myVerticalText">ΓΡΑΦΙΚΗ ΥΛΗ</span></th>
-			<th ng-if="showSubTable2"><span class="myVerticalText">ΥΓΕΙΟΝΟΜΙΚΟ ΥΛΙΚΟ</span></th>
-			<th ng-if="showSubTable2"><span class="myVerticalText">ΥΛΙΚΑ ΚΑΘΑΡΙΟΤΗΤΑΣ</span></th>
-			<th ng-if="showSubTable2"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΟΝΟΜΑ</span></th>
-			<th ng-if="showSubTable2"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΠΟΣΟ</span></th>
-			<th ng-if="showSubTable3"><span class="myVerticalText">ΕΠΙΣΤΗΜΟΝΙΚΟΥ ΥΠΕΥΘΥΝΟΥ</span></th>
-			<th ng-if="showSubTable3"><span class="myVerticalText">ΕΠΙΣΤΗΜΟΝΙΚΟΥ ΠΡΟΣΩΠΙΚΟΥ</span></th>
-			<th ng-if="showSubTable3"><span class="myVerticalText">ΦΟΙΤΗΤΩΝ</span></th>
-			<th ng-if="showSubTable3"><span class="myVerticalText">ΛΟΙΠΟΥ ΠΡΟΣΩΠΙΚΟΥ</span></th>
-			<th ng-if="showSubTable3"><span class="myVerticalText">ΑΛΛΟ ONOMA</span></th>
-			<th ng-if="showSubTable3"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΠΟΣΟ</span></th>
-			<th ng-if="showSubTable4"><span class="myVerticalText">ΕΚΤΥΠΩΣΕΙΣ</span></th>
-			<th ng-if="showSubTable4"><span class="myVerticalText">ΤΑΧΥΔΡΟΜΙΚΑ </span></th>
-			<th ng-if="showSubTable4"><span class="myVerticalText">ΣΥΝΔΡΟΜΕΣ ΣΕ ΟΡΓΑΝΙΣΜΟΥΣ</span></th>
-			<th ng-if="showSubTable4"><span class="myVerticalText">ΔΙΟΡΓΑΝΩΣΗΣ ΣΥΝΕΔΡΙΩΝ</span></th>
-			<th ng-if="showSubTable4"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΟΝΟΜΑ </span></th>
-			<th ng-if="showSubTable4"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΠΟΣΟ</span></th>
-			<th ng-if="showSubTable5"><span class="myVerticalText">ΕΠΙΣΚΕΥΗ ΚΑΙ ΣΥΝΤΗΡΗΣΗ ΕΠΙΣΤΗΜΟΝΙΚΩΝ ΟΡΓΑΝΩΝ</span></th>
-			<th ng-if="showSubTable5"><span class="myVerticalText">ΕΠΙΣΚΕΥΗ ΚΑΙ ΣΥΝΤΗΡΗΣΗ ΛΟΙΠΟΥ ΕΞΟΠΛΙΣΜΟΥ</span></th>
-			<th ng-if="showSubTable5"><span class="myVerticalText">ΕΠΙΣΚΕΥΗ ΚΑΙ ΣΥΝΤΗΡΗΣΗ Η/Υ, ΕΚΤΥΠΩΤΩΝ, ΦΩΤΟΤΥΠΙΚΩΝ</span></th>
-			<th ng-if="showSubTable5"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΟΝΟΜΑ</span></th>
-			<th ng-if="showSubTable5"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΠΟΣΟ</span></th>
-			<th ng-if="showSubTable6"><span class="myVerticalText">ΕΝΟΙΚΙΑΣΗ ΧΩΡΩΝ</span></th>
-			<th ng-if="showSubTable6"><span class="myVerticalText">ΕΝΟΙΚΙΑ ΜΕΤΑΦΟΡΙΚΩΝ ΜΕΣΩΝ</span></th>
-			<th ng-if="showSubTable6"><span class="myVerticalText">ΕΝΟΙΚΙΑ ΕΠΙΣΤΗΜΟΝΙΚΩΝ ΟΡΓΑΝΩΝ</span></th>
-			<th ng-if="showSubTable6"><span class="myVerticalText">ΕΝΟΙΚΙΑ ΛΟΙΠΟΥ ΕΞΟΠΛΙΣΜΟΥ</span></th>
-			<th ng-if="showSubTable6"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΟΝΟΜΑ</span></th>
-			<th ng-if="showSubTable6"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΠΟΣΟ</span></th>
-			<th ng-if="showSubTable7"><span class="myVerticalText">ΜΕΤΑΚΙΝΗΣΕΙΣ</span></th>
-			<th ng-if="showSubTable7"><span class="myVerticalText">ΔΙΑΜΟΡΦΩΣΗ ΧΩΡΩΝ</span></th>
-			<th ng-if="showSubTable7"><span class="myVerticalText">ΔΙΑΦΟΡΑ</span></th>
-			<th ng-if="showSubTable7"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΟΝΟΜΑ</span></th>
-			<th ng-if="showSubTable7"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΠΟΣΟ</span></th>
-			<th ng-if="showSubTable8"><span class="myVerticalText">ΓΕΝΙΚΑ ΔΙΑΧΕΙΡΙΣΤΙΚΑ</span></th>
-			<th ng-if="showSubTable9"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΟΝΟΜΑ</span></th>
-			<th ng-if="showSubTable9"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΠΟΣΟ</span></th>
-			<th ng-if="showSubTableSyntaktis"><span class="myVerticalText">Ον/μο Συντάκτης Προυπ </span></th>
-			<th ng-if="showSubTableSyntaktis"><span class="myVerticalText">Τηλ. Συντάκτη </span></th>
-			<th ng-if="showSubTableSyntaktis"><span class="myVerticalText"> e-mail Συντάκτη</span></th>
-		</thead>
+			<thead>
+				<th colspan=6 ng-if="showSubTableGeneral">Γενικά</td>
+				<th colspan=11 ng-if="showSubTable1">ΜΗ ΑΝΑΛΩΣΗΜΑ</th>
+				<th colspan=12 ng-if="showSubTable2">ΑΝΑΛΩΣΗΜΑ</th>
+				<th colspan=6 ng-if="showSubTable3">ΑΜΟΙΒΕΣ</th>
+				<th colspan=6 ng-if="showSubTable4">ΥΠΗΡΕΣΙΕΣ</th>
+				<th colspan=5 ng-if="showSubTable5">ΕΠΙΣΚΕΥΕΣ</th>
+				<th colspan=6 ng-if="showSubTable6">ΕΝΟΙΚΙΑΣΕΙΣ</th>
+				<th colspan=5 ng-if="showSubTable7">ΔΙΑΦΟΡΑ</th>
+				<th colspan=1 ng-if="showSubTable8">ΔΙΑΧΕΙΡΙΣΤΙΚΑ</th>
+				<th colspan=2 ng-if="showSubTable9">ΑΛΛΗ ΚΑΤΗΓΟΡΙΑ</th>
+				<th colspan=3 ng-if="showSubTableSyntaktis">ΣΥΝΤΑΤΚΗΣ</th>			
+			</thead>
+			<tr>
+				<td ng-if="showSubTableGeneral"><span class="myVerticalText">Επιστ Υπευθ</span></td>
+				<td ng-if="showSubTableGeneral"><span class="myVerticalText">Έρευνα</span></td>
+				<td ng-if="showSubTableGeneral"><span class="myVerticalText">Χρηματοδότης</span></td>
+				<td ng-if="showSubTableGeneral"><span class="myVerticalText">Ποσό Προυπ</span></td>
+				<td ng-if="showSubTableGeneral"><span class="myVerticalText">Διάρκεια από  </span></td>
+				<td ng-if="showSubTableGeneral"><span class="myVerticalText">Διάρκεια Εως</span></td>
+				<td ng-if="showSubTable1"><span class="myVerticalText">ΕΠΙΣΤΗΜΟΝΙΚΑ ΟΡΓΑΝΑ</span></td>
+				<td ng-if="showSubTable1"><span class="myVerticalText">Η/Υ ΚΑΙ ΠΕΡΙΦΕΡΕΙΑΚΑ</span></td>
+				<td ng-if="showSubTable1"><span class="myVerticalText">ΦΩΤΟΤΥΠΙΚΑ ΚΑΙ ΠΑΡΕΜΦΕΡΗ ΜΗΧΑΝΗΜΑΤΑ</span></td>
+				<td ng-if="showSubTable1"><span class="myVerticalText">ΛΟΓΙΣΜΙΚΑ ΠΡΟΓΡΑΜΜΑΤΑ</span></td>
+				<td ng-if="showSubTable1"><span class="myVerticalText">ΟΠΤΙΚΟΑΚΟΥΣΤΙΚΑ ΜΕΣΑ</span></td>
+				<td ng-if="showSubTable1"><span class="myVerticalText">ΕΞΟΠΛΙΣΜΟΣ ΓΡΑΦΕΙΟΥ</span></td>
+				<td ng-if="showSubTable1"><span class="myVerticalText">ΒΙΒΛΙΑ – ΕΝΤΥΠΑ –ΠΕΡΙΟΔΙΚΑ</span></td>
+				<td ng-if="showSubTable1"><span class="myVerticalText">ΑΥΤΟΚΙΝΗΤΑ</span></td>
+				<td ng-if="showSubTable1"><span class="myVerticalText">ΛΟΙΠΟΣ ΕΞΟΠΛΙΣΜΟΣ</span></td>
+				<td ng-if="showSubTable1"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΟΝΟΜΑ </span></td>
+				<td ng-if="showSubTable1"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΠΟΣΟ</span></td>
+				<td ng-if="showSubTable2"><span class="myVerticalText">ΑΝΤΙΔΡΑΣΤΗΡΙΑ</span></td>
+				<td ng-if="showSubTable2"><span class="myVerticalText">ΕΡΓΑΣΤΗΡΙΑΚΑ ΑΝΑΛΩΣΙΜΑ</span></td>
+				<td ng-if="showSubTable2"><span class="myVerticalText">ΟΔΟΝΤΙΑΤΡΙΚΑ</span></td>
+				<td ng-if="showSubTable2"><span class="myVerticalText">ΦΑΡΜΑΚΕΥΤΙΚΑ ΠΡΟΪΟΝΤΑ</span></td>
+				<td ng-if="showSubTable2"><span class="myVerticalText">ΑΚΤΙΝΟΓΡΑΦΙΚΑ ΕΙΔΗ</span></td>
+				<td ng-if="showSubTable2"><span class="myVerticalText">ΠΕΙΡΑΜΑΤΟΖΩΑ</span></td>
+				<td ng-if="showSubTable2"><span class="myVerticalText">ΑΕΡΙΑ</span></td>
+				<td ng-if="showSubTable2"><span class="myVerticalText">ΓΡΑΦΙΚΗ ΥΛΗ</span></td>
+				<td ng-if="showSubTable2"><span class="myVerticalText">ΥΓΕΙΟΝΟΜΙΚΟ ΥΛΙΚΟ</span></td>
+				<td ng-if="showSubTable2"><span class="myVerticalText">ΥΛΙΚΑ ΚΑΘΑΡΙΟΤΗΤΑΣ</span></td>
+				<td ng-if="showSubTable2"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΟΝΟΜΑ</span></td>
+				<td ng-if="showSubTable2"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΠΟΣΟ</span></td>
+				<td ng-if="showSubTable3"><span class="myVerticalText">ΕΠΙΣΤΗΜΟΝΙΚΟΥ ΥΠΕΥΘΥΝΟΥ</span></td>
+				<td ng-if="showSubTable3"><span class="myVerticalText">ΕΠΙΣΤΗΜΟΝΙΚΟΥ ΠΡΟΣΩΠΙΚΟΥ</span></td>
+				<td ng-if="showSubTable3"><span class="myVerticalText">ΦΟΙΤΗΤΩΝ</span></td>
+				<td ng-if="showSubTable3"><span class="myVerticalText">ΛΟΙΠΟΥ ΠΡΟΣΩΠΙΚΟΥ</span></td>
+				<td ng-if="showSubTable3"><span class="myVerticalText">ΑΛΛΟ ONOMA</span></td>
+				<td ng-if="showSubTable3"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΠΟΣΟ</span></td>
+				<td ng-if="showSubTable4"><span class="myVerticalText">ΕΚΤΥΠΩΣΕΙΣ</span></td>
+				<td ng-if="showSubTable4"><span class="myVerticalText">ΤΑΧΥΔΡΟΜΙΚΑ </span></td>
+				<td ng-if="showSubTable4"><span class="myVerticalText">ΣΥΝΔΡΟΜΕΣ ΣΕ ΟΡΓΑΝΙΣΜΟΥΣ</span></td>
+				<td ng-if="showSubTable4"><span class="myVerticalText">ΔΙΟΡΓΑΝΩΣΗΣ ΣΥΝΕΔΡΙΩΝ</span></td>
+				<td ng-if="showSubTable4"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΟΝΟΜΑ </span></td>
+				<td ng-if="showSubTable4"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΠΟΣΟ</span></td>
+				<td ng-if="showSubTable5"><span class="myVerticalText">ΕΠΙΣΚΕΥΗ ΚΑΙ ΣΥΝΤΗΡΗΣΗ ΕΠΙΣΤΗΜΟΝΙΚΩΝ ΟΡΓΑΝΩΝ</span></td>
+				<td ng-if="showSubTable5"><span class="myVerticalText">ΕΠΙΣΚΕΥΗ ΚΑΙ ΣΥΝΤΗΡΗΣΗ ΛΟΙΠΟΥ ΕΞΟΠΛΙΣΜΟΥ</span></td>
+				<td ng-if="showSubTable5"><span class="myVerticalText">ΕΠΙΣΚΕΥΗ ΚΑΙ ΣΥΝΤΗΡΗΣΗ Η/Υ, ΕΚΤΥΠΩΤΩΝ, ΦΩΤΟΤΥΠΙΚΩΝ</span></td>
+				<td ng-if="showSubTable5"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΟΝΟΜΑ</span></td>
+				<td ng-if="showSubTable5"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΠΟΣΟ</span></td>
+				<td ng-if="showSubTable6"><span class="myVerticalText">ΕΝΟΙΚΙΑΣΗ ΧΩΡΩΝ</span></td>
+				<td ng-if="showSubTable6"><span class="myVerticalText">ΕΝΟΙΚΙΑ ΜΕΤΑΦΟΡΙΚΩΝ ΜΕΣΩΝ</span></td>
+				<td ng-if="showSubTable6"><span class="myVerticalText">ΕΝΟΙΚΙΑ ΕΠΙΣΤΗΜΟΝΙΚΩΝ ΟΡΓΑΝΩΝ</span></td>
+				<td ng-if="showSubTable6"><span class="myVerticalText">ΕΝΟΙΚΙΑ ΛΟΙΠΟΥ ΕΞΟΠΛΙΣΜΟΥ</span></td>
+				<td ng-if="showSubTable6"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΟΝΟΜΑ</span></td>
+				<td ng-if="showSubTable6"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΠΟΣΟ</span></td>
+				<td ng-if="showSubTable7"><span class="myVerticalText">ΜΕΤΑΚΙΝΗΣΕΙΣ</span></td>
+				<td ng-if="showSubTable7"><span class="myVerticalText">ΔΙΑΜΟΡΦΩΣΗ ΧΩΡΩΝ</span></td>
+				<td ng-if="showSubTable7"><span class="myVerticalText">ΔΙΑΦΟΡΑ</span></td>
+				<td ng-if="showSubTable7"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΟΝΟΜΑ</span></td>
+				<td ng-if="showSubTable7"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΠΟΣΟ</span></td>
+				<td ng-if="showSubTable8"><span class="myVerticalText">ΓΕΝΙΚΑ ΔΙΑΧΕΙΡΙΣΤΙΚΑ</span></td>
+				<td ng-if="showSubTable9"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΟΝΟΜΑ</span></td>
+				<td ng-if="showSubTable9"><span class="myVerticalText">ΚΑΤΗΓΟΡΙΑ ΠΟΣΟ</span></td>
+				<td ng-if="showSubTableSyntaktis"><span class="myVerticalText">Ον/μο Συντάκτης Προυπ </span></td>
+				<td ng-if="showSubTableSyntaktis"><span class="myVerticalText">Τηλ. Συντάκτη </span></td>
+				<td ng-if="showSubTableSyntaktis"><span class="myVerticalText"> e-mail Συντάκτη</span></td>
+			</tr>
         <tbody>
             <tr ng-repeat="data in docProypologismos">
 				<td ng-if="showSubTableGeneral">{{data.scidir_id}}</td>
