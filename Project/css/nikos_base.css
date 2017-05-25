@@ -120,7 +120,7 @@ thead {
 
 .myVerticalText {
   writing-mode: tb-rl;
-  width: 30px;
+  #width: 30px;
   min-width: 3px;
   margin: 1px 0 1px;
   word-spacing: 1px;

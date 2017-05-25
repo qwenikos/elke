@@ -19,10 +19,17 @@ $outp = "";
     $data=array();
     //error_log($queryString."\n",3,"/var/tmp/php-mysql.log");
     while($row=mysqli_fetch_array($result)) {
+        #foreach ($row as $key=>$value){
+        #    if (is_null($value)){
+        #        $row[$key]="---";
+        #    }
+        #    #echo  $row[$key]."\n";
+        #}
         $data[]=$row;
     }
     
 //}
+
 echo json_encode($data);
 mysqli_close($conn);
 ?>
