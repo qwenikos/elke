@@ -4,16 +4,16 @@
 			<div  class="inputForm" >			
 				<div ng-show='commonfields_form'>
 					<table border=1 class='inputformtable'>
-						<tr>
+						<!--<tr>
 							<td>&nbsp</td>
-							<td><md-button  ng-click='updateSciDirSelect("1")'>Go</md-button></td>
-						</tr>
+							<td><md-button  ng-click='updateSciDirSelect()'>Go</md-button></td>
+						</tr>-->
 						<tr>
 							<td>
 								<label>Όνομα</label>
 							</td>
 							<td>
-								<md-select  ng-model="entoli.sciDirSelected" ng-change="updateResearchSelect(entoli.sciDirSelected,'1');">
+								<md-select  ng-model="entoli.sciDirSelected" ng-change="updateResearchSelect(entoli.sciDirSelected);">
 									<md-option ng-repeat="sciDir in sciDirForFellow.data" value="{{sciDir.base_scidir_rec_id}}">{{sciDir.scidir_surname}} {{reseach.scidir_name}}</md-option>
 								</md-select>
 							</td>

@@ -30,7 +30,7 @@ $queryString='SELECT *,base_research.rec_id as base_research_rec_id  FROM base_s
 ' base_fellow_per_scidir.scidir_id=base_scidir.rec_id and'.
 ' base_research_per_scidir.scidir_id=base_scidir.rec_id and'.
 ' base_research_per_scidir.research_id=base_research.rec_id and'.
-' base_fellow.rec_id='.$fellowId.
+' base_fellow.fellow_code="'.$fellowId.'"'.
 ' and base_scidir.rec_id='.$sciDirId;
 //print $queryString;
 $result = mysqli_query($conn,$queryString);

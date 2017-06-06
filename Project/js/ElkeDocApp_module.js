@@ -13,6 +13,10 @@ app.run(['$rootScope', '$location', '$cookieStore', '$http',
         $rootScope.globals = $cookieStore.get('globals') || {};
         if ($rootScope.globals.currentUser) {
             $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
+        
+        }
+        if ($rootScope.globals.currentUser){
+         console.log($rootScope.globals.currentUser.username);   
         }
         ////check if the route   changes///
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
@@ -392,13 +396,10 @@ app.controller('form_proypologismos_control',function($rootScope,$scope,$http,$l
         popupWin.document.close();
     };
     
-    $scope.updateSciDirSelect = function(fellowId){
+    var updateSciDirSelect = function(){
+        console.log($rootScope.globals.currentUser.username);
+        var fellowId=$rootScope.globals.currentUser.username;
         var mylink='services/get_sci_for_fellow.php';
-        //var fellowId=1;
-        var myparams='?fellowId='+fellowId;
-        //param='?surname='+surname;
-        var fullurl=mylink+myparams;
-        console.log(fullurl);
         $http.get(mylink,{params:{"fellowId": fellowId, "param2": "testVal"}},{headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}}).then( //success
 		function (response) {
 			$scope.sciDirForFellow = response;
@@ -412,9 +413,11 @@ app.controller('form_proypologismos_control',function($rootScope,$scope,$http,$l
         );
         $scope.researchdiv=true;      
     };
+    updateSciDirSelect();
     
-    $scope.updateResearchSelect = function(sciDirSelected,fellowId){
+    $scope.updateResearchSelect = function(sciDirSelected){
         var mylink='services/get_reseach_for_sci_dir_and_fellow.php';
+        var fellowId=$rootScope.globals.currentUser.username;
         //var fellowId=1;
         //var sciDirId=sciDirSelected;
         var myparams='?fellowId='+fellowId+"&sciDirId="+sciDirSelected;
@@ -476,7 +479,9 @@ app.controller('form_proypologismos_control',function($rootScope,$scope,$http,$l
 
 app.controller('form_control',function($rootScope,$scope,$http,$log,$mdDialog) {
     //initialization
+
     $scope.commonfields_form=true;
+    
     $scope.amoivi_form=false;
     $scope.prokatavoli_form=false;
     $scope.exoda_ereynwn_form=false;
@@ -612,13 +617,11 @@ app.controller('form_control',function($rootScope,$scope,$http,$log,$mdDialog) {
     
     console.log($scope.researchListData);
     
-    $scope.updateSciDirSelect = function(fellowId){
+    var updateSciDirSelect = function(){
+        console.log($rootScope.globals.currentUser.username);
+        var fellowId=$rootScope.globals.currentUser.username;
         var mylink='services/get_sci_for_fellow.php';
-        //var fellowId=1;
-        var myparams='?fellowId='+fellowId;
-        //param='?surname='+surname;
-        var fullurl=mylink+myparams;
-        console.log(fullurl);
+
         $http.get(mylink,{params:{"fellowId": fellowId, "param2": "testVal"}},{headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}}).then( //success
 		function (response) {
 			$scope.sciDirForFellow = response;
@@ -632,9 +635,11 @@ app.controller('form_control',function($rootScope,$scope,$http,$log,$mdDialog) {
         );
         $scope.researchdiv=true;      
     };
+    updateSciDirSelect();
     
-    $scope.updateResearchSelect = function(sciDirSelected,fellowId){
+    $scope.updateResearchSelect = function(sciDirSelected){
         var mylink='services/get_reseach_for_sci_dir_and_fellow.php';
+        var fellowId=$rootScope.globals.currentUser.username;
         //var fellowId=1;
         //var sciDirId=sciDirSelected;
         var myparams='?fellowId='+fellowId+"&sciDirId="+sciDirSelected;

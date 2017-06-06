@@ -35,7 +35,7 @@ $conn = mysqli_connect('localhost', "root", "qwe123", "elkedb");
 $queryString='SELECT *, base_scidir.rec_id as base_scidir_rec_id FROM base_scidir,base_fellow,base_fellow_per_scidir where'.
 ' base_fellow_per_scidir.fellow_id=base_fellow.rec_id and'.
 ' base_fellow_per_scidir.scidir_id=base_scidir.rec_id and'.
-' base_fellow.rec_id='.$fellowId;
+' base_fellow.fellow_code="'.$fellowId.'"';
 //print $queryString;
 $result = mysqli_query($conn,$queryString);
 $data=array();
