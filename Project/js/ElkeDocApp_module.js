@@ -109,7 +109,7 @@ app.controller('mainCtrl', function($scope){
 });
 /////##########################################/////
 
-app.controller('submitedProypologismosCtrl', function($scope,$http){
+app.controller('submitedProypologismosCtrl', function($rootScope,$scope,$http){
     //debugger;
     $scope.showSubTableGeneral=1;
     $scope.showSubTable1=1;
@@ -126,8 +126,9 @@ app.controller('submitedProypologismosCtrl', function($scope,$http){
     
 	$scope.msg = 'You are now at submited proypologismos  page';
 	$scope.doc_proypologismos_num=1;
+    var fellowId=$rootScope.globals.currentUser.username;
     var mylink='services/get_doc_proypologismos_all.php';
-	var myparams='';
+	var myparams='/?fellowId='+fellowId;
 	//param='?surname='+surname;
 	var fullurl=mylink+myparams;
 	console.log(fullurl);
@@ -142,12 +143,14 @@ app.controller('submitedProypologismosCtrl', function($scope,$http){
 });
 /////##########################################/////
 
-app.controller('submitedCtrl', function($scope,$http){
+app.controller('submitedCtrl', function($rootScope,$scope,$http){
     //debugger;
 	$scope.msg = 'You are now at submited us page';
 	$scope.doc_entoli_num=1;
+    var fellowId=$rootScope.globals.currentUser.username;
     var mylink='services/get_doc_entoli_all.php';
-	var myparams='';
+	var myparams='/?fellowId='+fellowId;
+
 	//param='?surname='+surname;
 	var fullurl=mylink+myparams;
 	console.log(fullurl);

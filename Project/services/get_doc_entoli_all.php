@@ -5,6 +5,17 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 //mysqli(mysql_server,username,pass,db)
 $outp = "";
+$goon=false;
+if(isset($_GET['fellowId'])){
+    $fellowId=$_GET['fellowId'];
+    $goon=true;
+}else{
+$fellowId=-1 ;   
+};
+
+$outp = "";
+
+
 //if(isset($_GET['surname'])){
 //    $surname=$_GET['surname'];
     $conn = mysqli_connect('localhost', "root", "qwe123", "elkedb");
@@ -14,7 +25,12 @@ $outp = "";
     ' base_doc_entoli.research_id=base_research.rec_id and'.
     ' base_doc_entoli.benef_afm=base_beneficiary.benef_afm and'.
     ' base_doc_entoli.fellow_id=base_fellow.rec_id and'.
-    ' base_doc_entoli.entoli_type_id=base_doc_entoli_type.rec_id';
+    ' base_doc_entoli.entoli_type_id=base_doc_entoli_type.rec_id and'.
+    ' base_doc_entoli.research_id in ('.
+    ' select base_fellow_per_research.reseach_id from base_fellow_per_research where rec_id in ('.
+	' select base_fellow.rec_id from base_fellow where fellow_code="'.$fellowId.'"'.
+     '  )'.
+     ')';
 //print $queryString;
     $result = mysqli_query($conn,$queryString);
     $data=array();
