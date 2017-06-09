@@ -1,0 +1,162 @@
+@import url(http://fonts.googleapis.com/css?family=Muli:300italic);
+*, *:after, *:before {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+* {margin:0;padding:0;border: 0 none;position: relative;}
+html, body {
+  background: #ffffff;
+  padding-top: 1rem;
+  font-family: muli;
+  font-weight: 300;
+  font-style: italic;
+}
+p {
+  background: inherit;
+  width: 70%;
+  max-width: 40rem;
+  min-width: 300px;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  padding-right: 4rem;
+  margin-bottom: .5rem;
+}
+
+}
+h1 a {
+  display: block;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  text-align: center;
+  transition: .5s;
+}
+h1 a:hover {
+  letter-spacing: 2px;
+}
+
+ul.leaders {
+    max-width: 60em;
+    padding: 0;
+    overflow-x: hidden;
+    /*background: green;*/
+    list-style: none
+}
+    
+ul.leaders li:before {
+    float: left;
+    width: 0;
+    padding-left: 0.0em;
+    padding-right: 0.0em;
+    white-space: nowrap;
+    content:
+ ". . . . . . . . . . . . . . . . . . . . "
+ ". . . . . . . . . . . . . . . . . . . . "
+ ". . . . . . . . . . . . . . . . . . . . "
+ ". . . . . . . . . . . . . . . . . . . . "
+}
+ 
+ul.leaders span  {
+    float: left;
+    padding-left: 0em;
+    padding-right: 0.33em;
+    background: white;
+}
+
+ul.leaders span + span {
+    float: left;
+    padding-left: 0.33em;
+    padding-right: 0.33em;
+   /* background: red*/
+}
+
+table {
+    white-space: normal;
+    line-height: normal;
+    font-weight: normal;
+    font-size: 10;
+    font-style: normal;
+    color: -internal-quirk-inherit;
+    text-align: start;
+    font-variant: normal normal;
+}
+
+thead {
+    white-space: normal;
+    line-height: normal;
+    font-weight: normal;
+    font-size: 12;
+    font-style: italic;
+    color: -internal-quirk-inherit;
+    text-align: start;
+    font-variant: normal normal;
+}
+
+.ScenarioDetailsDropdown {
+  margin: 0;
+  background: green
+}
+
+.ScenarioDetailsDropdown h4 {
+  margin: 0;
+}
+
+.ScenarioDetailsDropdown md-select {
+  background: white;
+}
+
+.ScenarioDetailsDropdown md-select md-select-value {
+  height: 20px;
+  min-height: 20px;
+}
+
+.mySelect {
+  margin:0px 0;
+  width: 80%;
+  line-height: 30px;
+  height: 30px;
+
+}
+
+.myVerticalText {
+  writing-mode: tb-rl;
+  #width: 30px;
+  min-width: 3px;
+  margin: 1px 0 1px;
+  word-spacing: 1px;
+}
+
+.myVerticalTextBlue {
+  
+  writing-mode: tb-rl;
+  width: 3px;
+  min-width: 3px;
+  margin: 1px 0 1px;
+  word-spacing: 1px;
+  color: 555555;
+}
+
+.TableButtonList table{
+  border: 1px solid black;
+  padding: 30px;
+}
+.TableButtonList td{
+  border: 1px solid black;
+  padding-left:  5px;
+  padding-right: 5px;
+}
+
+#scaled-frame {
+    -moz-transform: scale(0.71);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(0.71);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(0.71);
+    -webkit-transform-origin: 0 0;
+}
+
+.result-output{
+ width: 70%;
+ height: 70%;
+}
+

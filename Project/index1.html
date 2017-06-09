@@ -1,0 +1,77 @@
+<div class="page" >
+
+	<div ng-controller="menucontroller2">
+				<div>
+			<div class="nav">
+				<ul id="menu">
+					<li><a href="#/docs" ng-click="sub_menu_arxiki_show()" >Αρχική</a></li>
+					<li><a href="#/docs" ng-click="sub_menu_entypa_show()" >Εντυπά</a></li>
+					<li><a href="#/" ng-click="sub_menu_entoli_show()" >εντολη επ. υπευθυνου</a></li>
+					<li><a href="#/contact" ng-click="sub_menu_epikoinonia_show()" >Επικοινωνία</a></li>
+					<li><a href="#/login" ng-click="sub_menu_login()" >Σύνδεση</a></li>
+					<li>userLoggedId-->{{userLoggedId}}<br></li>
+				</ul>
+			</div>
+		
+			<div class="sub-nav" ng-show="sub_menu_arxiki">
+				<!-- -->
+			</div>
+			
+			<div class="sub-nav" ng-show="sub_menu_entypa">
+				<ul id="sub-menu">
+					<li><a href="#/">Αλλο έντυπο μενου 1</a></li>
+					<li><a href="#/">Αλλο έντυπο μενου 2</a></li>
+					<li><a href="#/">Αλλο έντυπο μενου 3</a></li>
+				</ul>
+			</div>
+			
+			<div class="sub-nav" ng-show="sub_menu_entoli">
+				<ul id="sub-menu">
+					<li><a href="#submited_docs">Yποβληθήσες Εντολές</a></li>
+					<li><a href="#entoli">Νέα Εντολή</a></li>
+					<li><a href="#diaxeirisi">Διαχείριση</a></li>
+				</ul>
+			</div>
+			
+			<div class="sub-nav" ng-show="sub_menu_epikoinonia">
+				<!-- -->
+			</div>
+		</div>
+	</div>
+		<!-- header-->
+
+		<!-- end of menu------ -->
+		<div class="header">
+			<div class="topbanner">
+				<table>
+					<tr>
+						<td>
+							<div>
+								<img alt="ΕΚΠΑ - ΕΛΚΕ" src="Images/elke_logo_banner_2017.jpg">
+							</div>
+						</td>
+						<td>
+							<div>
+								<h1>elke<font size=+4><b>X</b></font>tenal</h1>
+							</div>	
+						</td>
+					</tr>
+				</table>	
+			</div>
+		</div>
+		<!-- body-->
+		<div class="body">
+			<div class="container" >
+				<div class="contents" ng-controller="mainCtrl">
+					<div ng-view></div>
+				</div>
+			</div>
+		</div>
+		<!-- footer-->
+		<div class="footer">	
+		</div>			
+
+</div>
+
+
+

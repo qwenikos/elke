@@ -1,0 +1,83 @@
+
+.divTable{
+	display: table;
+	width: 100%;
+}
+.divTableRow {
+	display: table-row;
+}
+.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+}
+.divTableCell, .divTableHead {
+	border: 3px solid #666666;
+	display: table-cell;
+	padding: 3px 10px;
+}
+.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+	font-weight: bold;
+}
+.divTableFoot {
+	background-color: #EEE;
+	display: table-footer-group;
+	font-weight: bold;
+}
+.divTableBody {
+	display: table-row-group;
+}
+
+div.clear_div{
+	all: initial;
+	border: 1px solid #111111;
+}
+
+div.inputForm{
+	max-width: 400px;
+	margin: auto;
+	border: 2px solid #aaaaaa;
+	float: left;
+	border-style: dotted;
+}
+
+div.outputDoc{
+	max-width: 585px;
+	/*margin: auto;*/
+	/*margin-left: 10px;*/
+	margin-right: 10px;
+	border: 3px solid #aaaaaa;
+	margin-left: 450px;
+}
+div.inneroutputDoc{
+	max-width: 565px;
+	/*margin: auto;*/
+	margin-left: 10px;
+	margin-right: 10px;
+	border: 0px solid #aaaaaa;
+
+}
+
+div.solid{
+	border-style: solid;
+}
+
+div.dotted {
+	border-style: dotted;
+}
+
+th.inputformtable{
+	width:200px;
+}
+
+sup {
+    vertical-align: super;
+    font-size: smaller;
+}
+
+.tab{
+	margin-left: 40px;
+}
+
+

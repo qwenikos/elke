@@ -1,0 +1,11 @@
+<div class="alert alert-success alert-margin" > phpCAS::logo
+    <span class="glyphicon glyphicon-ok-circle"></span> 
+    Authentication succeeded for user 
+    <strong><?php echo phpCAS::getUser(); ?></strong>.
+  </div>
+  
+    <div class="cas-version">
+    <span class="glyphicon glyphicon-info-sign"></span> 
+    phpCAS version is <b><?php echo phpCAS::getVersion(); ?></b>
+  </div>
+  <div class="logout-link"><a href="?logout=">Logout</a></div>
