@@ -5,51 +5,31 @@ angular.module('Authentication',[])
 
 
 .controller('LoginController',
-    ['$scope', '$http','$rootScope', '$location', '$window', 'AuthenticationService',
-    function ($scope,$http, $rootScope, $location, $window, AuthenticationService) {
+    ['$scope', '$rootScope', '$location', 'AuthenticationService',
+    function ($scope, $rootScope, $location, AuthenticationService) {
         // reset login status
         //debugger;
-        $http.get('index.html?logout');
         AuthenticationService.ClearCredentials();
-        
-        
-        $scope.divShow=true;
-        
-        $scope.login = function (uname,success) {
-            console.log("successfully login");
+ 
+        $scope.login = function () {
             $scope.dataLoading = true;
-                if(success) {
-                    console.log(window.location.origin);
+            AuthenticationService.Login($scope.username, $scope.password, function(response) {
+                if(response.success) {
                     AuthenticationService.SetCredentials($scope.username, $scope.password);
-                     //$location.path('/');
-                     //$window.location="www.google.gr";
-                     $location.url('/');
-                 }
-                 else {
-                    console.log("error");
-                     $scope.error = response.message;
-                     $scope.dataLoading = false;
-                 }
+                    $location.path('/');     
+                }
+                else {
+                    $scope.error = response.message;
+                    $scope.dataLoading = false;
+                }
+            });
         };
     }])
-        //$scope.login = function () {
-        //
-        //    $scope.dataLoading = true;
-        //   
-        //        if(response.success) {
-        //            AuthenticationService.SetCredentials($scope.username, $scope.password);
-        //            $location.path('/');     
-        //        }
-        //        else {
-        //            $scope.error = response.message;
-        //            $scope.dataLoading = false;
-        //        }
-        //    });
-        //};
+  
+ 
  
 .factory('AuthenticationService',['Base64', '$http', '$cookieStore', '$rootScope', '$timeout',function (Base64, $http, $cookieStore, $rootScope, $timeout) {
     var service = {};
-    
     service.Login = function (username, password, callback) {
 
         /* Dummy authentication for testing, uses $timeout to simulate api call
@@ -60,7 +40,7 @@ angular.module('Authentication',[])
                         (username === 'nikos1' && password === 'nikos1')
                 };
 
-        if(!response.success) {
+            if(!response.success) {
                 response.message = 'Username or password is incorrect';
             }
             callback(response);
@@ -68,7 +48,7 @@ angular.module('Authentication',[])
 
         /* Use this for real authentication
          ----------------------------------------------*/
-        //$http.post('services/php_login.php', { username: username, password: password })
+        //$http.post('/api/authenticate', { username: username, password: password })
         //    .success(function (response) {
         //        callback(response);
         //    });

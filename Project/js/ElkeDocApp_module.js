@@ -88,7 +88,15 @@ app.config(['$routeProvider', function ($routeProvider) {
         .otherwise({ redirectTo: '/login' });
 }]);
 
-
+/////##########################################/////
+ //after successfully login
+app.controller('loginController', function($scope){
+    
+	$scope.divShow = true;
+    console.log("successfully Login");
+});
+ 
+ 
 /////##########################################/////
  
 app.controller('docsCtrl', function($scope){
@@ -141,6 +149,7 @@ app.controller('submitedProypologismosCtrl', function($rootScope,$scope,$http){
 		}
 	);
 });
+
 /////##########################################/////
 
 app.controller('submitedCtrl', function($rootScope,$scope,$http){
