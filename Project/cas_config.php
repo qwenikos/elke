@@ -5,6 +5,6 @@
   $cas_sso_server  = "sso.uoa.gr";
   $cas_port  = 443;
   $cas_cert  = "/etc/ssl/certs/ca-certificates.crt";
-  $cas_logout_app_redirect_url = "http://192.168.21.90/nikos/elke/Project/index0_orig1.html";
+  $cas_logout_app_redirect_url = "http://192.168.21.90/nikos/elke/Project/start_page.html";
 
 ?>

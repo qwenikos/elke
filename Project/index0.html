@@ -1,4 +1,5 @@
 <?php
+	$logout=0;
   include_once('CAS.php');	
   include_once('cas_config.php');
   phpCAS::client($cas_protocol, $cas_sso_server, $cas_port, '');
@@ -10,23 +11,8 @@
   }		
 ?>
 <!-- App1 | home.php -->
-  <?php
-		$useruid="";
-    foreach (phpCAS::getAttributes() as $key => $value) {
-			//echo $key,$value;
-				if ($key=="uid"){
-					$useruid=$value;
-				}
-			}
-		
-		//echo "uid -->".$useruid;
-		$data=array();
-		$data[]=$useruid;
-		$jsonuid= json_encode($useruid);
-		echo $jsonuid;
-		//$uu= json_decode($jsonuid);
-			//echo $uu;
-  ?>
+
+	
 	<html ng-app="ElkeDocApp">
   <head>
     <meta charset="UTF-8" />
@@ -59,12 +45,31 @@
     <script src="js/Authentication_module.js"></script>   
   </head>
   <body>
+<?php
+		if ($logout!=1){
 
-    <div id="Header1" ng-controller="LoginController" ng-show="divShow" ng-init=login(<?php echo $useruid ?>,"true")>
-		<div class="logout-link"><a href="?logout=" target=top>Logout</a></div>
+			$useruid="";
+			$success="0";
+			foreach (phpCAS::getAttributes() as $key => $value) {
+					if ($key=="uid"){
+						$useruid=$value;
+						$success=1;
+					}
+				}
+			
+			//$data=array();
+			//$data[]=$useruid;
+			//$jsonuid= json_encode($useruid);
+			//echo $jsonuid;
+		}
 		
-        <div ng-show="error" class="alert alert-danger">
-            {{error}}
-        </div>
-		</div>
-		<div>nikos</div>
+		if ($success==1){
+
+			echo '<div ng-controller="LoginController" ng-show="divShow" ng-init="uname=' ."'$useruid'". '">';
+			echo '<div ng-controller="LoginController">';
+			echo '</div>';
+			echo '</div>';
+		};
+		?>
+	</body>
+	</html>

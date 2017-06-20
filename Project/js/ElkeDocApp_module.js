@@ -41,7 +41,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
         .when('/login', {
             controller: 'LoginController',
-            templateUrl: 'pages/login.html',
+            templateUrl: 'pages/login.php',
             hideMenus: true
         })
  
@@ -90,12 +90,6 @@ app.config(['$routeProvider', function ($routeProvider) {
 
 /////##########################################/////
  //after successfully login
-app.controller('loginController', function($scope){
-    
-	$scope.divShow = true;
-    console.log("successfully Login");
-});
- 
  
 /////##########################################/////
  
@@ -244,6 +238,7 @@ app.controller('menucontroller2', function($rootScope,$scope,$window){
 		console.log("connect");
 		
 	};
+
 	
 });
 

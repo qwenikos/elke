@@ -5,49 +5,59 @@ angular.module('Authentication',[])
 
 
 .controller('LoginController',
-    ['$scope', '$rootScope','$window', '$location', 'AuthenticationService',
-    function ($scope, $rootScope,$window, $location, AuthenticationService) {
-        // reset login status
-        //debugger;
+    ['$scope', '$http','$rootScope', '$location', '$window', 'AuthenticationService',
+    function ($scope,$http, $rootScope, $location, $window, AuthenticationService) {
+        console.log("in the LoginController")
         AuthenticationService.ClearCredentials();
-        console.log("you are in the login controller");
-
-        console.log("uname==="+$scope.uname );
-        if ($scope.uname==="" || $scope.uname===undefined){
-            console.log("not logged");
-        }else{
-            console.log("logged");
-            console.log($scope.uname);
-            login($scope.uname,"dummypass");
+        
+        $scope.divShow=true;
+        
+        $scope.logout = function () {
+            console.log("------------------------------------------");
+            console.log("------------------------------------------");
+            console.log("------------------------------------------");
+            console.log("------------------------------------------");
+            console.log("------------------------------------------");        
         }
-
-        function login (username,password) {
-                console.log("you are in the login function");
-                $scope.dataLoading = true;
-                AuthenticationService.SetCredentials(username,password);
-                $location.path('/');
-                //$window.top.location="/nikos/elke/Project/start_page.html";
-                //$scope.uname="";
-
+        
+        $scope.login = function (uname,success) {
+            $scope.dataLoading = true;
+                if(success==='true') {
+                    //console.log(window.location.origin);
+                    console.log("user-->"+uname);
+                    $scope.username=uname;
+                    //console.log($scope.username);
+                    AuthenticationService.SetCredentials($scope.username, $scope.password);
+                     //$location.path('/');
+                     $window.top.location="/nikos/elke/Project/start_page.html";
+                     
+                     //$location.url('/nikos/elke/Project/start_page.htm');
+                 }
+                 else {
+                    console.log("error");
+                     $scope.error = response.message;
+                     $scope.dataLoading = false;
+                 }
         };
-        function logout (username,password) {
-                console.log("you are in the logout function");
-                $scope.dataLoading = true;
-                AuthenticationService.ClearCredentials();
-                $location.path('/');
-                //$window.top.location="/nikos/elke/Project/start_page.html";
-                $http.post('/services/logout.php?logout');
-        };
-    
-    }
-
-    
-    ])
-  
- 
+    }])
+        //$scope.login = function () {
+        //
+        //    $scope.dataLoading = true;
+        //   
+        //        if(response.success) {
+        //            AuthenticationService.SetCredentials($scope.username, $scope.password);
+        //            $location.path('/');     
+        //        }
+        //        else {
+        //            $scope.error = response.message;
+        //            $scope.dataLoading = false;
+        //        }
+        //    });
+        //};
  
 .factory('AuthenticationService',['Base64', '$http', '$cookieStore', '$rootScope', '$timeout',function (Base64, $http, $cookieStore, $rootScope, $timeout) {
     var service = {};
+    
     service.Login = function (username, password, callback) {
 
         /* Dummy authentication for testing, uses $timeout to simulate api call
@@ -58,7 +68,7 @@ angular.module('Authentication',[])
                         (username === 'nikos1' && password === 'nikos1')
                 };
 
-            if(!response.success) {
+        if(!response.success) {
                 response.message = 'Username or password is incorrect';
             }
             callback(response);
@@ -66,28 +76,12 @@ angular.module('Authentication',[])
 
         /* Use this for real authentication
          ----------------------------------------------*/
-        //$http.post('/api/authenticate', { username: username, password: password })
+        //$http.post('services/php_login.php', { username: username, password: password })
         //    .success(function (response) {
         //        callback(response);
         //    });
 
     };
-    
-    service.Login1 = function (username, callback) {
-
-        console.log("Login1");
-        $timeout(function(){
-            var response = {
-                success:( username === 'nikos' && password === 'nikos' )||
-                        (username === 'nikos1' && password === 'nikos1')
-                };
-
-            if(!response.success) {
-                response.message = 'Username or password is incorrect';
-            }
-            callback(response);
-        }, 100);
-    };    
 
     service.SetCredentials = function (username, password) {
         var authdata = Base64.encode(username + ':' + password);

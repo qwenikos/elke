@@ -1,0 +1,116 @@
+<html ng-app="ElkeDocApp">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Angular Js by Nikos</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="Images/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="Images/icon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Images/icon/favicon-16x16.png">
+  
+    <link rel="stylesheet" type="text/css" href="css/uoashare.css">
+    <link rel="stylesheet" type="text/css" href="css/nikos_tables.css">
+    <link rel="stylesheet" type="text/css" href="css/nikos_base.css">
+    <link rel="stylesheet" type="text/css" href="css/nikos_nav.css">
+  
+    <link rel="stylesheet" type="text/css" href="css/angularmd/1.1.3/docs.css">
+    <link rel="stylesheet" type="text/css" href="css/angularjs/1.1.3/angular-material.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/3.2.0/bootstrap.min.css" />	
+    
+    <script src="js/angularjs/1.5.5/angular.js"></script>
+    <script src="js/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="js/angularjs/1.5.5/angular-route.min.js"></script>
+    <script src="js/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="js/angularjs/1.5.5/angular-messages.min.js"></script>
+    <script src="js/angularjs/1.5.5/angular-cookies.js"></script>
+    <script src="js/others/svg-assets-cache.js"></script>
+    
+    <script src="js/angularmd/1.1.3/angular-material.js"></script>
+    <script src="js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
+
+    <script src="js/ElkeDocApp_module.js"></script>
+    <script src="js/Authentication_module.js"></script>   
+  </head>
+  <body>
+		<!--  Header logo region -->
+		<div class="header">
+			<div class="topbanner">
+				<table>
+					<tr>
+						<td>
+							<div>
+								<img alt="ΕΚΠΑ - ΕΛΚΕ" src="Images/elke_logo_banner_2017.jpg">
+							</div>
+						</td>
+						<td>
+							<div>
+								<h1>elke<font size=+4><b>X</b></font>ternal</h1>
+							</div>	
+						</td>
+					</tr>
+				</table>	
+			</div>
+		</div>
+		<!--  Header menu region -->
+		<div ng-controller="LoginController">
+						<li><a href="#/login" ng-click="logout()" >Αποσύνδεση</a></li>
+		</div>
+    <div id="Header1" ng-controller="navigationController" ng-hide="isConnected">
+			<div ng-controller="menucontroller2">
+				<div>
+					<div class="nav">
+						<ul id="menu">
+							<li><a href="#/" ng-click="sub_menu_arxiki_show()" >Αρχική</a></li>
+							<li><a href="#/docs" ng-click="sub_menu_entypa_show()" >Εντυπά</a></li>
+							<li><a href="#/" ng-click="sub_menu_entoli_show()" >εντολη επ. υπευθυνου</a></li>
+							<li><a href="#/" ng-click="sub_menu_proypologismos_show()" >Προυπολογισμός</a></li>
+							
+							<li><a href="#/contact" ng-click="sub_menu_epikoinonia_show()" >Επικοινωνία</a></li>
+
+							<li><a href="#/login">Αποσύνδεση</a></li>
+							<li>userLoggedId-->{{userLoggedMsg}}<br></li>
+						</ul>
+					</div>
+				
+					<div class="sub-nav" ng-show="sub_menu_arxiki">
+						<!-- -->
+					</div>
+					
+					<div class="sub-nav" ng-show="sub_menu_entypa">
+						<ul id="sub-menu">
+							<li><a href="#/">Αλλο έντυπο μενου 1</a></li>
+							<li><a href="#/">Αλλο έντυπο μενου 2</a></li>
+							<li><a href="#/">Αλλο έντυπο μενου 3</a></li>
+						</ul>
+					</div>
+					
+					<div class="sub-nav" ng-show="sub_menu_entoli">
+						<ul id="sub-menu">
+							<li><a href="#submited_docs">Yποβληθήσες Εντολές</a></li>
+							<li><a href="#entoli">Νέα Εντολή</a></li>
+							<li><a href="#diaxeirisi">Διαχείριση</a></li>
+						</ul>
+					</div>
+					<div class="sub-nav" ng-show="sub_menu_proypologismos">
+						<ul id="sub-menu">
+							<li><a href="#submited_proypologismos">Απεσταλμένοι προυπολογισμοί</a></li>
+							<li><a href="#neos_proypologismos">Νέος Προυπολογισμός</a></li>
+							<li><a href="#diaxeirisi_proypologismos">Διαχείριση</a></li>
+						</ul>
+					</div>
+					
+					<div class="sub-nav" ng-show="sub_menu_epikoinonia">
+						<!-- -->
+					</div>
+				</div>
+			</div>
+    </div>
+		
+		<div ng-view></div>
+
+		<!--   footer region -->
+    <div class="container">
+      <div class="credits text-center">
+      Credits: Nikos Perdikopanis
+      </div> 
+    </div>  
+  </body>
+</html>
