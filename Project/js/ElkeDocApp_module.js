@@ -43,11 +43,13 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'pages/login.php',
             hideMenus: true
         })
-        .when('/logout', {
-            controller: 'LoginController',
-            templateUrl: 'pages/logout.php',
-            hideMenus: true
-        })
+        
+        //.when('/logout', {
+        //    controller: 'LoginController',
+        //    templateUrl: 'pages/logout.php',
+        //    hideMenus: true
+        //})
+        
         .when('/', {
             controller: '',
             templateUrl: 'pages/home.html'
@@ -176,6 +178,7 @@ app.controller('navigationController',function ($scope, $location, $rootScope, A
 	$rootScope.$watch('globals', function(newVal, oldVal) {
             $scope.isConnected = !($rootScope.globals.currentUser);
             console.log("---------------isConnected="+!$scope.isConnected);
+            console.log(">>>>>>>>>>>>>"+JSON.stringify($rootScope.globals)+"<<<<<<<<<<<<<");
             
     }, true);
 });

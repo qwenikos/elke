@@ -2,64 +2,56 @@
 
 angular.module('Authentication',[])
 
-
-
 .controller('LoginController',
-    ['$scope', '$rootScope','$window', '$location', 'AuthenticationService',
-    function ($scope, $rootScope,$window, $location, AuthenticationService) {
-
+    ['$scope', '$rootScope','$http','$window', '$location', 'AuthenticationService',
+    function ($scope, $rootScope,$http,$window, $location, AuthenticationService) {
+        
         console.log("you are in the login controller");
         AuthenticationService.ClearCredentials();
         
         $scope.unameIs=function(unameFromCAS){
-                console.log("in the unameIsFunction");
-                $scope.username=unameFromCAS;
-                //$window.document.title="Change user"+$scope.username;
-                console.log("userName from CAS----->"+$scope.username);
-                login($scope.username,"dummypass");
-                
-                
-                
-            };
+            console.log("in the unameIsFunction");
+            $scope.username=unameFromCAS;
+            //$window.document.title="Change user"+$scope.username;
+            //console.log("userName from CAS----->"+$scope.username);
+            login($scope.username,"dummypass");              
+        };
+        
+        function login (username,password) {
+            //console.log("you are in the login function");
+            $scope.dataLoading = true;
+            AuthenticationService.SetCredentials(username,password);
+            //$location.path('#/home');
+            $window.top.location="http://192.168.21.90/nikos/elke/Project/start_page.html";
+        };
         
         //$scope.logout=function(){
-        //        console.log("in the logoutFunction");
-        //       console.log("LOGOUT");   
-        //    };
-       // console.log("uname==="+$scope.username );
-       // if ($scope.username==="" || $scope.username===undefined){
-       //     console.log("not logged");
-       // }else{
-       //     console.log("logged");
-        //    console.log($scope.username);
-       //     login($scope.uname,"dummypass");
-       // }
-
-        function login (username,password) {
-                console.log("you are in the login function");
-                $scope.dataLoading = true;
-                AuthenticationService.SetCredentials(username,password);
-                
-                //$location.path('#/home');
-                $window.top.location="http://192.168.21.90/nikos/elke/Project/start_page.html";
-                //$scope.uname="";
-
-        };
-        //function logout (username,password) {
-        //        console.log("you are in the logout function");
-        //        $scope.dataLoading = true;
-        //        AuthenticationService.ClearCredentials();
-        //        $location.path('/');
-        //        //$window.top.location="/nikos/elke/Project/start_page.html";
-        //        $http.post('/services/logout.php?logout');
-        //};
-    
+        //    console.log("in the logoutFunction");
+        //    AuthenticationService.ClearCredentials();
+        //    var logoutURL="http://192.168.21.90/nikos/elke/Project/index0.html?logout";
+        //    $http.post(logoutURL).then( //success
+        //                            
+       //     function (response) {
+       //         $scope.resp = response;
+       //         console.log("ok");
+       //         console.log($scope.resp);
+       //     },
+       //     function (response) { //fail
+       //         $scope.error="error in proccessing";
+       //         console.log("errorerrorerrorerrorerror");
+       //     }
+      //      );
+      //      $http.post('http://192.168.21.90/nikos/elke/Project/index0.html?logout');
+      //      $window.top.location="http://192.168.21.90/nikos/elke/Project/start_page.html";
+      //      console.log(">>>>>>>logout>>>>>>"+JSON.stringify($rootScope.globals)+"<<<<<<<<<<<<<");
+      //  };
+            
+            
+        
     }
-
-    
-    ])
+])
   
- 
+
  
 .factory('AuthenticationService',['Base64', '$http', '$cookieStore', '$rootScope', '$timeout',function (Base64, $http, $cookieStore, $rootScope, $timeout) {
     var service = {};
@@ -67,7 +59,6 @@ angular.module('Authentication',[])
     service.SetCredentials = function (username, password) {
         console.log("Setting Credentials");
         var authdata = Base64.encode(username + ':' + password);
-
         $rootScope.globals = {
             currentUser: {
                 username: username,
@@ -75,10 +66,8 @@ angular.module('Authentication',[])
             }
         };
 
-        $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
-        //$http.defaults.headers.common['auth-token'] = 'C3PO R2D2';
-        $cookieStore.put('globals', $rootScope.globals);
-        
+        $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; 
+        $cookieStore.put('globals', $rootScope.globals);   
     };
 
     service.ClearCredentials = function () {
@@ -92,10 +81,8 @@ angular.module('Authentication',[])
 }])
 
 .factory('Base64', function () {
-    /* jshint ignore:start */
  
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
- 
     return {
         encode: function (input) {
             var output = "";

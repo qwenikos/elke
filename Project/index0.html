@@ -8,6 +8,8 @@
   phpCAS::forceAuthentication();
   if (isset($_REQUEST['logout'])) {
     phpCAS::logout(array("service"=>$cas_logout_app_redirect_url));
+	$logout=1;
+	echo "<div><hr>logout<hr></div>";
   }		
 ?>
 <!-- App1 | home.php -->

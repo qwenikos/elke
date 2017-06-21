@@ -6,8 +6,10 @@
         <div ng-show="error" class="alert alert-danger">
             {{error}}
         </div>
-            <div align="center">
-                logout
+            
+            <div ng-controller="LoginController"  ng-init="logout()">
+            logout 8
+
             </div>
 
     </div>
