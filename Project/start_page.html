@@ -50,9 +50,9 @@
 			</div>
 		</div>
 		<!--  Header menu region -->
-		<div ng-controller="LoginController">
+		<!--<div ng-controller="LoginController">
 						<li><a href="#/login" ng-click="logout()" >Αποσύνδεση</a></li>
-		</div>
+		</div>-->
     <div id="Header1" ng-controller="navigationController" ng-hide="isConnected">
 			<div ng-controller="menucontroller2">
 				<div>
@@ -64,8 +64,7 @@
 							<li><a href="#/" ng-click="sub_menu_proypologismos_show()" >Προυπολογισμός</a></li>
 							
 							<li><a href="#/contact" ng-click="sub_menu_epikoinonia_show()" >Επικοινωνία</a></li>
-
-							<li><a href="#/login">Αποσύνδεση</a></li>
+							<li><a href="#/logout">Αποσύνδεση</a></li>
 							<li>userLoggedId-->{{userLoggedMsg}}<br></li>
 						</ul>
 					</div>

@@ -49,7 +49,7 @@
 		if ($logout!=1){
 
 			$useruid="";
-			$success="0";
+			$success=0;
 			foreach (phpCAS::getAttributes() as $key => $value) {
 					if ($key=="uid"){
 						$useruid=$value;
@@ -65,8 +65,8 @@
 		
 		if ($success==1){
 
-			echo '<div ng-controller="LoginController" ng-show="divShow" ng-init="uname=' ."'$useruid'". '">';
-			echo '<div ng-controller="LoginController">';
+			echo '<div ng-controller="LoginController" ng-show="divShow" ng-init="unameIs(' ."'$useruid'". ')">';
+			//echo '<div ng-controller="LoginController">';
 			echo '</div>';
 			echo '</div>';
 		};

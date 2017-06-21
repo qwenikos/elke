@@ -9,11 +9,10 @@ var app=angular.module('ElkeDocApp', ['Authentication','ngRoute','ngCookies','ng
 app.run(['$rootScope', '$location', '$cookieStore', '$http',
     function ($rootScope, $location, $cookieStore, $http) {
         // keep user logged in after page refresh
-        console.log("you are in the run ");
+        console.log("you are in the  ElkeDocApp module run ");
         $rootScope.globals = $cookieStore.get('globals') || {};
         if ($rootScope.globals.currentUser) {
             $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
-        
         }
         if ($rootScope.globals.currentUser){
          console.log($rootScope.globals.currentUser.username);   
@@ -44,7 +43,11 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'pages/login.php',
             hideMenus: true
         })
- 
+        .when('/logout', {
+            controller: 'LoginController',
+            templateUrl: 'pages/logout.php',
+            hideMenus: true
+        })
         .when('/', {
             controller: '',
             templateUrl: 'pages/home.html'
@@ -172,6 +175,8 @@ app.controller('navigationController',function ($scope, $location, $rootScope, A
 	
 	$rootScope.$watch('globals', function(newVal, oldVal) {
             $scope.isConnected = !($rootScope.globals.currentUser);
+            console.log("---------------isConnected="+!$scope.isConnected);
+            
     }, true);
 });
 
